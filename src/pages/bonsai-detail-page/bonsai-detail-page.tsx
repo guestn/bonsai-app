@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { BonsaiDetail } from '../../components/domain/bonsai';
+import { BonsaiDetail } from '../../components/domain';
 import { mockBonsaiData } from '../../data/mock-bonsai-data';
 import styles from './bonsai-detail-page.module.scss';
 
