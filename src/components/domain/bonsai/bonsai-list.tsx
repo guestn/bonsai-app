@@ -1,5 +1,6 @@
 import { FC, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Table,
   TableHeader,
@@ -19,10 +20,16 @@ import {
 } from 'react-aria-components';
 import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
 import { mockBonsaiData } from '../../../data/mock-bonsai-data';
+import {
+  formatCurrency,
+  formatDate,
+  formatAge,
+} from '../../../utils/formatters';
 import styles from './bonsai-list.module.scss';
 
 export const BonsaiList: FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
     status: '',
@@ -61,21 +68,6 @@ export const BonsaiList: FC = () => {
     });
   }, [filters]);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'EUR',
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-  };
-
   const getStatusColor = (status: BonsaiTree['status']) => {
     switch (status) {
       case 'active':
@@ -95,7 +87,7 @@ export const BonsaiList: FC = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <Heading level={1}>Bonsai Collection</Heading>
+          <Heading level={1}>{t('BONSAI.COLLECTION.TITLE')}</Heading>
         </div>
         <div className={styles.body}>
           {/* Filters */}
@@ -107,7 +99,7 @@ export const BonsaiList: FC = () => {
               }
               className={styles.searchField}
             >
-              <Label>Search</Label>
+              <Label>{t('BONSAI.COLLECTION.SEARCH')}</Label>
             </TextField>
 
             <Select
@@ -117,16 +109,26 @@ export const BonsaiList: FC = () => {
               }
               className={styles.select}
             >
-              <Label>Status</Label>
+              <Label>{t('BONSAI.COLLECTION.STATUS')}</Label>
               <Button>
                 <SelectValue />
               </Button>
               <ListBox>
-                <ListBoxItem key="">All Statuses</ListBoxItem>
-                <ListBoxItem key="active">Active</ListBoxItem>
-                <ListBoxItem key="dormant">Dormant</ListBoxItem>
-                <ListBoxItem key="flowering">Flowering</ListBoxItem>
-                <ListBoxItem key="repotted">Repotted</ListBoxItem>
+                <ListBoxItem key="">
+                  {t('BONSAI.COLLECTION.ALL_STATUSES')}
+                </ListBoxItem>
+                <ListBoxItem key="active">
+                  {t('BONSAI.COLLECTION.STATUSES.ACTIVE')}
+                </ListBoxItem>
+                <ListBoxItem key="dormant">
+                  {t('BONSAI.COLLECTION.STATUSES.DORMANT')}
+                </ListBoxItem>
+                <ListBoxItem key="flowering">
+                  {t('BONSAI.COLLECTION.STATUSES.FLOWERING')}
+                </ListBoxItem>
+                <ListBoxItem key="repotted">
+                  {t('BONSAI.COLLECTION.STATUSES.REPOTTED')}
+                </ListBoxItem>
               </ListBox>
             </Select>
 
@@ -137,9 +139,11 @@ export const BonsaiList: FC = () => {
               }
               className={styles.select}
             >
-              <Label>Species</Label>
+              <Label>{t('BONSAI.COLLECTION.SPECIES')}</Label>
               <ListBox>
-                <ListBoxItem key="">All Species</ListBoxItem>
+                <ListBoxItem key="">
+                  {t('BONSAI.COLLECTION.ALL_SPECIES')}
+                </ListBoxItem>
                 {uniqueSpecies.map((species) => (
                   <ListBoxItem key={species}>{species}</ListBoxItem>
                 ))}
@@ -149,22 +153,36 @@ export const BonsaiList: FC = () => {
 
           {/* Results count */}
           <div className={styles.resultsCount}>
-            {filteredData.length} tree
-            {filteredData.length !== 1 ? 's' : ''} found
+            {t('BONSAI.COLLECTION.RESULTS_COUNT', {
+              count: filteredData.length,
+              plural: filteredData.length !== 1 ? 's' : '',
+            })}
           </div>
 
           {/* Table */}
           <Table aria-label="Bonsai trees" className={styles.table}>
             <TableHeader>
               <Column isRowHeader defaultWidth="2fr">
-                Name
+                {t('BONSAI.COLLECTION.TABLE.NAME')}
               </Column>
-              <Column defaultWidth="2fr">Species</Column>
-              <Column defaultWidth="1fr">Status</Column>
-              <Column defaultWidth="1fr">Cost</Column>
-              <Column defaultWidth="1fr">Acquired</Column>
-              <Column defaultWidth="1fr">Age</Column>
-              <Column defaultWidth="1fr">Actions</Column>
+              <Column defaultWidth="2fr">
+                {t('BONSAI.COLLECTION.TABLE.SPECIES')}
+              </Column>
+              <Column defaultWidth="1fr">
+                {t('BONSAI.COLLECTION.TABLE.STATUS')}
+              </Column>
+              <Column defaultWidth="1fr">
+                {t('BONSAI.COLLECTION.TABLE.COST')}
+              </Column>
+              <Column defaultWidth="1fr">
+                {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
+              </Column>
+              <Column defaultWidth="1fr">
+                {t('BONSAI.COLLECTION.TABLE.AGE')}
+              </Column>
+              <Column defaultWidth="1fr">
+                {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
+              </Column>
             </TableHeader>
             <TableBody items={filteredData}>
               {(tree) => (
@@ -183,14 +201,14 @@ export const BonsaiList: FC = () => {
                       className={styles.status}
                       style={{ backgroundColor: getStatusColor(tree.status) }}
                     >
-                      {tree.status}
+                      {t(
+                        `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
+                      )}
                     </span>
                   </Cell>
                   <Cell>{formatCurrency(tree.initialCost)}</Cell>
                   <Cell>{formatDate(tree.acquisitionDate)}</Cell>
-                  <Cell>
-                    {tree.age} year{tree.age !== 1 ? 's' : ''}
-                  </Cell>
+                  <Cell>{formatAge(tree.age || 0, t)}</Cell>
                   <Cell>
                     <Button
                       onPress={() => {
@@ -198,7 +216,7 @@ export const BonsaiList: FC = () => {
                       }}
                       className={styles.viewButton}
                     >
-                      View Details
+                      {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
                     </Button>
                   </Cell>
                 </Row>

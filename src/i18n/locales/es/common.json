@@ -1,0 +1,83 @@
+{
+  "HEADER": {
+    "TITLE": "App de Bonsái"
+  },
+  "NAV": {
+    "HOME": "Inicio",
+    "COPYRIGHT": "Copyright © 2022 - {{year}} por App de Bonsái. Todos los derechos reservados."
+  },
+  "NOT_FOUND": {
+    "PAGE_NOT_FOUND": "Página no encontrada",
+    "BACK": "Atrás",
+    "HOME": "Inicio",
+    "404": "404"
+  },
+  "BONSAI": {
+    "COLLECTION": {
+      "TITLE": "Colección de Bonsái",
+      "SEARCH": "Buscar",
+      "STATUS": "Estado",
+      "SPECIES": "Especie",
+      "ALL_STATUSES": "Todos los Estados",
+      "ALL_SPECIES": "Todas las Especies",
+      "RESULTS_COUNT": "{{count}} árbol{{plural}} encontrado{{plural}}",
+      "AGE_YEARS": "{{count}} año{{plural}}",
+      "TABLE": {
+        "NAME": "Nombre",
+        "SPECIES": "Especie",
+        "STATUS": "Estado",
+        "COST": "Costo",
+        "ACQUIRED": "Adquirido",
+        "AGE": "Edad",
+        "ACTIONS": "Acciones",
+        "VIEW_DETAILS": "Ver Detalles"
+      },
+      "STATUSES": {
+        "ACTIVE": "Activo",
+        "DORMANT": "Dormante",
+        "FLOWERING": "Floreciendo",
+        "REPOTTED": "Replantado"
+      }
+    },
+    "DETAIL": {
+      "BACK_TO_COLLECTION": "← Volver a la Colección",
+      "TREE_INFORMATION": "Información del Árbol",
+      "CARE_HISTORY": "Historial de Cuidado",
+      "IMAGES": "Imágenes",
+      "LABELS": {
+        "STATUS": "Estado",
+        "INITIAL_COST": "Costo Inicial",
+        "ACQUISITION_DATE": "Fecha de Adquisición",
+        "AGE": "Edad",
+        "LOCATION": "Ubicación",
+        "POT_TYPE": "Tipo de Maceta",
+        "NOTES": "Notas"
+      },
+      "AGE_YEARS": "{{count}} año{{plural}}",
+      "EVENTS_TABLE": {
+        "EVENT": "Evento",
+        "WHEN": "Cuándo",
+        "COST": "Costo"
+      },
+      "IMAGE_ALT": "{{treeName}} - Imagen {{imageNumber}}"
+    },
+    "NOT_FOUND": {
+      "TITLE": "Árbol Bonsái No Encontrado",
+      "DESCRIPTION": "El árbol bonsái que buscas no existe.",
+      "BACK_TO_COLLECTION": "← Volver a la Colección"
+    }
+  },
+  "TIME": {
+    "TODAY": "Hoy",
+    "YESTERDAY": "Ayer",
+    "AGO": "hace {{time}}",
+    "UNITS": {
+      "YEAR": "{{count}} año{{plural}}",
+      "MONTH": "{{count}} mes{{plural}}",
+      "WEEK": "{{count}} semana{{plural}}",
+      "DAY": "{{count}} día{{plural}}",
+      "HOUR": "{{count}} hora{{plural}}",
+      "MINUTE": "{{count}} minuto{{plural}}"
+    }
+  }
+}

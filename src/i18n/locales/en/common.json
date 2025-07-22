@@ -11,5 +11,73 @@
     "BACK": "Back",
     "HOME": "Home",
     "404": "404"
+  },
+  "BONSAI": {
+    "COLLECTION": {
+      "TITLE": "Bonsai Collection",
+      "SEARCH": "Search",
+      "STATUS": "Status",
+      "SPECIES": "Species",
+      "ALL_STATUSES": "All Statuses",
+      "ALL_SPECIES": "All Species",
+      "RESULTS_COUNT": "{{count}} tree{{plural}} found",
+      "AGE_YEARS": "{{count}} year{{plural}}",
+      "TABLE": {
+        "NAME": "Name",
+        "SPECIES": "Species",
+        "STATUS": "Status",
+        "COST": "Cost",
+        "ACQUIRED": "Acquired",
+        "AGE": "Age",
+        "ACTIONS": "Actions",
+        "VIEW_DETAILS": "View Details"
+      },
+      "STATUSES": {
+        "ACTIVE": "Active",
+        "DORMANT": "Dormant",
+        "FLOWERING": "Flowering",
+        "REPOTTED": "Repotted"
+      }
+    },
+    "DETAIL": {
+      "BACK_TO_COLLECTION": "← Back to Collection",
+      "TREE_INFORMATION": "Tree Information",
+      "CARE_HISTORY": "Care History",
+      "IMAGES": "Images",
+      "LABELS": {
+        "STATUS": "Status",
+        "INITIAL_COST": "Initial Cost",
+        "ACQUISITION_DATE": "Acquisition Date",
+        "AGE": "Age",
+        "LOCATION": "Location",
+        "POT_TYPE": "Pot Type",
+        "NOTES": "Notes"
+      },
+      "AGE_YEARS": "{{count}} year{{plural}}",
+      "EVENTS_TABLE": {
+        "EVENT": "Event",
+        "WHEN": "When",
+        "COST": "Cost"
+      },
+      "IMAGE_ALT": "{{treeName}} - Image {{imageNumber}}"
+    },
+    "NOT_FOUND": {
+      "TITLE": "Bonsai Tree Not Found",
+      "DESCRIPTION": "The bonsai tree you're looking for doesn't exist.",
+      "BACK_TO_COLLECTION": "← Back to Collection"
+    }
+  },
+  "TIME": {
+    "TODAY": "Today",
+    "YESTERDAY": "Yesterday",
+    "AGO": "{{time}} ago",
+    "UNITS": {
+      "YEAR": "{{count}} year{{plural}}",
+      "MONTH": "{{count}} month{{plural}}",
+      "WEEK": "{{count}} week{{plural}}",
+      "DAY": "{{count}} day{{plural}}",
+      "HOUR": "{{count}} hour{{plural}}",
+      "MINUTE": "{{count}} minute{{plural}}"
+    }
   }
 }

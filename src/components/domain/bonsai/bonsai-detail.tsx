@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Heading,
@@ -11,6 +12,12 @@ import {
   Cell,
 } from 'react-aria-components';
 import { BonsaiTree } from '../../../types/bonsai';
+import {
+  formatCurrency,
+  formatDate,
+  getTimeAgo,
+  formatAge,
+} from '../../../utils/formatters';
 import styles from './bonsai-detail.module.scss';
 
 interface BonsaiDetailProps {
@@ -19,63 +26,7 @@ interface BonsaiDetailProps {
 }
 
 export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'EUR',
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
-  const getTimeAgo = (dateString: string) => {
-    const eventDate = new Date(dateString);
-    const now = new Date();
-    const diffInMs = now.getTime() - eventDate.getTime();
-    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
-    if (diffInDays === 0) {
-      return 'Today';
-    } else if (diffInDays === 1) {
-      return 'Yesterday';
-    } else if (diffInDays < 7) {
-      return `${diffInDays} days ago`;
-    } else if (diffInDays < 30) {
-      const weeks = Math.floor(diffInDays / 7);
-      const remainingDays = diffInDays % 7;
-      if (remainingDays === 0) {
-        return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
-      } else {
-        return `${weeks} week${weeks === 1 ? '' : 's'} ${remainingDays} day${remainingDays === 1 ? '' : 's'} ago`;
-      }
-    } else if (diffInDays < 365) {
-      const months = Math.floor(diffInDays / 30);
-      const remainingDays = diffInDays % 30;
-      if (remainingDays === 0) {
-        return `${months} month${months === 1 ? '' : 's'} ago`;
-      } else {
-        return `${months} month${months === 1 ? '' : 's'} ${remainingDays} day${remainingDays === 1 ? '' : 's'} ago`;
-      }
-    } else {
-      const years = Math.floor(diffInDays / 365);
-      const remainingDays = diffInDays % 365;
-      const remainingMonths = Math.floor(remainingDays / 30);
-
-      let result = `${years} year${years === 1 ? '' : 's'}`;
-
-      if (remainingMonths > 0) {
-        result += ` ${remainingMonths} month${remainingMonths === 1 ? '' : 's'}`;
-      }
-
-      return `${result} ago`;
-    }
-  };
+  const { t } = useTranslation();
 
   const getStatusColor = (status: BonsaiTree['status']) => {
     switch (status) {
@@ -100,7 +51,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <Button onPress={onBack} className={styles.backButton}>
-          ← Back to Collection
+          {t('BONSAI.DETAIL.BACK_TO_COLLECTION')}
         </Button>
         <Heading level={1}>{tree.name}</Heading>
         <Text className={styles.species}>{tree.species}</Text>
@@ -110,51 +61,63 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
         {/* Main Info Card */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <Heading level={2}>Tree Information</Heading>
+            <Heading level={2}>{t('BONSAI.DETAIL.TREE_INFORMATION')}</Heading>
           </div>
           <div className={styles.cardBody}>
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
-                <Text className={styles.label}>Status</Text>
+                <Text className={styles.label}>
+                  {t('BONSAI.DETAIL.LABELS.STATUS')}
+                </Text>
                 <span
                   className={styles.status}
                   style={{ backgroundColor: getStatusColor(tree.status) }}
                 >
-                  {tree.status}
+                  {t(`BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`)}
                 </span>
               </div>
 
               <div className={styles.infoItem}>
-                <Text className={styles.label}>Initial Cost</Text>
+                <Text className={styles.label}>
+                  {t('BONSAI.DETAIL.LABELS.INITIAL_COST')}
+                </Text>
                 <Text className={styles.value}>
                   {formatCurrency(tree.initialCost)}
                 </Text>
               </div>
 
               <div className={styles.infoItem}>
-                <Text className={styles.label}>Acquisition Date</Text>
+                <Text className={styles.label}>
+                  {t('BONSAI.DETAIL.LABELS.ACQUISITION_DATE')}
+                </Text>
                 <Text className={styles.value}>
                   {formatDate(tree.acquisitionDate)}
                 </Text>
               </div>
 
               <div className={styles.infoItem}>
-                <Text className={styles.label}>Age</Text>
+                <Text className={styles.label}>
+                  {t('BONSAI.DETAIL.LABELS.AGE')}
+                </Text>
                 <Text className={styles.value}>
-                  {tree.age} year{tree.age !== 1 ? 's' : ''}
+                  {formatAge(tree.age || 0, t)}
                 </Text>
               </div>
 
               {tree.location && (
                 <div className={styles.infoItem}>
-                  <Text className={styles.label}>Location</Text>
+                  <Text className={styles.label}>
+                    {t('BONSAI.DETAIL.LABELS.LOCATION')}
+                  </Text>
                   <Text className={styles.value}>{tree.location}</Text>
                 </div>
               )}
 
               {tree.potType && (
                 <div className={styles.infoItem}>
-                  <Text className={styles.label}>Pot Type</Text>
+                  <Text className={styles.label}>
+                    {t('BONSAI.DETAIL.LABELS.POT_TYPE')}
+                  </Text>
                   <Text className={styles.value}>{tree.potType}</Text>
                 </div>
               )}
@@ -162,7 +125,9 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
 
             {tree.notes && (
               <div className={styles.notes}>
-                <Text className={styles.label}>Notes</Text>
+                <Text className={styles.label}>
+                  {t('BONSAI.DETAIL.LABELS.NOTES')}
+                </Text>
                 <Text className={styles.notesText}>{tree.notes}</Text>
               </div>
             )}
@@ -172,7 +137,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
         {/* Events Timeline */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <Heading level={2}>Care History</Heading>
+            <Heading level={2}>{t('BONSAI.DETAIL.CARE_HISTORY')}</Heading>
           </div>
           <div className={styles.cardBody}>
             <Table
@@ -180,9 +145,11 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
               className={styles.eventsTable}
             >
               <TableHeader>
-                <Column isRowHeader>Event</Column>
-                <Column>When</Column>
-                <Column>Cost</Column>
+                <Column isRowHeader>
+                  {t('BONSAI.DETAIL.EVENTS_TABLE.EVENT')}
+                </Column>
+                <Column>{t('BONSAI.DETAIL.EVENTS_TABLE.WHEN')}</Column>
+                <Column>{t('BONSAI.DETAIL.EVENTS_TABLE.COST')}</Column>
               </TableHeader>
               <TableBody items={sortedEvents}>
                 {(event) => (
@@ -195,7 +162,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
                     <Cell>
                       <div className={styles.eventTime}>
                         <Text className={styles.eventTimeAgo}>
-                          {getTimeAgo(event.date)}
+                          {getTimeAgo(event.date, t)}
                         </Text>
                         <Text className={styles.eventDate}>
                           {formatDate(event.date)}
@@ -220,7 +187,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
         {tree.images && tree.images.length > 0 && (
           <div className={styles.card}>
             <div className={styles.cardHeader}>
-              <Heading level={2}>Images</Heading>
+              <Heading level={2}>{t('BONSAI.DETAIL.IMAGES')}</Heading>
             </div>
             <div className={styles.cardBody}>
               <div className={styles.imagesGrid}>
@@ -228,7 +195,10 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({ tree, onBack }) => {
                   <div key={index} className={styles.imageContainer}>
                     <img
                       src={image}
-                      alt={`${tree.name} - Image ${(tree.images?.length || 0) - index}`}
+                      alt={t('BONSAI.DETAIL.IMAGE_ALT', {
+                        treeName: tree.name,
+                        imageNumber: (tree.images?.length || 0) - index,
+                      })}
                       className={styles.image}
                       loading="lazy"
                     />
