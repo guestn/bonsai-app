@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { generateTestingUtils } from 'eth-testing';
 
 // Mock environment variables for tests
 export const mockEnv = {
@@ -20,12 +19,6 @@ window.fetch = jest.fn() as unknown as typeof fetch;
 global.React = React;
 
 // Testing Setup
-
-beforeAll(() => {
-  const testingUtils = generateTestingUtils({ providerType: 'MetaMask' });
-  // @ts-expect-error
-  window.ethereum = testingUtils.getProvider();
-});
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {

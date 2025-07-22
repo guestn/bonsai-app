@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { SWRConfig, SWRConfiguration } from 'swr';
-import { pufferBffFetcher } from './lib/fetchers';
+import { mainFetcher } from './lib/fetchers';
 
 type SWRProviderProps = {
   // The fetcher can be overwritten by using a nested `SWRConfig` or
@@ -14,7 +14,7 @@ type SWRProviderProps = {
 };
 
 export const SWRProvider: FC<SWRProviderProps> = ({
-  fetcher = pufferBffFetcher,
+  fetcher = mainFetcher,
   fallback = {},
   provider,
   children,

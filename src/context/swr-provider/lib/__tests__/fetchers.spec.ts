@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { pufferBffFetcher } from '../fetchers';
+import { mainFetcher } from '../fetchers';
 
 // Mock environment variables
 jest.mock('@/utils/env', () => ({
   env: {
-    VITE_PUFFER_BFF_API_URL: 'https://api.puffer.fi',
+    VITE_ROOT_API_URL: 'https://api.bonsai.app',
   },
 }));
 
 jest.mock('axios');
 const mockedAxios = jest.mocked(axios);
 
-describe('pufferBffFetcher', () => {
+describe('mainFetcher', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -20,7 +20,7 @@ describe('pufferBffFetcher', () => {
     const mockResponse = { data: { test: 'value' } };
     mockedAxios.mockResolvedValueOnce(mockResponse);
 
-    const result = await pufferBffFetcher({ url: '/campaigns' });
+    const result = await mainFetcher({ url: '/campaigns' });
 
     expect(mockedAxios).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -35,7 +35,7 @@ describe('pufferBffFetcher', () => {
     const postData = { id: 123 };
     mockedAxios.mockResolvedValueOnce(mockResponse);
 
-    const result = await pufferBffFetcher({
+    const result = await mainFetcher({
       url: '/submit',
       method: 'POST',
       data: postData,
@@ -54,7 +54,7 @@ describe('pufferBffFetcher', () => {
     const networkError = new Error('Network failure');
     mockedAxios.mockRejectedValueOnce(networkError);
 
-    await expect(pufferBffFetcher({ url: '/error' })).rejects.toThrow(
+    await expect(mainFetcher({ url: '/error' })).rejects.toThrow(
       'Network failure',
     );
   });
@@ -63,7 +63,7 @@ describe('pufferBffFetcher', () => {
     const mockResponse = { data: { test: 'value' } };
     mockedAxios.mockResolvedValueOnce(mockResponse);
 
-    await pufferBffFetcher({
+    await mainFetcher({
       url: '/protected',
       headers: {
         Authorization: 'Bearer test-token',

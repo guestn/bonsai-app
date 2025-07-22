@@ -34,9 +34,6 @@ const config: Config = {
   coverageProvider: 'v8',
   coverageReporters: ['json', 'text', 'lcov'],
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
-  transformIgnorePatterns: [
-    '/node_modules/(?!wagmi|@wagmi|@tanstack|@pufferfinance|viem)/',
-  ],
   globals: {
     Uint8Array,
   },

@@ -15,13 +15,6 @@ export default defineConfig({
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use '@pufferfinance/puffer-ui-components/styles/helpers' as *;`,
-      },
-    },
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

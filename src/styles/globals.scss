@@ -19,19 +19,3 @@ main {
 .app-header {
   top: 0;
 }
-
-/* WalletConnect overlay set to same as internal modals */
-.react-aria-ModalOverlay,
-w3m-modal.open {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0 0 0 / 20%);
-  backdrop-filter: blur(4px);
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
