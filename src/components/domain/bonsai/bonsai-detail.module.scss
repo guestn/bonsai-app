@@ -1,0 +1,254 @@
+.container {
+  padding: var(--spacing-6);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+
+  h1 {
+    margin: var(--spacing-4) 0 var(--spacing-2) 0;
+    color: var(--color-gray-900);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.species {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-xl);
+  font-style: italic;
+}
+
+.backButton {
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-gray-200);
+  color: var(--color-gray-700);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+
+  &:hover {
+    background: var(--color-gray-300);
+    color: var(--color-gray-800);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(45 90 39 / 0.1);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.cardHeader {
+  padding: var(--spacing-6);
+  border-bottom: 1px solid var(--color-gray-200);
+  background: var(--color-gray-50);
+
+  h2 {
+    margin: 0;
+    color: var(--color-gray-900);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.cardBody {
+  padding: var(--spacing-6);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.status {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+  align-self: flex-start;
+}
+
+.notes {
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--color-gray-200);
+
+  .notesText {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-700);
+    margin-top: var(--spacing-2);
+  }
+}
+
+.eventsTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  :global(.react-aria-TableHeader) {
+    background: var(--color-gray-50);
+    border-bottom: 2px solid var(--color-gray-200);
+  }
+
+  :global(.react-aria-Column) {
+    padding: var(--spacing-4);
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-700);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.react-aria-Row) {
+    border-bottom: 1px solid var(--color-gray-200);
+    transition: background-color var(--transition-base);
+
+    &:hover {
+      background: var(--color-gray-50);
+    }
+  }
+
+  :global(.react-aria-Cell) {
+    padding: var(--spacing-4);
+    vertical-align: top;
+  }
+}
+
+.eventDescription {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.eventTime {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.eventTimeAgo {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+  font-size: var(--font-size-sm);
+}
+
+.eventDate {
+  color: var(--color-gray-500);
+  font-size: var(--font-size-xs);
+}
+
+.eventCost {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-secondary);
+}
+
+.imagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.imageContainer {
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-4);
+  }
+
+  .header {
+    margin-bottom: var(--spacing-6);
+
+    h1 {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  .cardHeader,
+  .cardBody {
+    padding: var(--spacing-4);
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  .eventsTable {
+    :global(.react-aria-Column),
+    :global(.react-aria-Cell) {
+      padding: var(--spacing-2);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  .imagesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

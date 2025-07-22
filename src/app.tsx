@@ -5,6 +5,7 @@ import { env } from './utils/env';
 
 // Pages
 import { HomePage } from './pages/home-page/home-page';
+import { BonsaiDetailPage } from './pages/bonsai-detail-page/bonsai-detail-page';
 
 // Initialize Google Analytics
 if (env.VITE_GOOGLE_ANALYTICS_ID) {
@@ -18,6 +19,7 @@ export const App: FC = () => {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/:id" element={<BonsaiDetailPage />} />
         </Routes>
       </main>
       <footer>Footer</footer>
