@@ -1,0 +1,15 @@
+{
+  "git": {
+    "commitMessage": "[Github Actions] Release v${version}",
+    "requireCleanWorkingDir": false,
+    "tagName": "v${version}"
+  },
+  "github": {
+    "release": true,
+    "autoGenerate": true,
+    "releaseName": "v${version}"
+  },
+  "npm": {
+    "publish": false
+  }
+}

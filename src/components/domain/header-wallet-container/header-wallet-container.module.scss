@@ -1,0 +1,23 @@
+.headerWalletContainer {
+  display: flex;
+  align-items: center;
+  gap: spacing(15);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.dialogContainer {
+  @include shadows(medium);
+
+  width: calc(100vw - spacing(8));
+  max-width: spacing(160);
+
+  @include mobile {
+    max-width: unset;
+    position: relative;
+    left: spacing(4);
+    top: spacing(8);
+  }
+}

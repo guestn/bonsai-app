@@ -1,0 +1,51 @@
+{
+  "HEADER": {
+    "TITLE": "Puffer Finance"
+  },
+  "NAV": {
+    "HOME": "Home",
+    "BADGES": {
+      "NEW": "New"
+    },
+    "COPYRIGHT": "Copyright © 2022 - {{year}} by Puffer Finance. All rights reserved.",
+    "FOOTER": {
+      "PRODUCTS": "Products",
+      "SOLUTIONS": "Solutions",
+      "DEVELOPERS": "Developers",
+      "AVS": "UniFi AVS",
+      "RUN_A_VALIDATOR": "Run a Validator",
+      "BRIDGE_TO_UNIFI": "Bridge to UniFi",
+      "DOCS": "Docs",
+      "UNIFI_DOCS": "Puffer LRT Docs",
+      "BLOG": "Puffer Blog",
+      "AUDITS": "Audit Reports",
+      "FAQ": "FAQs",
+      "COMPANY": "Company",
+      "BECOME_A_PARTNER": "Become a Partner",
+      "CONTACT_US": "Contact us",
+      "CAREERS": "Careers",
+      "MEDIA_KIT": "Media Kit",
+      "UNIFI_ROLLUP": "UniFi Rollup",
+      "AVS_LITE_PAPER": "AVS Litepaper",
+      "PRIVACY_POLICY": "Privacy Policy",
+      "TERMS_OF_SERVICE": "Terms of Service",
+      "COOKIE_POLICY": "Cookie Policy"
+    }
+  },
+  "NOT_FOUND": {
+    "PAGE_NOT_FOUND": "Page not found",
+    "BACK": "Back",
+    "HOME": "Home",
+    "404": "404"
+  },
+  "CONNECT_WALLET": {
+    "TITLE": "Connect Wallet",
+    "TITLE_MOBILE": "Connect",
+    "BUTTONS": {
+      "DISCONNECT": "Disconnect"
+    },
+    "WALLET_DIALOG_LABEL": "Wallet details",
+    "CONNECT_TOAST_MESSAGE": "{{walletName}} connected!",
+    "DISCONNECT_TOAST_MESSAGE": "{{walletName}} disconnected!"
+  }
+}

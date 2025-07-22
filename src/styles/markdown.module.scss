@@ -1,0 +1,56 @@
+.markdown {
+  padding: spacing(20);
+  background-color: white;
+  border-radius: spacing(8);
+  width: spacing(600);
+  max-width: 90%;
+  margin: spacing(80) auto;
+
+  h1 {
+    font-family: var(--font-recoleta);
+    font-size: spacing(18);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: var(--font-heebo);
+    font-size: spacing(12);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-family: var(--font-heebo);
+    font-size: spacing(12);
+    font-weight: 600;
+  }
+
+  p {
+    margin: spacing(6) 0;
+  }
+
+  a {
+    color: #2a35bd;
+    text-decoration: underline;
+  }
+
+  blockquote {
+    background-color: #f9f9f9;
+    border-left: spacing(2) solid #e0e0e0;
+    padding: 0 spacing(8);
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block: spacing(8);
+    padding-inline-start: spacing(20);
+  }
+
+  li {
+    margin: spacing(2) 0;
+
+    p {
+      margin: 0;
+    }
+  }
+}
