@@ -8,39 +8,9 @@ const connectSrc = [
   "'self'",
   ...API_URLS,
   'https://firestore.googleapis.com',
-  'https://api.merkl.xyz',
   // Google Analytics
   'https://*.googletagmanager.com',
   'https://*.google-analytics.com',
-  // WalletConnect
-  'wss://www.walletlink.org',
-  'wss://*.walletconnect.com',
-  'wss://*.walletconnect.org',
-  'https://api.web3modal.org/',
-  'https://*.walletconnect.org',
-  'https://*.walletconnect.com',
-  // Infura
-  'https://mainnet.infura.io',
-  // SimpleSVG
-  'https://api.simplesvg.com',
-  // Holesky RPC
-  'https://ethereum-holesky-rpc.publicnode.com',
-  'https://virtual.mainnet.rpc.tenderly.co',
-  'https://gateway.holesky-safe.protofire.io',
-  // Web3Modal
-  'https://api.web3modal.com',
-  // Safe wallet
-  'https://safe-transaction-mainnet.safe.global',
-  // HappyKit feature flags
-  'https://happykit.dev',
-  // Google Analytics
-  'https://www.google-analytics.com',
-  // Particle Wallet
-  'https://*.particle.network',
-  'https://cognito-identity.us-west-1.amazonaws.com',
-  'https://kms.us-west-1.amazonaws.com',
-  // Cloudflare
-  'https://cloudflare-eth.com',
   // Misc
   'https://raw.githubusercontent.com',
 ];
@@ -50,19 +20,12 @@ const imgSrc = [
   ...API_URLS,
   'blob:',
   'data:',
-  'https://*.twimg.com https://*.1inch.io',
-  'https://explorer-api.walletconnect.com',
-  'https://static.particle.network',
+  'https://images.unsplash.com',
   'https://raw.githubusercontent.com',
   'https://storage.googleapis.com',
 ];
 
-const fontSrc = [
-  "'self'",
-  'data:',
-  'https://fonts.gstatic.com',
-  'https://rsms.me',
-];
+const fontSrc = ["'self'", 'data:', 'https://fonts.gstatic.com'];
 
 const scriptSrc = [
   "'self'",
