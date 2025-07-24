@@ -23,7 +23,7 @@ export const BonsaiDetailPage: FC = () => {
     return (
       <div className={styles.container}>
         <div className={styles.error}>
-          <p>Error loading bonsai details: {error.message}</p>
+          <p>{t('BONSAI.DETAIL.ERROR', { message: error.message })}</p>
         </div>
       </div>
     );
@@ -33,7 +33,7 @@ export const BonsaiDetailPage: FC = () => {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
-          <p>Loading bonsai details...</p>
+          <p>{t('BONSAI.DETAIL.LOADING')}</p>
         </div>
       </div>
     );

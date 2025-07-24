@@ -74,7 +74,9 @@ export const BonsaiList: FC = () => {
     return (
       <div className={styles.container}>
         <div className={styles.error}>
-          <Text>Error loading bonsai collection: {error.message}</Text>
+          <Text>
+            {t('BONSAI.COLLECTION.ERROR', { message: error.message })}
+          </Text>
         </div>
       </div>
     );
@@ -84,7 +86,7 @@ export const BonsaiList: FC = () => {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
-          <Text>Loading bonsai collection...</Text>
+          <Text>{t('BONSAI.COLLECTION.LOADING')}</Text>
         </div>
       </div>
     );

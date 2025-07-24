@@ -22,6 +22,8 @@
       "ALL_SPECIES": "Todas las Especies",
       "RESULTS_COUNT": "{{count}} árbol{{plural}} encontrado{{plural}}",
       "AGE_YEARS": "{{count}} año{{plural}}",
+      "LOADING": "Cargando colección de bonsái...",
+      "ERROR": "Error al cargar la colección de bonsái: {{message}}",
       "TABLE": {
         "NAME": "Nombre",
         "SPECIES": "Especie",
@@ -44,6 +46,8 @@
       "TREE_INFORMATION": "Información del Árbol",
       "CARE_HISTORY": "Historial de Cuidado",
       "IMAGES": "Imágenes",
+      "LOADING": "Cargando detalles del bonsái...",
+      "ERROR": "Error al cargar los detalles del bonsái: {{message}}",
       "LABELS": {
         "STATUS": "Estado",
         "INITIAL_COST": "Costo Inicial",
