@@ -29,12 +29,11 @@
 
   // Typography
   --font-family-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
+    -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
+    arial, sans-serif;
   --font-family-mono:
-    'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+    'SF Mono', monaco, 'Cascadia Code', 'Roboto Mono', consolas, 'Courier New',
     monospace;
-
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -43,12 +42,10 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
-
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
@@ -77,13 +74,13 @@
   --radius-full: 9999px;
 
   // Shadows
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
   --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
   --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
 
   // Transitions
   --transition-fast: 150ms ease-in-out;
@@ -115,15 +112,12 @@
   --spectrum-global-color-gray-700: var(--color-gray-700);
   --spectrum-global-color-gray-800: var(--color-gray-800);
   --spectrum-global-color-gray-900: var(--color-gray-900);
-
   --spectrum-global-color-blue-600: var(--color-primary);
   --spectrum-global-color-blue-700: var(--color-primary-dark);
   --spectrum-global-color-blue-500: var(--color-primary-light);
-
   --spectrum-global-color-red-600: var(--color-error);
   --spectrum-global-color-orange-600: var(--color-warning);
   --spectrum-global-color-green-600: var(--color-success);
-
   --spectrum-global-dimension-size-100: var(--spacing-1);
   --spectrum-global-dimension-size-200: var(--spacing-2);
   --spectrum-global-dimension-size-300: var(--spacing-3);
@@ -132,7 +126,6 @@
   --spectrum-global-dimension-size-600: var(--spacing-6);
   --spectrum-global-dimension-size-800: var(--spacing-8);
   --spectrum-global-dimension-size-1000: var(--spacing-10);
-
   --spectrum-global-font-family-base: var(--font-family-sans);
   --spectrum-global-font-size-100: var(--font-size-xs);
   --spectrum-global-font-size-200: var(--font-size-sm);
@@ -140,7 +133,6 @@
   --spectrum-global-font-size-400: var(--font-size-lg);
   --spectrum-global-font-size-500: var(--font-size-xl);
   --spectrum-global-font-size-600: var(--font-size-2xl);
-
   --spectrum-global-animation-duration-100: var(--transition-fast);
   --spectrum-global-animation-duration-200: var(--transition-base);
   --spectrum-global-animation-duration-300: var(--transition-slow);

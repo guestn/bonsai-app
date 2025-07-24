@@ -4,6 +4,12 @@ export default {
     'selector-class-pattern': '^[a-zA-Z0-1/-]+',
     'selector-id-pattern': '^[a-zA-Z0-1/-]+',
     'color-hex-length': 'long',
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
   },
   ignoreFiles: 'coverage/**',
 };

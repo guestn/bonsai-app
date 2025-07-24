@@ -64,7 +64,7 @@
     &:focus {
       outline: none;
       border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgb(45 90 39 / 0.1);
+      box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
     }
 
     &::placeholder {
@@ -103,7 +103,7 @@
     &:focus {
       outline: none;
       border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgb(45 90 39 / 0.1);
+      box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
     }
   }
 }
@@ -200,12 +200,12 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(45 90 39 / 0.1);
+    box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
   }
 }
 
 // Responsive design
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .container {
     padding: var(--spacing-4);
   }

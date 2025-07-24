@@ -26,7 +26,11 @@ describe('useQueryParams', () => {
 
     await waitFor(() => {
       expect(result.current.searchParams.get('test')).toEqual('hello');
-      result.current.setSearchParams({ test: 'world', test2: 'world2' });
+    });
+
+    result.current.setSearchParams({ test: 'world', test2: 'world2' });
+
+    await waitFor(() => {
       expect(result.current.searchParams.get('test')).toEqual('world');
       expect(result.current.searchParams.get('test2')).toEqual('world2');
     });
@@ -43,7 +47,11 @@ describe('useQueryParams', () => {
 
     await waitFor(() => {
       expect(result.current.searchParams.get('test')).toEqual('hello');
-      result.current.setSearchParams({ test: undefined });
+    });
+
+    result.current.setSearchParams({ test: undefined });
+
+    await waitFor(() => {
       expect(result.current.searchParams.get('test')).toEqual(null);
     });
   });
