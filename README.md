@@ -43,4 +43,32 @@ pnpm build
 
 ## Environment variables
 
-Environment variables are stored in the `.env` file and should be prefixed with `VITE_PUBLIC_`, if they are public variables. To access them in the code, use `meta.env.VITE_PUBLIC_VARIABLE_NAME` instead of `process.env.VITE_PUBLIC_VARIABLE_NAME`.
+Environment variables are stored in the `.env` file and should be prefixed with `VITE_`. To access them in the code, use `import.meta.env.VITE_VARIABLE_NAME`.
+
+### Firebase Configuration
+
+Create a `.env` file in the root directory with the following Firebase configuration:
+
+```env
+# Firebase Configuration
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
+VITE_FIREBASE_APP_ID=1:123456789:web:abcdef123456
+VITE_FIREBASE_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# Google Analytics (optional)
+VITE_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+```
+
+### Seeding Firebase Database
+
+To populate the Firebase database with mock data, you can run the seeding script:
+
+```bash
+node scripts/seed-firebase.js
+```
+
+**Note:** The `firebase.ts` file in the root directory is gitignored and contains the actual Firebase configuration. For production, use environment variables instead.

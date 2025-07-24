@@ -3,7 +3,7 @@ import { BonsaiTree } from '../types/bonsai';
 export const mockBonsaiData: BonsaiTree[] = [
   {
     id: '1',
-    name: 'Kojo No Mai',
+    name: 'Kojo No Mai 2',
     species: 'Prunus incisa',
     initialCost: 9.0,
     acquisitionDate: '2023-07-07',

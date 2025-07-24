@@ -7,6 +7,7 @@ const API_URLS = [env.VITE_SOME_API_URL];
 const connectSrc = [
   "'self'",
   ...API_URLS,
+  'https://firestore.googleapis.com',
   'https://api.merkl.xyz',
   // Google Analytics
   'https://*.googletagmanager.com',

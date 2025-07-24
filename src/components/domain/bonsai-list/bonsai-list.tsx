@@ -17,9 +17,10 @@ import {
   ListBoxItem,
   Label,
   Heading,
+  Text,
 } from 'react-aria-components';
 import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
-import { mockBonsaiData } from '../../../data/mock-bonsai-data';
+import { useBonsai } from '../../../hooks/use-bonsai';
 import {
   formatCurrency,
   formatDate,
@@ -30,6 +31,7 @@ import styles from './bonsai-list.module.scss';
 export const BonsaiList: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { bonsai, isLoading, error } = useBonsai();
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
     status: '',
@@ -39,13 +41,13 @@ export const BonsaiList: FC = () => {
 
   // Get unique species for filter
   const uniqueSpecies = useMemo(() => {
-    const species = mockBonsaiData.map((tree) => tree.species);
+    const species = bonsai.map((tree) => tree.species);
     return Array.from(new Set(species));
-  }, []);
+  }, [bonsai]);
 
   // Filter data
   const filteredData = useMemo(() => {
-    return mockBonsaiData.filter((tree) => {
+    return bonsai.filter((tree) => {
       const matchesSearch =
         !filters.search ||
         tree.name.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -66,7 +68,27 @@ export const BonsaiList: FC = () => {
         matchesSearch && matchesStatus && matchesSpecies && matchesDateRange
       );
     });
-  }, [filters]);
+  }, [bonsai, filters]);
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.error}>
+          <Text>Error loading bonsai collection: {error.message}</Text>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.loading}>
+          <Text>Loading bonsai collection...</Text>
+        </div>
+      </div>
+    );
+  }
 
   const getStatusColor = (status: BonsaiTree['status']) => {
     switch (status) {
@@ -212,6 +234,7 @@ export const BonsaiList: FC = () => {
                   <Cell>
                     <Button
                       onPress={() => {
+                        console.info('Navigating to tree:', tree.id, tree.name);
                         navigate(`/${tree.id}`);
                       }}
                       className={styles.viewButton}

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BonsaiDetail } from '../../components/domain';
-import { mockBonsaiData } from '../../data/mock-bonsai-data';
+import { useBonsaiById } from '../../hooks/use-bonsai';
 import styles from './bonsai-detail-page.module.scss';
 
 export const BonsaiDetailPage: FC = () => {
@@ -10,12 +10,34 @@ export const BonsaiDetailPage: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // Find the tree by ID
-  const tree = mockBonsaiData.find((t) => t.id === id);
+  const { bonsai: tree, isLoading, error } = useBonsaiById(id || '');
+
+  console.info('BonsaiDetailPage - ID from URL:', id);
+  console.info('BonsaiDetailPage - Tree data:', tree);
 
   const handleBack = () => {
     navigate('/');
   };
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.error}>
+          <p>Error loading bonsai details: {error.message}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.loading}>
+          <p>Loading bonsai details...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!tree) {
     return (

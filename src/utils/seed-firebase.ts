@@ -1,0 +1,51 @@
+import { BonsaiService } from '../services/bonsai-service';
+import { mockBonsaiData } from '../data/mock-bonsai-data';
+
+export const seedFirebase = async () => {
+  try {
+    console.info('Starting to seed Firebase with mock data...');
+
+    // First, let's check if data already exists
+    const existingData = await BonsaiService.getAllBonsai();
+    if (existingData.length > 0) {
+      console.info(
+        `Database already contains ${existingData.length} bonsai trees. Skipping seeding.`,
+      );
+      return;
+    }
+
+    for (const tree of mockBonsaiData) {
+      const { id, ...treeData } = tree;
+      // Use the original ID instead of letting Firebase generate a new one
+      await BonsaiService.createBonsaiWithId(id, treeData);
+      console.info(`Created bonsai tree: ${tree.name} with ID: ${id}`);
+    }
+
+    console.info('Firebase seeding completed successfully!');
+    console.info(`Created ${mockBonsaiData.length} bonsai trees.`);
+  } catch (error) {
+    console.error('Error seeding Firebase:', error);
+    throw error;
+  }
+};
+
+// Function to clear all data (useful for testing)
+export const clearFirebase = async () => {
+  try {
+    console.info('Clearing all bonsai data from Firebase...');
+    const existingData = await BonsaiService.getAllBonsai();
+
+    for (const tree of existingData) {
+      await BonsaiService.deleteBonsai(tree.id);
+      console.info(`Deleted bonsai tree: ${tree.name}`);
+    }
+
+    console.info('Firebase cleared successfully!');
+  } catch (error) {
+    console.error('Error clearing Firebase:', error);
+    throw error;
+  }
+};
+
+// Run this function to seed the database
+// seedFirebase().catch(console.error);

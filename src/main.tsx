@@ -7,6 +7,9 @@ import { App } from './app';
 import { SWRProvider } from './context/swr-provider/swr-provider';
 import i18n from './i18n/i18n';
 
+// Import dev tools for development
+import './utils/dev-tools';
+
 import './styles/globals.scss';
 
 createRoot(document.getElementById('root')!).render(
