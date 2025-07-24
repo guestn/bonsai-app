@@ -2,15 +2,6 @@ import useSWR from 'swr';
 import { BonsaiService } from '../services/bonsai-service';
 import { BonsaiTree, BonsaiFilters } from '../types/bonsai';
 
-// Fetcher function for SWR
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
-  }
-  return response.json();
-};
-
 // Import mock data as fallback
 import { mockBonsaiData } from '../data/mock-bonsai-data';
 import { shouldUseMockData } from '../utils/dev-config';
