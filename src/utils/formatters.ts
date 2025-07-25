@@ -48,70 +48,46 @@ export const formatAge = (
   }
 };
 
-export const getTimeAgo = (
+export function getTimeAgo(
   dateString: string,
   t: (key: string, options?: any) => string,
-) => {
-  const eventDate = new Date(dateString);
+): string {
+  const date = new Date(dateString);
   const now = new Date();
-  const diffInMs = now.getTime() - eventDate.getTime();
-  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  const diff = now.getTime() - date.getTime();
 
-  if (diffInDays === 0) {
+  // If the date is in the future or today, return "Today"
+  if (diff <= 0) {
     return t('TIME.TODAY');
-  } else if (diffInDays === 1) {
-    return t('TIME.YESTERDAY');
-  } else if (diffInDays < 7) {
-    return t('TIME.AGO', {
-      time: t('TIME.UNITS.DAY', {
-        count: diffInDays,
-        plural: diffInDays === 1 ? '' : 's',
-      }),
-    });
-  } else if (diffInDays < 30) {
-    const weeks = Math.floor(diffInDays / 7);
-    const remainingDays = diffInDays % 7;
-    if (remainingDays === 0) {
-      return t('TIME.AGO', {
-        time: t('TIME.UNITS.WEEK', {
-          count: weeks,
-          plural: weeks === 1 ? '' : 's',
-        }),
-      });
-    } else {
-      return t('TIME.AGO', {
-        time: `${t('TIME.UNITS.WEEK', { count: weeks, plural: weeks === 1 ? '' : 's' })} ${t('TIME.UNITS.DAY', { count: remainingDays, plural: remainingDays === 1 ? '' : 's' })}`,
-      });
-    }
-  } else if (diffInDays < 365) {
-    const months = Math.floor(diffInDays / 30);
-    const remainingDays = diffInDays % 30;
-    if (remainingDays === 0) {
-      return t('TIME.AGO', {
-        time: t('TIME.UNITS.MONTH', {
-          count: months,
-          plural: months === 1 ? '' : 's',
-        }),
-      });
-    } else {
-      return t('TIME.AGO', {
-        time: `${t('TIME.UNITS.MONTH', { count: months, plural: months === 1 ? '' : 's' })} ${t('TIME.UNITS.DAY', { count: remainingDays, plural: remainingDays === 1 ? '' : 's' })}`,
-      });
-    }
-  } else {
-    const years = Math.floor(diffInDays / 365);
-    const remainingDays = diffInDays % 365;
-    const remainingMonths = Math.floor(remainingDays / 30);
-
-    let timeString = t('TIME.UNITS.YEAR', {
-      count: years,
-      plural: years === 1 ? '' : 's',
-    });
-
-    if (remainingMonths > 0) {
-      timeString += ` ${t('TIME.UNITS.MONTH', { count: remainingMonths, plural: remainingMonths === 1 ? '' : 's' })}`;
-    }
-
-    return t('TIME.AGO', { time: timeString });
   }
-};
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(months / 12);
+
+  if (years > 0) {
+    const remMonths = months % 12;
+    return remMonths > 0
+      ? t('TIME.YEARS_MONTHS', { years, months: remMonths })
+      : t('TIME.YEARS', { years });
+  }
+  if (months > 0) {
+    const remDays = days % 30;
+    return remDays > 0
+      ? t('TIME.MONTHS_DAYS', { months, days: remDays })
+      : t('TIME.MONTHS', { months });
+  }
+  if (days > 0) {
+    return t('TIME.DAYS', { days });
+  }
+  if (hours > 0) {
+    return t('TIME.HOURS', { hours });
+  }
+  if (minutes > 0) {
+    return t('TIME.MINUTES', { minutes });
+  }
+  return t('TIME.SECONDS', { seconds });
+}
