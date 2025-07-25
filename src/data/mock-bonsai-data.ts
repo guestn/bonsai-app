@@ -2,7 +2,7 @@ import { BonsaiTree } from '../types/bonsai';
 
 export const mockBonsaiData: BonsaiTree[] = [
   {
-    id: '1',
+    id: '2t1TJsRO75bHUJ7PEd6c',
     name: 'Kojo No Mai 2',
     species: 'Prunus incisa',
     initialCost: 9.0,
@@ -18,50 +18,50 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
     events: [
       {
-        id: '1-1',
+        id: '2t1TJsRO75bHUJ7PEd6c-1',
         description: 'Initial acquisition',
         date: '2023-07-07',
         value: 746,
         cost: 9.0,
       },
       {
-        id: '1-2',
+        id: '2t1TJsRO75bHUJ7PEd6c-2',
         description: 'Wiring',
         date: '2023-07-13',
         value: 6,
       },
       {
-        id: '1-3',
+        id: '2t1TJsRO75bHUJ7PEd6c-3',
         description: 'Unwiring',
         date: '2023-09-21',
         value: 70,
       },
       {
-        id: '1-4',
+        id: '2t1TJsRO75bHUJ7PEd6c-4',
         description: 'Flowering!',
         date: '2024-03-08',
         value: 169,
       },
       {
-        id: '1-5',
+        id: '2t1TJsRO75bHUJ7PEd6c-5',
         description: 'Trim big growth back a bit',
         date: '2024-07-04',
         value: 118,
       },
       {
-        id: '1-6',
+        id: '2t1TJsRO75bHUJ7PEd6c-6',
         description: 'Repot with more pumice, put indoors',
         date: '2025-03-15',
         value: 254,
       },
       {
-        id: '1-7',
+        id: '2t1TJsRO75bHUJ7PEd6c-7',
         description: 'Flowering!',
         date: '2025-03-22',
         value: 7,
       },
       {
-        id: '1-8',
+        id: '2t1TJsRO75bHUJ7PEd6c-8',
         description: 'Repot into high grey pot',
         date: '2025-03-28',
         value: 6,
@@ -69,7 +69,7 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
   },
   {
-    id: '2',
+    id: '3f8K9mN2pQ5rS7tU1vW4x',
     name: 'Juniper',
     species: 'Juniperus procumbens',
     initialCost: 15.0,
@@ -84,20 +84,20 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
     events: [
       {
-        id: '2-1',
+        id: '3f8K9mN2pQ5rS7tU1vW4x-1',
         description: 'Initial acquisition',
         date: '2023-05-15',
         value: 500,
         cost: 15.0,
       },
       {
-        id: '2-2',
+        id: '3f8K9mN2pQ5rS7tU1vW4x-2',
         description: 'Initial styling',
         date: '2023-05-20',
         value: 5,
       },
       {
-        id: '2-3',
+        id: '3f8K9mN2pQ5rS7tU1vW4x-3',
         description: 'Repotting',
         date: '2024-03-10',
         value: 300,
@@ -105,7 +105,7 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
   },
   {
-    id: '3',
+    id: '5aB6cD8eF0gH2iJ4kL6mN8',
     name: 'Maple',
     species: 'Acer palmatum',
     initialCost: 25.0,
@@ -120,20 +120,20 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
     events: [
       {
-        id: '3-1',
+        id: '5aB6cD8eF0gH2iJ4kL6mN8-1',
         description: 'Initial acquisition',
         date: '2023-09-01',
         value: 400,
         cost: 25.0,
       },
       {
-        id: '3-2',
+        id: '5aB6cD8eF0gH2iJ4kL6mN8-2',
         description: 'Leaf pruning',
         date: '2024-06-15',
         value: 150,
       },
       {
-        id: '3-3',
+        id: '5aB6cD8eF0gH2iJ4kL6mN8-3',
         description: 'Winter protection added',
         date: '2024-11-01',
         value: 140,
@@ -141,7 +141,7 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
   },
   {
-    id: '4',
+    id: '7oP9qR1sT3uV5wX7yZ9aB1',
     name: 'Pine',
     species: 'Pinus thunbergii',
     initialCost: 35.0,
@@ -156,20 +156,20 @@ export const mockBonsaiData: BonsaiTree[] = [
     ],
     events: [
       {
-        id: '4-1',
+        id: '7oP9qR1sT3uV5wX7yZ9aB1-1',
         description: 'Initial acquisition',
         date: '2023-11-20',
         value: 300,
         cost: 35.0,
       },
       {
-        id: '4-2',
+        id: '7oP9qR1sT3uV5wX7yZ9aB1-2',
         description: 'Candle pruning',
         date: '2024-05-10',
         value: 170,
       },
       {
-        id: '4-3',
+        id: '7oP9qR1sT3uV5wX7yZ9aB1-3',
         description: 'Needle thinning',
         date: '2024-08-15',
         value: 97,

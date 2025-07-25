@@ -156,13 +156,33 @@ export const useBonsaiMutations = () => {
   const addEvent = async (
     bonsaiId: string,
     event: Omit<BonsaiTree['events'][0], 'id'>,
+    mutateSpecific?: () => Promise<any>,
   ) => {
     try {
       await BonsaiService.addEvent(bonsaiId, event);
       await mutateAll(); // Refresh the list
-      // Note: We can't easily mutate specific items without the mutate function
+      if (mutateSpecific) {
+        await mutateSpecific(); // Refresh the specific bonsai detail
+      }
     } catch (error) {
       console.error('Error adding event:', error);
+      throw error;
+    }
+  };
+
+  const deleteEvent = async (
+    bonsaiId: string,
+    eventId: string,
+    mutateSpecific?: () => Promise<any>,
+  ) => {
+    try {
+      await BonsaiService.deleteEvent(bonsaiId, eventId);
+      await mutateAll(); // Refresh the list
+      if (mutateSpecific) {
+        await mutateSpecific(); // Refresh the specific bonsai detail
+      }
+    } catch (error) {
+      console.error('Error deleting event:', error);
       throw error;
     }
   };
@@ -172,5 +192,6 @@ export const useBonsaiMutations = () => {
     updateBonsai,
     deleteBonsai,
     addEvent,
+    deleteEvent,
   };
 };

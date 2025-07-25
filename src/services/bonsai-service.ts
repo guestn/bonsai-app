@@ -17,7 +17,10 @@ import { BonsaiTree, BonsaiEvent } from '../types/bonsai';
 const BONSAI_COLLECTION = 'bonsai';
 
 // Convert Firestore timestamp to string date
-const timestampToDate = (timestamp: Timestamp): string => {
+const timestampToDate = (timestamp: Timestamp | string): string => {
+  if (typeof timestamp === 'string') {
+    return timestamp;
+  }
   return timestamp.toDate().toISOString().split('T')[0];
 };
 
@@ -195,22 +198,73 @@ export class BonsaiService {
   ): Promise<void> {
     try {
       const docRef = doc(db, BONSAI_COLLECTION, bonsaiId);
-      const eventWithId = {
-        id: `${Date.now()}`, // Simple ID generation
+      const eventWithId: any = {
+        id: `${Date.now()}`,
         description: event.description,
         date: dateToTimestamp(event.date),
-        value: event.value,
         cost: getSafeCost(event.cost),
       };
+      if (event.value !== undefined) {
+        eventWithId.value = event.value;
+      }
+
+      // When updating events, ensure no undefined values are present
+      const currentEvents = (
+        (await this.getBonsaiById(bonsaiId))?.events || []
+      ).map((ev) => {
+        const mapped: any = {
+          id: ev.id,
+          description: ev.description,
+          date: dateToTimestamp(ev.date),
+          cost: getSafeCost(ev.cost),
+        };
+        if (ev.value !== undefined) mapped.value = ev.value;
+        return mapped;
+      });
 
       await updateDoc(docRef, {
         events: [
-          ...((await this.getBonsaiById(bonsaiId))?.events || []),
-          eventWithId,
+          ...currentEvents,
+          Object.fromEntries(
+            Object.entries(eventWithId).filter(([_, v]) => v !== undefined),
+          ),
         ],
       });
     } catch (error) {
       console.error('Error adding event:', error);
+      throw error;
+    }
+  }
+
+  // Delete an event from a bonsai tree
+  static async deleteEvent(bonsaiId: string, eventId: string): Promise<void> {
+    try {
+      const docRef = doc(db, BONSAI_COLLECTION, bonsaiId);
+      const currentBonsai = await this.getBonsaiById(bonsaiId);
+
+      if (!currentBonsai) {
+        throw new Error('Bonsai tree not found');
+      }
+
+      // Filter out the event to delete
+      const updatedEvents = currentBonsai.events
+        .filter((event) => event.id !== eventId)
+        .map((ev) => {
+          const mapped: any = {
+            id: ev.id,
+            description: ev.description,
+            date: dateToTimestamp(ev.date),
+            cost: getSafeCost(ev.cost),
+          };
+          if (ev.value !== undefined) mapped.value = ev.value;
+          return mapped;
+        });
+
+      await updateDoc(docRef, {
+        events: updatedEvents,
+      });
+    } catch (error) {
+      console.error('Error deleting event:', error);
       throw error;
     }
   }

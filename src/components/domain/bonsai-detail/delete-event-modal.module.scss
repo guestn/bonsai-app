@@ -1,0 +1,19 @@
+.title {
+  margin: 0 0 var(--spacing-4) 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+}
+
+.description {
+  margin: 0 0 var(--spacing-6) 0;
+  color: var(--color-gray-600);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-3);
+  justify-content: flex-end;
+  margin-top: var(--spacing-6);
+}

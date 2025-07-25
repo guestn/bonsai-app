@@ -48,6 +48,9 @@
       "IMAGES": "Images",
       "LOADING": "Loading bonsai details...",
       "ERROR": "Error loading bonsai details: {{message}}",
+      "ERROR_ADDING_EVENT": "Error adding event. Please try again.",
+      "ERROR_DELETING_EVENT": "Error deleting event. Please try again.",
+      "ADD_EVENT": "Add Event",
       "LABELS": {
         "STATUS": "Status",
         "INITIAL_COST": "Initial Cost",
@@ -61,9 +64,30 @@
       "EVENTS_TABLE": {
         "EVENT": "Event",
         "WHEN": "When",
-        "COST": "Cost"
+        "COST": "Cost",
+        "ACTIONS": "Actions",
+        "DELETE_EVENT": "Delete event: {{eventDescription}}"
       },
-      "IMAGE_ALT": "{{treeName}} - Image {{imageNumber}}"
+      "IMAGE_ALT": "{{treeName}} - Image {{imageNumber}}",
+      "ADD_MODAL": {
+        "TITLE": "Add Bonsai Event",
+        "DESCRIPTION": "Add a new care event for {{treeName}}",
+        "DESCRIPTION_LABEL": "Description",
+        "DESCRIPTION_PLACEHOLDER": "e.g., Watering, Pruning, Repotting...",
+        "DATE_LABEL": "Date",
+        "COST_LABEL": "Cost (optional)",
+        "COST_PLACEHOLDER": "0.00",
+        "ADD": "Add Event",
+        "ADDING": "Adding...",
+        "CANCEL": "Cancel"
+      },
+      "DELETE_MODAL": {
+        "TITLE": "Delete Event",
+        "DESCRIPTION": "Are you sure you want to delete the event \"{{eventDescription}}\"? This action cannot be undone.",
+        "DELETE": "Delete Event",
+        "DELETING": "Deleting...",
+        "CANCEL": "Cancel"
+      }
     },
     "NOT_FOUND": {
       "TITLE": "Bonsai Tree Not Found",

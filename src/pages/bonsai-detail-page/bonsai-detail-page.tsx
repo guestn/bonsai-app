@@ -10,7 +10,7 @@ export const BonsaiDetailPage: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const { bonsai: tree, isLoading, error } = useBonsaiById(id || '');
+  const { bonsai: tree, isLoading, error, mutate } = useBonsaiById(id || '');
 
   console.info('BonsaiDetailPage - ID from URL:', id);
   console.info('BonsaiDetailPage - Tree data:', tree);
@@ -51,5 +51,5 @@ export const BonsaiDetailPage: FC = () => {
     );
   }
 
-  return <BonsaiDetail tree={tree} onBack={handleBack} />;
+  return <BonsaiDetail tree={tree} onBack={handleBack} mutate={mutate} />;
 };

@@ -48,6 +48,9 @@
       "IMAGES": "Imágenes",
       "LOADING": "Cargando detalles del bonsái...",
       "ERROR": "Error al cargar los detalles del bonsái: {{message}}",
+      "ERROR_ADDING_EVENT": "Error al agregar evento. Por favor, inténtalo de nuevo.",
+      "ERROR_DELETING_EVENT": "Error al eliminar evento. Por favor, inténtalo de nuevo.",
+      "ADD_EVENT": "Agregar Evento",
       "LABELS": {
         "STATUS": "Estado",
         "INITIAL_COST": "Costo Inicial",
@@ -61,9 +64,30 @@
       "EVENTS_TABLE": {
         "EVENT": "Evento",
         "WHEN": "Cuándo",
-        "COST": "Costo"
+        "COST": "Costo",
+        "ACTIONS": "Acciones",
+        "DELETE_EVENT": "Eliminar evento: {{eventDescription}}"
       },
-      "IMAGE_ALT": "{{treeName}} - Imagen {{imageNumber}}"
+      "IMAGE_ALT": "{{treeName}} - Imagen {{imageNumber}}",
+      "ADD_MODAL": {
+        "TITLE": "Agregar Evento de Bonsái",
+        "DESCRIPTION": "Agregar un nuevo evento de cuidado para {{treeName}}",
+        "DESCRIPTION_LABEL": "Descripción",
+        "DESCRIPTION_PLACEHOLDER": "ej., Riego, Poda, Trasplante...",
+        "DATE_LABEL": "Fecha",
+        "COST_LABEL": "Costo (opcional)",
+        "COST_PLACEHOLDER": "0.00",
+        "ADD": "Agregar Evento",
+        "ADDING": "Agregando...",
+        "CANCEL": "Cancelar"
+      },
+      "DELETE_MODAL": {
+        "TITLE": "Eliminar Evento",
+        "DESCRIPTION": "¿Estás seguro de que quieres eliminar el evento \"{{eventDescription}}\"? Esta acción no se puede deshacer.",
+        "DELETE": "Eliminar Evento",
+        "DELETING": "Eliminando...",
+        "CANCEL": "Cancelar"
+      }
     },
     "NOT_FOUND": {
       "TITLE": "Árbol Bonsái No Encontrado",
