@@ -21,6 +21,7 @@ import { useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { Button } from '../../../components/ui';
 import { AddEventModal } from './add-event-modal';
 import { DeleteEventModal } from './delete-event-modal';
+import { UpdateEventModal } from './update-event-modal';
 import styles from './bonsai-detail.module.scss';
 
 interface BonsaiDetailProps {
@@ -40,7 +41,10 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
   const [eventToDelete, setEventToDelete] = useState<BonsaiEvent | null>(null);
-  const { addEvent, deleteEvent } = useBonsaiMutations();
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isUpdatingEvent, setIsUpdatingEvent] = useState(false);
+  const [eventToUpdate, setEventToUpdate] = useState<BonsaiEvent | null>(null);
+  const { addEvent, deleteEvent, updateEvent } = useBonsaiMutations();
 
   const getStatusColor = (status: BonsaiTree['status']) => {
     switch (status) {
@@ -84,6 +88,40 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       alert(t('BONSAI.DETAIL.ERROR_ADDING_EVENT'));
     } finally {
       setIsAddingEvent(false);
+    }
+  };
+
+  const handleUpdateEvent = (event: BonsaiEvent) => {
+    setEventToUpdate(event);
+    setIsUpdateModalOpen(true);
+  };
+
+  const handleUpdateEventSubmit = async (event: {
+    description: string;
+    date: string;
+    cost?: number;
+  }) => {
+    if (!eventToUpdate) return;
+
+    try {
+      setIsUpdatingEvent(true);
+      await updateEvent(
+        tree.id,
+        eventToUpdate.id,
+        {
+          description: event.description,
+          date: event.date,
+          cost: event.cost,
+        },
+        mutate,
+      );
+      setIsUpdateModalOpen(false);
+      setEventToUpdate(null);
+    } catch (error) {
+      console.error('Error updating event:', error);
+      alert(t('BONSAI.DETAIL.ERROR_UPDATING_EVENT'));
+    } finally {
+      setIsUpdatingEvent(false);
     }
   };
 
@@ -248,21 +286,36 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                     )}
                   </Cell>
                   <Cell>
-                    <Button
-                      onPress={() => handleDeleteEvent(event)}
-                      variant="secondary"
-                      size="sm"
-                      style={{
-                        backgroundColor: 'var(--color-white)',
-                        color: 'var(--color-gray-700)',
-                        border: '1px solid var(--color-gray-300)',
-                      }}
-                      aria-label={t('BONSAI.DETAIL.EVENTS_TABLE.DELETE_EVENT', {
-                        eventDescription: event.description,
-                      })}
-                    >
-                      🗑️
-                    </Button>
+                    <div className={styles.actionButtons}>
+                      <Button
+                        onPress={() => handleUpdateEvent(event)}
+                        variant="secondary"
+                        size="sm"
+                        className={styles.actionButton}
+                        aria-label={t(
+                          'BONSAI.DETAIL.EVENTS_TABLE.UPDATE_EVENT',
+                          {
+                            eventDescription: event.description,
+                          },
+                        )}
+                      >
+                        ✏️
+                      </Button>
+                      <Button
+                        onPress={() => handleDeleteEvent(event)}
+                        variant="secondary"
+                        size="sm"
+                        className={styles.actionButton}
+                        aria-label={t(
+                          'BONSAI.DETAIL.EVENTS_TABLE.DELETE_EVENT',
+                          {
+                            eventDescription: event.description,
+                          },
+                        )}
+                      >
+                        🗑️
+                      </Button>
+                    </div>
                   </Cell>
                 </Row>
               )}
@@ -304,6 +357,17 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         onSubmit={handleAddEvent}
         isLoading={isAddingEvent}
       />
+
+      {eventToUpdate && (
+        <UpdateEventModal
+          tree={tree}
+          event={eventToUpdate}
+          isOpen={isUpdateModalOpen}
+          onOpenChange={setIsUpdateModalOpen}
+          onSubmit={handleUpdateEventSubmit}
+          isLoading={isUpdatingEvent}
+        />
+      )}
 
       {eventToDelete && (
         <DeleteEventModal

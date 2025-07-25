@@ -49,6 +49,7 @@
       "LOADING": "Cargando detalles del bonsái...",
       "ERROR": "Error al cargar los detalles del bonsái: {{message}}",
       "ERROR_ADDING_EVENT": "Error al agregar evento. Por favor, inténtalo de nuevo.",
+      "ERROR_UPDATING_EVENT": "Error al actualizar evento. Por favor, inténtalo de nuevo.",
       "ERROR_DELETING_EVENT": "Error al eliminar evento. Por favor, inténtalo de nuevo.",
       "ADD_EVENT": "Agregar Evento",
       "LABELS": {
@@ -66,6 +67,7 @@
         "WHEN": "Cuándo",
         "COST": "Costo",
         "ACTIONS": "Acciones",
+        "UPDATE_EVENT": "Actualizar evento: {{eventDescription}}",
         "DELETE_EVENT": "Eliminar evento: {{eventDescription}}"
       },
       "IMAGE_ALT": "{{treeName}} - Imagen {{imageNumber}}",
@@ -86,6 +88,18 @@
         "DESCRIPTION": "¿Estás seguro de que quieres eliminar el evento \"{{eventDescription}}\"? Esta acción no se puede deshacer.",
         "DELETE": "Eliminar Evento",
         "DELETING": "Eliminando...",
+        "CANCEL": "Cancelar"
+      },
+      "UPDATE_MODAL": {
+        "TITLE": "Actualizar Evento de Bonsai",
+        "DESCRIPTION": "Actualizar el evento de cuidado \"{{eventDescription}}\" para {{treeName}}",
+        "DESCRIPTION_LABEL": "Descripción",
+        "DESCRIPTION_PLACEHOLDER": "ej., Riego, Poda, Trasplante...",
+        "DATE_LABEL": "Fecha",
+        "COST_LABEL": "Costo (opcional)",
+        "COST_PLACEHOLDER": "0.00",
+        "UPDATE": "Actualizar Evento",
+        "UPDATING": "Actualizando...",
         "CANCEL": "Cancelar"
       }
     },

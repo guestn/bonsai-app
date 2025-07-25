@@ -236,6 +236,50 @@ export class BonsaiService {
     }
   }
 
+  // Update an event in a bonsai tree
+  static async updateEvent(
+    bonsaiId: string,
+    eventId: string,
+    event: Omit<BonsaiEvent, 'id'>,
+  ): Promise<void> {
+    try {
+      const docRef = doc(db, BONSAI_COLLECTION, bonsaiId);
+      const currentBonsai = await this.getBonsaiById(bonsaiId);
+
+      if (!currentBonsai) {
+        throw new Error('Bonsai tree not found');
+      }
+
+      // Update the specific event
+      const updatedEvents = currentBonsai.events.map((ev) => {
+        if (ev.id === eventId) {
+          const mapped: any = {
+            id: ev.id,
+            description: event.description,
+            date: dateToTimestamp(event.date),
+            cost: getSafeCost(event.cost),
+          };
+          if (event.value !== undefined) mapped.value = event.value;
+          return mapped;
+        }
+        return {
+          id: ev.id,
+          description: ev.description,
+          date: dateToTimestamp(ev.date),
+          cost: getSafeCost(ev.cost),
+          ...(ev.value !== undefined && { value: ev.value }),
+        };
+      });
+
+      await updateDoc(docRef, {
+        events: updatedEvents,
+      });
+    } catch (error) {
+      console.error('Error updating event:', error);
+      throw error;
+    }
+  }
+
   // Delete an event from a bonsai tree
   static async deleteEvent(bonsaiId: string, eventId: string): Promise<void> {
     try {
