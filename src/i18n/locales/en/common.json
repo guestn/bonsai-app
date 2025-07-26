@@ -15,6 +15,7 @@
   "BONSAI": {
     "COLLECTION": {
       "TITLE": "Bonsai Collection",
+      "ADD_TREE": "Add Tree",
       "SEARCH": "Search",
       "STATUS": "Status",
       "SPECIES": "Species",
@@ -24,6 +25,7 @@
       "AGE_YEARS": "{{count}} year{{plural}}",
       "LOADING": "Loading bonsai collection...",
       "ERROR": "Error loading bonsai collection: {{message}}",
+      "ERROR_ADDING_BONSAI": "Error adding bonsai tree. Please try again.",
       "TABLE": {
         "NAME": "Name",
         "SPECIES": "Species",
@@ -33,6 +35,27 @@
         "AGE": "Age",
         "ACTIONS": "Actions",
         "VIEW_DETAILS": "View Details"
+      },
+      "ADD_MODAL": {
+        "TITLE": "Add Bonsai Tree",
+        "DESCRIPTION": "Add a new bonsai tree to your collection",
+        "NAME_LABEL": "Tree Name",
+        "NAME_PLACEHOLDER": "e.g., My First Bonsai",
+        "SPECIES_LABEL": "Species",
+        "SPECIES_PLACEHOLDER": "e.g., Ficus, Juniper, Maple",
+        "STATUS_LABEL": "Status",
+        "COST_LABEL": "Initial Cost",
+        "COST_PLACEHOLDER": "0.00",
+        "ACQUISITION_DATE_LABEL": "Acquisition Date",
+        "LOCATION_LABEL": "Location",
+        "LOCATION_PLACEHOLDER": "e.g., Living Room, Garden",
+        "POT_TYPE_LABEL": "Pot Type",
+        "POT_TYPE_PLACEHOLDER": "e.g., Ceramic, Plastic",
+        "NOTES_LABEL": "Notes",
+        "NOTES_PLACEHOLDER": "Additional notes about the tree",
+        "ADD": "Add Tree",
+        "ADDING": "Adding...",
+        "CANCEL": "Cancel"
       },
       "STATUSES": {
         "ACTIVE": "Active",

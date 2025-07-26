@@ -15,6 +15,9 @@
   padding: var(--spacing-6);
   border-bottom: 1px solid var(--color-gray-200);
   background: var(--color-gray-50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   h1 {
     margin: 0;
@@ -22,6 +25,10 @@
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
   }
+}
+
+.addButton {
+  flex-shrink: 0;
 }
 
 .body {

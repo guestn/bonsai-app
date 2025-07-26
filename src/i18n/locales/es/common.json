@@ -15,6 +15,7 @@
   "BONSAI": {
     "COLLECTION": {
       "TITLE": "Colección de Bonsái",
+      "ADD_TREE": "Agregar Árbol",
       "SEARCH": "Buscar",
       "STATUS": "Estado",
       "SPECIES": "Especie",
@@ -24,6 +25,7 @@
       "AGE_YEARS": "{{count}} año{{plural}}",
       "LOADING": "Cargando colección de bonsái...",
       "ERROR": "Error al cargar la colección de bonsái: {{message}}",
+      "ERROR_ADDING_BONSAI": "Error al agregar árbol de bonsái. Por favor, inténtalo de nuevo.",
       "TABLE": {
         "NAME": "Nombre",
         "SPECIES": "Especie",
@@ -33,6 +35,27 @@
         "AGE": "Edad",
         "ACTIONS": "Acciones",
         "VIEW_DETAILS": "Ver Detalles"
+      },
+      "ADD_MODAL": {
+        "TITLE": "Agregar Árbol Bonsái",
+        "DESCRIPTION": "Agregar un nuevo árbol bonsái a tu colección",
+        "NAME_LABEL": "Nombre del Árbol",
+        "NAME_PLACEHOLDER": "ej., Mi Primer Bonsái",
+        "SPECIES_LABEL": "Especie",
+        "SPECIES_PLACEHOLDER": "ej., Ficus, Juniper, Maple",
+        "STATUS_LABEL": "Estado",
+        "COST_LABEL": "Costo Inicial",
+        "COST_PLACEHOLDER": "0.00",
+        "ACQUISITION_DATE_LABEL": "Fecha de Adquisición",
+        "LOCATION_LABEL": "Ubicación",
+        "LOCATION_PLACEHOLDER": "ej., Sala de Estar, Jardín",
+        "POT_TYPE_LABEL": "Tipo de Maceta",
+        "POT_TYPE_PLACEHOLDER": "ej., Cerámica, Plástico",
+        "NOTES_LABEL": "Notas",
+        "NOTES_PLACEHOLDER": "Notas adicionales sobre el árbol",
+        "ADD": "Agregar Árbol",
+        "ADDING": "Agregando...",
+        "CANCEL": "Cancelar"
       },
       "STATUSES": {
         "ACTIVE": "Activo",

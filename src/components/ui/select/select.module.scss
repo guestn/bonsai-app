@@ -1,0 +1,93 @@
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-2);
+}
+
+.selectButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 40px;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-900);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-blue-500);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
+  }
+
+  &:disabled {
+    background: var(--color-gray-100);
+    color: var(--color-gray-500);
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-gray-400);
+  }
+}
+
+.selectValue {
+  flex: 1;
+  text-align: left;
+}
+
+.caretIcon {
+  flex-shrink: 0;
+  margin-left: var(--spacing-2);
+  transition: transform 0.2s ease;
+}
+
+.selectButton[data-pressed] .caretIcon {
+  transform: rotate(180deg);
+}
+
+.selectPopoverWrapper {
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
+  background: var(--color-white);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  max-height: 200px;
+  overflow-y: auto;
+  min-width: var(--trigger-width);
+}
+
+.selectPopover {
+  padding: var(--spacing-1);
+}
+
+.selectItem {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-900);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--color-gray-100);
+  }
+
+  &[data-selected] {
+    background: var(--color-blue-50);
+    color: var(--color-blue-700);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &[data-focused] {
+    background: var(--color-gray-100);
+  }
+}

@@ -8,30 +8,29 @@ import {
   TableBody,
   Row,
   Cell,
-  Button,
   TextField,
-  Select,
-  SelectValue,
-  ComboBox,
-  ListBox,
-  ListBoxItem,
   Label,
   Heading,
   Text,
 } from 'react-aria-components';
+import { Button, Select } from '../../ui';
 import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
-import { useBonsai } from '../../../hooks/use-bonsai';
+import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import {
   formatCurrency,
   formatDate,
   formatAge,
 } from '../../../utils/formatters';
+import { AddBonsaiModal } from './add-bonsai-modal';
 import styles from './bonsai-list.module.scss';
 
 export const BonsaiList: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { bonsai, isLoading, error } = useBonsai();
+  const { createBonsai } = useBonsaiMutations();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isAddingBonsai, setIsAddingBonsai] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
     status: '',
@@ -41,9 +40,35 @@ export const BonsaiList: FC = () => {
 
   // Get unique species for filter
   const uniqueSpecies = useMemo(() => {
-    const species = bonsai.map((tree) => tree.species);
+    const species = bonsai?.map((tree) => tree.species);
     return Array.from(new Set(species));
   }, [bonsai]);
+
+  const handleAddBonsai = async (treeData: {
+    name: string;
+    species: string;
+    status: 'active' | 'dormant' | 'flowering' | 'repotted';
+    initialCost: number;
+    acquisitionDate: string;
+    location?: string;
+    potType?: string;
+    notes?: string;
+  }) => {
+    try {
+      setIsAddingBonsai(true);
+      await createBonsai({
+        ...treeData,
+        events: [],
+        images: [],
+      });
+      setIsAddModalOpen(false);
+    } catch (error) {
+      console.error('Error adding bonsai:', error);
+      alert(t('BONSAI.COLLECTION.ERROR_ADDING_BONSAI'));
+    } finally {
+      setIsAddingBonsai(false);
+    }
+  };
 
   // Filter data
   const filteredData = useMemo(() => {
@@ -112,6 +137,13 @@ export const BonsaiList: FC = () => {
       <div className={styles.card}>
         <div className={styles.header}>
           <Heading level={1}>{t('BONSAI.COLLECTION.TITLE')}</Heading>
+          <Button
+            onPress={() => setIsAddModalOpen(true)}
+            variant="primary"
+            className={styles.addButton}
+          >
+            {t('BONSAI.COLLECTION.ADD_TREE')}
+          </Button>
         </div>
         <div className={styles.body}>
           {/* Filters */}
@@ -132,47 +164,40 @@ export const BonsaiList: FC = () => {
                 setFilters((prev) => ({ ...prev, status: key as string }))
               }
               className={styles.select}
-            >
-              <Label>{t('BONSAI.COLLECTION.STATUS')}</Label>
-              <Button>
-                <SelectValue />
-              </Button>
-              <ListBox>
-                <ListBoxItem key="">
-                  {t('BONSAI.COLLECTION.ALL_STATUSES')}
-                </ListBoxItem>
-                <ListBoxItem key="active">
-                  {t('BONSAI.COLLECTION.STATUSES.ACTIVE')}
-                </ListBoxItem>
-                <ListBoxItem key="dormant">
-                  {t('BONSAI.COLLECTION.STATUSES.DORMANT')}
-                </ListBoxItem>
-                <ListBoxItem key="flowering">
-                  {t('BONSAI.COLLECTION.STATUSES.FLOWERING')}
-                </ListBoxItem>
-                <ListBoxItem key="repotted">
-                  {t('BONSAI.COLLECTION.STATUSES.REPOTTED')}
-                </ListBoxItem>
-              </ListBox>
-            </Select>
+              label={t('BONSAI.COLLECTION.STATUS')}
+              items={[
+                { id: '', label: t('BONSAI.COLLECTION.ALL_STATUSES') },
+                { id: 'active', label: t('BONSAI.COLLECTION.STATUSES.ACTIVE') },
+                {
+                  id: 'dormant',
+                  label: t('BONSAI.COLLECTION.STATUSES.DORMANT'),
+                },
+                {
+                  id: 'flowering',
+                  label: t('BONSAI.COLLECTION.STATUSES.FLOWERING'),
+                },
+                {
+                  id: 'repotted',
+                  label: t('BONSAI.COLLECTION.STATUSES.REPOTTED'),
+                },
+              ]}
+            />
 
-            <ComboBox
+            <Select
               selectedKey={filters.species}
               onSelectionChange={(key) =>
                 setFilters((prev) => ({ ...prev, species: key as string }))
               }
               className={styles.select}
-            >
-              <Label>{t('BONSAI.COLLECTION.SPECIES')}</Label>
-              <ListBox>
-                <ListBoxItem key="">
-                  {t('BONSAI.COLLECTION.ALL_SPECIES')}
-                </ListBoxItem>
-                {uniqueSpecies.map((species) => (
-                  <ListBoxItem key={species}>{species}</ListBoxItem>
-                ))}
-              </ListBox>
-            </ComboBox>
+              label={t('BONSAI.COLLECTION.SPECIES')}
+              items={[
+                { id: '', label: t('BONSAI.COLLECTION.ALL_SPECIES') },
+                ...(uniqueSpecies?.map((species) => ({
+                  id: species,
+                  label: species,
+                })) || []),
+              ]}
+            />
           </div>
 
           {/* Results count */}
@@ -250,6 +275,13 @@ export const BonsaiList: FC = () => {
           </Table>
         </div>
       </div>
+
+      <AddBonsaiModal
+        isOpen={isAddModalOpen}
+        onOpenChange={setIsAddModalOpen}
+        onSubmit={handleAddBonsai}
+        isLoading={isAddingBonsai}
+      />
     </div>
   );
 };
