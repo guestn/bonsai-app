@@ -10,7 +10,8 @@ interface AddBonsaiModalProps {
   onSubmit: (tree: {
     name: string;
     species: string;
-    status: 'active' | 'dormant' | 'flowering' | 'repotted';
+    status: 'active' | 'expired';
+    type: 'purchased' | 'collected' | 'field';
     initialCost: number;
     acquisitionDate: string;
     location?: string;
@@ -29,9 +30,10 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
   const { t } = useTranslation();
   const [name, setName] = useState('');
   const [species, setSpecies] = useState('');
-  const [status, setStatus] = useState<
-    'active' | 'dormant' | 'flowering' | 'repotted'
-  >('active');
+  const [status, setStatus] = useState<'active' | 'expired'>('active');
+  const [type, setType] = useState<'purchased' | 'collected' | 'field'>(
+    'purchased',
+  );
   const [initialCost, setInitialCost] = useState('');
   const [acquisitionDate, setAcquisitionDate] = useState('');
   const [location, setLocation] = useState('');
@@ -46,6 +48,7 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
       name: name.trim(),
       species: species.trim(),
       status,
+      type,
       initialCost: initialCost ? parseFloat(initialCost) : 0,
       acquisitionDate,
       location: location.trim() || undefined,
@@ -58,6 +61,7 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
     setName('');
     setSpecies('');
     setStatus('active');
+    setType('purchased');
     setInitialCost('');
     setAcquisitionDate('');
     setLocation('');
@@ -106,20 +110,28 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
 
         <Select
           selectedKey={status}
-          onSelectionChange={(key) =>
-            setStatus(key as 'active' | 'dormant' | 'flowering' | 'repotted')
-          }
+          onSelectionChange={(key) => setStatus(key as 'active' | 'expired')}
           className={styles.field}
           isDisabled={isLoading}
           label={t('BONSAI.COLLECTION.ADD_MODAL.STATUS_LABEL')}
           items={[
             { id: 'active', label: t('BONSAI.COLLECTION.STATUSES.ACTIVE') },
-            { id: 'dormant', label: t('BONSAI.COLLECTION.STATUSES.DORMANT') },
-            {
-              id: 'flowering',
-              label: t('BONSAI.COLLECTION.STATUSES.FLOWERING'),
-            },
-            { id: 'repotted', label: t('BONSAI.COLLECTION.STATUSES.REPOTTED') },
+            { id: 'expired', label: t('BONSAI.COLLECTION.STATUSES.EXPIRED') },
+          ]}
+        />
+
+        <Select
+          selectedKey={type}
+          onSelectionChange={(key) =>
+            setType(key as 'purchased' | 'collected' | 'field')
+          }
+          className={styles.field}
+          isDisabled={isLoading}
+          label={t('BONSAI.COLLECTION.ADD_MODAL.TYPE_LABEL')}
+          items={[
+            { id: 'purchased', label: t('BONSAI.COLLECTION.TYPES.PURCHASED') },
+            { id: 'collected', label: t('BONSAI.COLLECTION.TYPES.COLLECTED') },
+            { id: 'field', label: t('BONSAI.COLLECTION.TYPES.FIELD') },
           ]}
         />
 

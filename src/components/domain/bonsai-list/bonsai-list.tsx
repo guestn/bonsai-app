@@ -36,6 +36,7 @@ export const BonsaiList: FC = () => {
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
     status: '',
+    type: '',
     species: '',
     dateRange: { start: '', end: '' },
   });
@@ -50,7 +51,8 @@ export const BonsaiList: FC = () => {
   const handleAddBonsai = async (treeData: {
     name: string;
     species: string;
-    status: 'active' | 'dormant' | 'flowering' | 'repotted';
+    status: 'active' | 'expired';
+    type: 'purchased' | 'collected' | 'field';
     initialCost: number;
     acquisitionDate: string;
     location?: string;
@@ -84,6 +86,7 @@ export const BonsaiList: FC = () => {
         tree.notes?.toLowerCase().includes(filters.search.toLowerCase());
 
       const matchesStatus = !filters.status || tree.status === filters.status;
+      const matchesType = !filters.type || tree.type === filters.type;
       const matchesSpecies =
         !filters.species || tree.species === filters.species;
 
@@ -94,7 +97,11 @@ export const BonsaiList: FC = () => {
           tree.acquisitionDate <= filters.dateRange.end);
 
       return (
-        matchesSearch && matchesStatus && matchesSpecies && matchesDateRange
+        matchesSearch &&
+        matchesStatus &&
+        matchesType &&
+        matchesSpecies &&
+        matchesDateRange
       );
     });
   }, [bonsai, filters]);
@@ -159,17 +166,30 @@ export const BonsaiList: FC = () => {
                 { id: '', label: t('BONSAI.COLLECTION.ALL_STATUSES') },
                 { id: 'active', label: t('BONSAI.COLLECTION.STATUSES.ACTIVE') },
                 {
-                  id: 'dormant',
-                  label: t('BONSAI.COLLECTION.STATUSES.DORMANT'),
+                  id: 'expired',
+                  label: t('BONSAI.COLLECTION.STATUSES.EXPIRED'),
+                },
+              ]}
+            />
+
+            <Select
+              selectedKey={filters.type}
+              onSelectionChange={(key) =>
+                setFilters((prev) => ({ ...prev, type: key as string }))
+              }
+              className={styles.select}
+              label={t('BONSAI.COLLECTION.TYPE')}
+              items={[
+                { id: '', label: t('BONSAI.COLLECTION.ALL_TYPES') },
+                {
+                  id: 'purchased',
+                  label: t('BONSAI.COLLECTION.TYPES.PURCHASED'),
                 },
                 {
-                  id: 'flowering',
-                  label: t('BONSAI.COLLECTION.STATUSES.FLOWERING'),
+                  id: 'collected',
+                  label: t('BONSAI.COLLECTION.TYPES.COLLECTED'),
                 },
-                {
-                  id: 'repotted',
-                  label: t('BONSAI.COLLECTION.STATUSES.REPOTTED'),
-                },
+                { id: 'field', label: t('BONSAI.COLLECTION.TYPES.FIELD') },
               ]}
             />
 
@@ -199,69 +219,87 @@ export const BonsaiList: FC = () => {
           </div>
 
           {/* Table */}
-          <Table aria-label="Bonsai trees" className={styles.table}>
-            <TableHeader>
-              <Column isRowHeader defaultWidth="2fr">
-                {t('BONSAI.COLLECTION.TABLE.NAME')}
-              </Column>
-              <Column defaultWidth="2fr">
-                {t('BONSAI.COLLECTION.TABLE.SPECIES')}
-              </Column>
-              <Column defaultWidth="1fr">
-                {t('BONSAI.COLLECTION.TABLE.STATUS')}
-              </Column>
-              <Column defaultWidth="1fr">
-                {t('BONSAI.COLLECTION.TABLE.COST')}
-              </Column>
-              <Column defaultWidth="1fr">
-                {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
-              </Column>
-              <Column defaultWidth="1fr">
-                {t('BONSAI.COLLECTION.TABLE.AGE')}
-              </Column>
-              <Column defaultWidth="1fr">
-                {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
-              </Column>
-            </TableHeader>
-            <TableBody items={filteredData}>
-              {(tree) => (
-                <Row key={tree.id}>
-                  <Cell>
-                    <div className={styles.treeName}>
-                      <strong>{tree.name}</strong>
-                      {tree.notes && (
-                        <div className={styles.notes}>{tree.notes}</div>
-                      )}
-                    </div>
-                  </Cell>
-                  <Cell>{tree.species}</Cell>
-                  <Cell>
-                    <Chip
-                      label={t(
-                        `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
-                      )}
-                      variant={tree.status}
-                      size="sm"
-                    />
-                  </Cell>
-                  <Cell>{formatCurrency(tree.initialCost)}</Cell>
-                  <Cell>{formatDate(tree.acquisitionDate)}</Cell>
-                  <Cell>{formatAge(tree.age || 0, t)}</Cell>
-                  <Cell>
-                    <Button
-                      onPress={() => {
-                        console.info('Navigating to tree:', tree.id, tree.name);
-                        navigate(`/${tree.id}`);
-                      }}
-                      className={styles.viewButton}
-                    >
-                      {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
-                    </Button>
-                  </Cell>
-                </Row>
-              )}
-            </TableBody>
-          </Table>
+          <div className={styles.tableWrapper}>
+            <Table aria-label="Bonsai trees" className={styles.table}>
+              <TableHeader>
+                <Column isRowHeader defaultWidth="2fr">
+                  {t('BONSAI.COLLECTION.TABLE.NAME')}
+                </Column>
+                <Column defaultWidth="1.5fr">
+                  {t('BONSAI.COLLECTION.TABLE.SPECIES')}
+                </Column>
+                <Column defaultWidth="0.8fr">
+                  {t('BONSAI.COLLECTION.TABLE.STATUS')}
+                </Column>
+                <Column defaultWidth="0.8fr">
+                  {t('BONSAI.COLLECTION.TYPE')}
+                </Column>
+                <Column defaultWidth="1fr">
+                  {t('BONSAI.COLLECTION.TABLE.COST')}
+                </Column>
+                <Column defaultWidth="1fr">
+                  {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
+                </Column>
+                <Column defaultWidth="1fr">
+                  {t('BONSAI.COLLECTION.TABLE.AGE')}
+                </Column>
+                <Column defaultWidth="1fr">
+                  {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
+                </Column>
+              </TableHeader>
+              <TableBody items={filteredData}>
+                {(tree) => (
+                  <Row key={tree.id}>
+                    <Cell>
+                      <div className={styles.treeName}>
+                        <strong>{tree.name}</strong>
+                        {tree.notes && (
+                          <div className={styles.notes}>{tree.notes}</div>
+                        )}
+                      </div>
+                    </Cell>
+                    <Cell>{tree.species}</Cell>
+                    <Cell>
+                      <Chip
+                        label={t(
+                          `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
+                        )}
+                        variant={tree.status}
+                        size="sm"
+                      />
+                    </Cell>
+                    <Cell>
+                      <Chip
+                        label={t(
+                          `BONSAI.COLLECTION.TYPES.${(tree.type || 'purchased').toUpperCase()}`,
+                        )}
+                        variant={tree.type || 'purchased'}
+                        size="sm"
+                      />
+                    </Cell>
+                    <Cell>{formatCurrency(tree.initialCost)}</Cell>
+                    <Cell>{formatDate(tree.acquisitionDate)}</Cell>
+                    <Cell>{formatAge(tree.age || 0, t)}</Cell>
+                    <Cell>
+                      <Button
+                        onPress={() => {
+                          console.info(
+                            'Navigating to tree:',
+                            tree.id,
+                            tree.name,
+                          );
+                          navigate(`/${tree.id}`);
+                        }}
+                        className={styles.viewButton}
+                      >
+                        {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
+                      </Button>
+                    </Cell>
+                  </Row>
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </div>
       </div>
 

@@ -31,7 +31,7 @@
   line-height: 1.3;
 }
 
-// Color variants
+// Status variants
 .active {
   background-color: var(--color-success);
 
@@ -40,15 +40,24 @@
   }
 }
 
-.dormant {
-  background-color: var(--color-gray-500);
+.expired {
+  background-color: #6b7280; // Grey-500
 
   &:hover {
-    background-color: #4b5563; // Darker gray
+    background-color: #4b5563; // Grey-600
   }
 }
 
-.flowering {
+// Type variants
+.purchased {
+  background-color: var(--color-info);
+
+  &:hover {
+    background-color: #1d4ed8; // Darker blue
+  }
+}
+
+.collected {
   background-color: var(--color-accent);
 
   &:hover {
@@ -56,11 +65,11 @@
   }
 }
 
-.repotted {
-  background-color: var(--color-info);
+.field {
+  background-color: var(--color-secondary);
 
   &:hover {
-    background-color: #1d4ed8; // Darker blue
+    background-color: #7c2d12; // Darker brown
   }
 }
 

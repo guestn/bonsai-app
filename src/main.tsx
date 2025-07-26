@@ -10,6 +10,9 @@ import i18n from './i18n/i18n';
 // Import dev tools for development
 import './utils/dev-tools';
 
+// Import migration function for browser console access
+import './utils/migrate-add-type';
+
 import './styles/globals.scss';
 
 createRoot(document.getElementById('root')!).render(

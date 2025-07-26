@@ -4,7 +4,13 @@ import styles from './chip.module.scss';
 
 export interface ChipProps {
   label: string;
-  variant?: 'active' | 'dormant' | 'flowering' | 'repotted' | 'default';
+  variant?:
+    | 'active'
+    | 'expired'
+    | 'purchased'
+    | 'collected'
+    | 'field'
+    | 'default';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }

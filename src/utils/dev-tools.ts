@@ -1,4 +1,5 @@
 import { seedFirebase, clearFirebase } from './seed-firebase';
+import { migrateAddTypeField } from './migrate-add-type';
 
 // Development tools for Firebase management
 export const DevTools = {
@@ -34,6 +35,16 @@ export const DevTools = {
       alert(`Database contains ${data.length} bonsai trees`);
     } catch (error) {
       alert(`Error getting database status: ${error}`);
+    }
+  },
+
+  // Migrate existing data to add type field
+  migrateAddType: async () => {
+    try {
+      await migrateAddTypeField();
+      alert('Migration completed successfully!');
+    } catch (error) {
+      alert(`Error during migration: ${error}`);
     }
   },
 };

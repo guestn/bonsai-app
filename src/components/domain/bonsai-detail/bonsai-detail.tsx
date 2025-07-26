@@ -169,6 +169,20 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
             </div>
             <div className={styles.infoItem}>
               <Text className={styles.infoLabel}>
+                {t('BONSAI.COLLECTION.TYPE')}
+              </Text>
+              <div className={styles.infoValue}>
+                <Chip
+                  label={t(
+                    `BONSAI.COLLECTION.TYPES.${(tree.type || 'purchased').toUpperCase()}`,
+                  )}
+                  variant={tree.type || 'purchased'}
+                  size="sm"
+                />
+              </div>
+            </div>
+            <div className={styles.infoItem}>
+              <Text className={styles.infoLabel}>
                 {t('BONSAI.DETAIL.LABELS.INITIAL_COST')}
               </Text>
               <Text className={styles.infoValue}>
