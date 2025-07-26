@@ -29,13 +29,13 @@
   }
 
   a {
-    color: #2a35bd;
+    color: var(--color-info);
     text-decoration: underline;
   }
 
   blockquote {
-    background-color: #f9f9f9;
-    border-left: spacing(2) solid #e0e0e0;
+    background-color: var(--color-gray-50);
+    border-left: spacing(2) solid var(--color-gray-300);
     padding: 0 spacing(8);
   }
 

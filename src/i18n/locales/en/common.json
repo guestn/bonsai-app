@@ -2,6 +2,16 @@
   "HEADER": {
     "TITLE": "Bonsai App"
   },
+  "AUTH": {
+    "SIGN_IN_WITH_GOOGLE": "Sign in with Google",
+    "SIGN_IN_WITH_GOOGLE_REDIRECT": "Sign in with Google (Redirect)",
+    "SIGN_OUT": "Sign out",
+    "NOT_AUTHORIZED": {
+      "TITLE": "Not Authorized",
+      "MESSAGE": "You are not authorized to access this application. Please contact the administrator if you believe this is an error.",
+      "OK": "OK"
+    }
+  },
   "NAV": {
     "HOME": "Home",
     "COPYRIGHT": "Copyright © 2022 - {{year}} by Bonsai App. All rights reserved."

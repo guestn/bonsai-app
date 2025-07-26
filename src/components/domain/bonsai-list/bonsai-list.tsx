@@ -16,6 +16,7 @@ import {
 import { Button, Select } from '../../ui';
 import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
 import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
+import { useAuth } from '../../../context/auth-provider';
 import {
   formatCurrency,
   formatDate,
@@ -29,6 +30,7 @@ export const BonsaiList: FC = () => {
   const { t } = useTranslation();
   const { bonsai, isLoading, error } = useBonsai();
   const { createBonsai } = useBonsaiMutations();
+  const { isAuthorized } = useAuth();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isAddingBonsai, setIsAddingBonsai] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
@@ -40,7 +42,8 @@ export const BonsaiList: FC = () => {
 
   // Get unique species for filter
   const uniqueSpecies = useMemo(() => {
-    const species = bonsai?.map((tree) => tree.species);
+    if (!bonsai || !Array.isArray(bonsai)) return [];
+    const species = bonsai.map((tree) => tree.species);
     return Array.from(new Set(species));
   }, [bonsai]);
 
@@ -72,6 +75,7 @@ export const BonsaiList: FC = () => {
 
   // Filter data
   const filteredData = useMemo(() => {
+    if (!bonsai || !Array.isArray(bonsai)) return [];
     return bonsai.filter((tree) => {
       const matchesSearch =
         !filters.search ||
@@ -141,6 +145,7 @@ export const BonsaiList: FC = () => {
             onPress={() => setIsAddModalOpen(true)}
             variant="primary"
             className={styles.addButton}
+            isDisabled={!isAuthorized}
           >
             {t('BONSAI.COLLECTION.ADD_TREE')}
           </Button>

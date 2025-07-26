@@ -32,6 +32,7 @@ const scriptSrc = [
   "'unsafe-eval'",
   "'unsafe-inline'",
   'https://www.googletagmanager.com',
+  'https://www.google.com',
 ];
 
 const frameSrc = [

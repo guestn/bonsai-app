@@ -2,6 +2,16 @@
   "HEADER": {
     "TITLE": "App de Bonsái"
   },
+  "AUTH": {
+    "SIGN_IN_WITH_GOOGLE": "Iniciar sesión con Google",
+    "SIGN_IN_WITH_GOOGLE_REDIRECT": "Iniciar sesión con Google (Redirección)",
+    "SIGN_OUT": "Cerrar sesión",
+    "NOT_AUTHORIZED": {
+      "TITLE": "No Autorizado",
+      "MESSAGE": "No estás autorizado para acceder a esta aplicación. Solo la dirección de correo electrónico especificada puede usar esta aplicación. Por favor, contacta al administrador si crees que esto es un error.",
+      "OK": "OK"
+    }
+  },
   "NAV": {
     "HOME": "Inicio",
     "COPYRIGHT": "Copyright © 2022 - {{year}} por App de Bonsái. Todos los derechos reservados."

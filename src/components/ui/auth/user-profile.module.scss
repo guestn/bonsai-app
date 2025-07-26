@@ -1,0 +1,53 @@
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutButton {
+  padding: var(--spacing-1) var(--spacing-3);
+  background-color: transparent;
+  color: var(--color-gray-500);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all var(--transition-base);
+
+  &:hover {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+  }
+
+  &:active {
+    background-color: var(--color-gray-200);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-info);
+    outline-offset: 2px;
+  }
+}

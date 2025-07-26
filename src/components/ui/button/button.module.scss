@@ -59,11 +59,13 @@
   }
 
   &:hover:not(:disabled) {
-    background: #dc2626; // Darker red
+    background: var(--color-error);
+    filter: brightness(0.9);
   }
 
   &:active:not(:disabled) {
-    background: #b91c1c; // Even darker red
+    background: var(--color-error);
+    filter: brightness(0.8);
   }
 }
 

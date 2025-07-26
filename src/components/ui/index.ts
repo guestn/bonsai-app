@@ -4,3 +4,4 @@ export { Header } from './header/header';
 export { ModalComponent } from './modal';
 export { Button } from './button';
 export { Select } from './select';
+export { LoginButton, UserProfile } from './auth';

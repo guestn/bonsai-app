@@ -18,6 +18,7 @@ import {
   formatAge,
 } from '../../../utils/formatters';
 import { useBonsaiMutations } from '../../../hooks/use-bonsai';
+import { useAuth } from '../../../context/auth-provider';
 import { Button } from '../../../components/ui';
 import { AddEventModal } from './add-event-modal';
 import { DeleteEventModal } from './delete-event-modal';
@@ -36,6 +37,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   mutate,
 }) => {
   const { t } = useTranslation();
+  const { isAuthorized } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddingEvent, setIsAddingEvent] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -246,6 +248,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
             onPress={() => setIsModalOpen(true)}
             variant="primary"
             size="sm"
+            isDisabled={!isAuthorized}
           >
             {t('BONSAI.DETAIL.ADD_EVENT')}
           </Button>
@@ -292,6 +295,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                         variant="secondary"
                         size="sm"
                         className={styles.actionButton}
+                        isDisabled={!isAuthorized}
                         aria-label={t(
                           'BONSAI.DETAIL.EVENTS_TABLE.UPDATE_EVENT',
                           {
@@ -306,6 +310,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                         variant="secondary"
                         size="sm"
                         className={styles.actionButton}
+                        isDisabled={!isAuthorized}
                         aria-label={t(
                           'BONSAI.DETAIL.EVENTS_TABLE.DELETE_EVENT',
                           {

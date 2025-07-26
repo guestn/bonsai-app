@@ -61,6 +61,8 @@ VITE_FIREBASE_MEASUREMENT_ID=G-XXXXXXXXXX
 
 # Google Analytics (optional)
 VITE_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+
+VITE_AUTHORIZED_EMAIL=xxxx.mail.com
 ```
 
 ### Seeding Firebase Database
@@ -72,3 +74,24 @@ node scripts/seed-firebase.js
 ```
 
 **Note:** The `firebase.ts` file in the root directory is gitignored and contains the actual Firebase configuration. For production, use environment variables instead.
+
+## Authentication
+
+The app uses Google Authentication through Firebase. To enable Google sign-in:
+
+1. **Enable Google Authentication in Firebase Console:**
+   - Go to your Firebase project console
+   - Navigate to Authentication > Sign-in method
+   - Enable Google as a sign-in provider
+   - Configure the OAuth consent screen if needed
+
+2. **Add Authorized Domains:**
+   - In Firebase Console > Authentication > Settings > Authorized domains
+   - Add your domain (e.g., `localhost` for development, your production domain)
+
+3. **The authentication is already integrated into the app:**
+   - Users can sign in with Google using the button in the header
+   - Once signed in, users will see their profile picture and name
+   - Users can sign out using the sign-out button
+
+The authentication state is managed through React Context and persists across page refreshes.
