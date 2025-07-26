@@ -19,7 +19,7 @@ import {
 } from '../../../utils/formatters';
 import { useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
-import { Button } from '../../../components/ui';
+import { Button, Chip } from '../../../components/ui';
 import { AddEventModal } from './add-event-modal';
 import { DeleteEventModal } from './delete-event-modal';
 import { UpdateEventModal } from './update-event-modal';
@@ -47,21 +47,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isUpdatingEvent, setIsUpdatingEvent] = useState(false);
   const [eventToUpdate, setEventToUpdate] = useState<BonsaiEvent | null>(null);
   const { addEvent, deleteEvent, updateEvent } = useBonsaiMutations();
-
-  const getStatusColor = (status: BonsaiTree['status']) => {
-    switch (status) {
-      case 'active':
-        return 'var(--color-success)';
-      case 'flowering':
-        return 'var(--color-accent)';
-      case 'dormant':
-        return 'var(--color-gray-500)';
-      case 'repotted':
-        return 'var(--color-info)';
-      default:
-        return 'var(--color-gray-500)';
-    }
-  };
 
   const sortedEvents = [...tree.events].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -168,12 +153,11 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
           <Heading level={1} className={styles.treeName}>
             {tree.name}
           </Heading>
-          <div
-            className={styles.statusBadge}
-            style={{ backgroundColor: getStatusColor(tree.status) }}
-          >
-            {t(`BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`)}
-          </div>
+          <Chip
+            label={t(`BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`)}
+            variant={tree.status}
+            size="md"
+          />
         </div>
         <div className={styles.cardBody}>
           <div className={styles.infoGrid}>

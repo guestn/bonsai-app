@@ -42,6 +42,6 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
+    box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
   }
 }

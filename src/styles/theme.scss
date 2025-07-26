@@ -8,6 +8,17 @@
   --color-accent: #d4af37;
   --color-accent-light: #f4e4bc;
 
+  // RGB versions for use with opacity
+  --color-primary-rgb: 45 90 39;
+  --color-primary-light-rgb: 74 124 89;
+  --color-primary-dark-rgb: 30 61 26;
+  --color-secondary-rgb: 139 69 19;
+  --color-secondary-light-rgb: 160 82 45;
+  --color-accent-rgb: 212 175 55;
+  --color-accent-light-rgb: 244 228 188;
+  --color-info-rgb: 59 130 246;
+  --color-black-rgb: 0 0 0;
+
   // Neutral colors
   --color-white: #ffffff;
   --color-gray-50: #f9fafb;
@@ -26,6 +37,10 @@
   --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-info: #3b82f6;
+  --color-blue-500: #3b82f6;
+  --color-blue-700: #1d4ed8;
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
 
   // Typography
   --font-family-sans:

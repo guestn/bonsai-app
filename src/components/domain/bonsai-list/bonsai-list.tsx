@@ -13,7 +13,7 @@ import {
   Heading,
   Text,
 } from 'react-aria-components';
-import { Button, Select } from '../../ui';
+import { Button, Select, Chip } from '../../ui';
 import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
 import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
@@ -120,21 +120,6 @@ export const BonsaiList: FC = () => {
       </div>
     );
   }
-
-  const getStatusColor = (status: BonsaiTree['status']) => {
-    switch (status) {
-      case 'active':
-        return 'var(--color-success)';
-      case 'flowering':
-        return 'var(--color-accent)';
-      case 'dormant':
-        return 'var(--color-gray-500)';
-      case 'repotted':
-        return 'var(--color-info)';
-      default:
-        return 'var(--color-gray-500)';
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -251,14 +236,13 @@ export const BonsaiList: FC = () => {
                   </Cell>
                   <Cell>{tree.species}</Cell>
                   <Cell>
-                    <span
-                      className={styles.status}
-                      style={{ backgroundColor: getStatusColor(tree.status) }}
-                    >
-                      {t(
+                    <Chip
+                      label={t(
                         `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
                       )}
-                    </span>
+                      variant={tree.status}
+                      size="sm"
+                    />
                   </Cell>
                   <Cell>{formatCurrency(tree.initialCost)}</Cell>
                   <Cell>{formatDate(tree.acquisitionDate)}</Cell>

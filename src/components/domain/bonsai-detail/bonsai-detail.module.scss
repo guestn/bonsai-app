@@ -44,7 +44,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
+    box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
   }
 }
 
@@ -80,7 +80,7 @@
 .addEventButton {
   padding: var(--spacing-2) var(--spacing-4);
   background: var(--color-primary);
-  color: white;
+  color: var(--color-white);
   border: none;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
@@ -94,7 +94,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(45 90 39 / 10%);
+    box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
   }
 }
 
@@ -127,18 +127,6 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-gray-900);
-}
-
-.status {
-  display: inline-block;
-  padding: var(--spacing-1) var(--spacing-3);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-white);
-  align-self: flex-start;
 }
 
 .notes {
