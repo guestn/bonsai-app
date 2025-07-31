@@ -8,13 +8,11 @@ import {
   TableBody,
   Row,
   Cell,
-  TextField,
-  Label,
   Heading,
   Text,
 } from 'react-aria-components';
-import { Button, Select, Chip } from '../../ui';
-import { BonsaiTree, BonsaiFilters } from '../../../types/bonsai';
+import { Button, Chip } from '../../ui';
+import { BonsaiFilters, BonsaiTree } from '../../../types/bonsai';
 import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
 import {
@@ -23,6 +21,7 @@ import {
   formatAge,
 } from '../../../utils/formatters';
 import { AddBonsaiModal } from './add-bonsai-modal';
+import { BonsaiFiltersComponent } from './bonsai-filters';
 import styles from './bonsai-list.module.scss';
 
 export const BonsaiList: FC = () => {
@@ -35,18 +34,13 @@ export const BonsaiList: FC = () => {
   const [isAddingBonsai, setIsAddingBonsai] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
-    status: '',
+    status: 'active', // Set active as default
     type: '',
     species: '',
     dateRange: { start: '', end: '' },
   });
 
-  // Get unique species for filter
-  const uniqueSpecies = useMemo(() => {
-    if (!bonsai || !Array.isArray(bonsai)) return [];
-    const species = bonsai.map((tree) => tree.species);
-    return Array.from(new Set(species));
-  }, [bonsai]);
+  const [filteredData, setFilteredData] = useState<BonsaiTree[]>([]);
 
   const handleAddBonsai = async (treeData: {
     name: string;
@@ -74,37 +68,6 @@ export const BonsaiList: FC = () => {
       setIsAddingBonsai(false);
     }
   };
-
-  // Filter data
-  const filteredData = useMemo(() => {
-    if (!bonsai || !Array.isArray(bonsai)) return [];
-    return bonsai.filter((tree) => {
-      const matchesSearch =
-        !filters.search ||
-        tree.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-        tree.species.toLowerCase().includes(filters.search.toLowerCase()) ||
-        tree.notes?.toLowerCase().includes(filters.search.toLowerCase());
-
-      const matchesStatus = !filters.status || tree.status === filters.status;
-      const matchesType = !filters.type || tree.type === filters.type;
-      const matchesSpecies =
-        !filters.species || tree.species === filters.species;
-
-      const matchesDateRange =
-        !filters.dateRange.start ||
-        !filters.dateRange.end ||
-        (tree.acquisitionDate >= filters.dateRange.start &&
-          tree.acquisitionDate <= filters.dateRange.end);
-
-      return (
-        matchesSearch &&
-        matchesStatus &&
-        matchesType &&
-        matchesSpecies &&
-        matchesDateRange
-      );
-    });
-  }, [bonsai, filters]);
 
   if (error) {
     return (
@@ -144,79 +107,12 @@ export const BonsaiList: FC = () => {
         </div>
         <div className={styles.body}>
           {/* Filters */}
-          <div className={styles.filters}>
-            <TextField
-              value={filters.search}
-              onChange={(value) =>
-                setFilters((prev) => ({ ...prev, search: value }))
-              }
-              className={styles.searchField}
-            >
-              <Label>{t('BONSAI.COLLECTION.SEARCH')}</Label>
-            </TextField>
-
-            <Select
-              selectedKey={filters.status}
-              onSelectionChange={(key) =>
-                setFilters((prev) => ({ ...prev, status: key as string }))
-              }
-              className={styles.select}
-              label={t('BONSAI.COLLECTION.STATUS')}
-              items={[
-                { id: '', label: t('BONSAI.COLLECTION.ALL_STATUSES') },
-                { id: 'active', label: t('BONSAI.COLLECTION.STATUSES.ACTIVE') },
-                {
-                  id: 'expired',
-                  label: t('BONSAI.COLLECTION.STATUSES.EXPIRED'),
-                },
-              ]}
-            />
-
-            <Select
-              selectedKey={filters.type}
-              onSelectionChange={(key) =>
-                setFilters((prev) => ({ ...prev, type: key as string }))
-              }
-              className={styles.select}
-              label={t('BONSAI.COLLECTION.TYPE')}
-              items={[
-                { id: '', label: t('BONSAI.COLLECTION.ALL_TYPES') },
-                {
-                  id: 'purchased',
-                  label: t('BONSAI.COLLECTION.TYPES.PURCHASED'),
-                },
-                {
-                  id: 'collected',
-                  label: t('BONSAI.COLLECTION.TYPES.COLLECTED'),
-                },
-                { id: 'field', label: t('BONSAI.COLLECTION.TYPES.FIELD') },
-              ]}
-            />
-
-            <Select
-              selectedKey={filters.species}
-              onSelectionChange={(key) =>
-                setFilters((prev) => ({ ...prev, species: key as string }))
-              }
-              className={styles.select}
-              label={t('BONSAI.COLLECTION.SPECIES')}
-              items={[
-                { id: '', label: t('BONSAI.COLLECTION.ALL_SPECIES') },
-                ...(uniqueSpecies?.map((species) => ({
-                  id: species,
-                  label: species,
-                })) || []),
-              ]}
-            />
-          </div>
-
-          {/* Results count */}
-          <div className={styles.resultsCount}>
-            {t('BONSAI.COLLECTION.RESULTS_COUNT', {
-              count: filteredData.length,
-              plural: filteredData.length !== 1 ? 's' : '',
-            })}
-          </div>
+          <BonsaiFiltersComponent
+            bonsai={bonsai}
+            filters={filters}
+            onFiltersChange={setFilters}
+            onFilteredDataChange={setFilteredData}
+          />
 
           {/* Table */}
           <div className={styles.tableWrapper}>
