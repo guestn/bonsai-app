@@ -22,6 +22,11 @@ const bonsaiListFetcher = async () => {
 };
 
 const bonsaiByIdFetcher = async (id: string) => {
+  if (shouldUseMockData()) {
+    console.info('Using mock data for bonsai by ID (forced by config)');
+    return mockBonsaiData.find((tree) => tree.id === id) || null;
+  }
+
   try {
     return await BonsaiService.getBonsaiById(id);
   } catch (error) {

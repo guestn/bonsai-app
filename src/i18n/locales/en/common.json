@@ -94,6 +94,7 @@
       "ADD_EVENT": "Add Event",
       "LABELS": {
         "STATUS": "Status",
+        "SPECIES": "Species",
         "INITIAL_COST": "Initial Cost",
         "ACQUISITION_DATE": "Acquisition Date",
         "AGE": "Age",
