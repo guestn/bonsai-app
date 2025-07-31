@@ -3,20 +3,33 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
+  getRedirectResult,
 } from 'firebase/auth';
 import { render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider, useAuth } from '../auth-provider';
 
 // Mock Firebase auth
 jest.mock('../../../utils/firebase', () => ({
-  auth: {},
+  auth: {
+    app: {
+      options: {
+        apiKey: 'test-api-key',
+        authDomain: 'test-domain.firebaseapp.com',
+        projectId: 'test-project',
+      },
+    },
+  },
 }));
 
 jest.mock('firebase/auth', () => ({
   signInWithPopup: jest.fn(),
   signOut: jest.fn(),
   onAuthStateChanged: jest.fn(),
-  GoogleAuthProvider: jest.fn(),
+  getRedirectResult: jest.fn(),
+  GoogleAuthProvider: jest.fn().mockImplementation(() => ({
+    addScope: jest.fn(),
+    setCustomParameters: jest.fn(),
+  })),
 }));
 
 const mockSignInWithPopup = signInWithPopup as jest.MockedFunction<
@@ -25,6 +38,9 @@ const mockSignInWithPopup = signInWithPopup as jest.MockedFunction<
 const mockSignOut = signOut as jest.MockedFunction<typeof signOut>;
 const mockOnAuthStateChanged = onAuthStateChanged as jest.MockedFunction<
   typeof onAuthStateChanged
+>;
+const mockGetRedirectResult = getRedirectResult as jest.MockedFunction<
+  typeof getRedirectResult
 >;
 
 // Test component to access auth context
@@ -48,6 +64,7 @@ const TestComponent = () => {
 describe('AuthProvider', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockGetRedirectResult.mockResolvedValue(null);
   });
 
   it('provides loading state initially', () => {

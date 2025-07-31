@@ -23,6 +23,7 @@ import { Button, Chip } from '../../../components/ui';
 import { AddEventModal } from './add-event-modal';
 import { DeleteEventModal } from './delete-event-modal';
 import { UpdateEventModal } from './update-event-modal';
+import { EditTreeModal } from './edit-tree-modal';
 import styles from './bonsai-detail.module.scss';
 
 interface BonsaiDetailProps {
@@ -46,7 +47,10 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isUpdatingEvent, setIsUpdatingEvent] = useState(false);
   const [eventToUpdate, setEventToUpdate] = useState<BonsaiEvent | null>(null);
-  const { addEvent, deleteEvent, updateEvent } = useBonsaiMutations();
+  const [isEditTreeModalOpen, setIsEditTreeModalOpen] = useState(false);
+  const [isUpdatingTree, setIsUpdatingTree] = useState(false);
+  const { addEvent, deleteEvent, updateEvent, updateBonsai } =
+    useBonsaiMutations();
 
   const sortedEvents = [...tree.events].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -133,6 +137,27 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     }
   };
 
+  const handleEditTree = async (treeData: {
+    name: string;
+    species: string;
+    status: 'active' | 'expired';
+    location?: string;
+    potType?: string;
+    notes?: string;
+  }) => {
+    try {
+      setIsUpdatingTree(true);
+      await updateBonsai(tree.id, treeData);
+      await mutate();
+      setIsEditTreeModalOpen(false);
+    } catch (error) {
+      console.error('Error updating tree:', error);
+      alert(t('BONSAI.DETAIL.ERROR_UPDATING_TREE'));
+    } finally {
+      setIsUpdatingTree(false);
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* Header */}
@@ -150,9 +175,19 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       {/* Tree Information */}
       <div className={styles.card}>
         <div className={styles.cardHeader}>
-          <Heading level={1} className={styles.treeName}>
-            {tree.name}
-          </Heading>
+          <div className={styles.treeHeader}>
+            <Heading level={1} className={styles.treeName}>
+              {tree.name}
+            </Heading>
+            <Button
+              onPress={() => setIsEditTreeModalOpen(true)}
+              variant="secondary"
+              size="sm"
+              isDisabled={!isAuthorized}
+            >
+              ✏️ Edit Tree
+            </Button>
+          </div>
           <Chip
             label={t(`BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`)}
             variant={tree.status}
@@ -381,6 +416,14 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
           isLoading={isDeletingEvent}
         />
       )}
+
+      <EditTreeModal
+        tree={tree}
+        isOpen={isEditTreeModalOpen}
+        onOpenChange={setIsEditTreeModalOpen}
+        onSubmit={handleEditTree}
+        isLoading={isUpdatingTree}
+      />
     </div>
   );
 };

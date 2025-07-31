@@ -77,6 +77,12 @@
   }
 }
 
+.treeHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
 .addEventButton {
   padding: var(--spacing-2) var(--spacing-4);
   background: var(--color-primary);

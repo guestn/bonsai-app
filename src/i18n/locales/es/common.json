@@ -90,6 +90,7 @@
       "ERROR_ADDING_EVENT": "Error al agregar evento. Por favor, inténtalo de nuevo.",
       "ERROR_UPDATING_EVENT": "Error al actualizar evento. Por favor, inténtalo de nuevo.",
       "ERROR_DELETING_EVENT": "Error al eliminar evento. Por favor, inténtalo de nuevo.",
+      "ERROR_UPDATING_TREE": "Error al actualizar árbol. Por favor, inténtalo de nuevo.",
       "ADD_EVENT": "Agregar Evento",
       "LABELS": {
         "STATUS": "Estado",
@@ -138,6 +139,24 @@
         "COST_LABEL": "Costo (opcional)",
         "COST_PLACEHOLDER": "0.00",
         "UPDATE": "Actualizar Evento",
+        "UPDATING": "Actualizando...",
+        "CANCEL": "Cancelar"
+      },
+      "EDIT_TREE_MODAL": {
+        "TITLE": "Editar Árbol Bonsái",
+        "DESCRIPTION": "Editar los detalles para {{treeName}}",
+        "NAME_LABEL": "Nombre del Árbol",
+        "NAME_PLACEHOLDER": "ej., Mi Primer Bonsái",
+        "SPECIES_LABEL": "Especie",
+        "SPECIES_PLACEHOLDER": "ej., Ficus, Juniper, Maple",
+        "STATUS_LABEL": "Estado",
+        "LOCATION_LABEL": "Ubicación",
+        "LOCATION_PLACEHOLDER": "ej., Sala de Estar, Jardín",
+        "POT_TYPE_LABEL": "Tipo de Maceta",
+        "POT_TYPE_PLACEHOLDER": "ej., Cerámica, Plástico",
+        "NOTES_LABEL": "Notas",
+        "NOTES_PLACEHOLDER": "Notas adicionales sobre el árbol",
+        "UPDATE": "Actualizar Árbol",
         "UPDATING": "Actualizando...",
         "CANCEL": "Cancelar"
       }

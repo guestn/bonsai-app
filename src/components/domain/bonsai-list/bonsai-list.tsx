@@ -302,13 +302,13 @@ export const BonsaiList: FC = () => {
           </div>
         </div>
       </div>
-
       <AddBonsaiModal
         isOpen={isAddModalOpen}
         onOpenChange={setIsAddModalOpen}
         onSubmit={handleAddBonsai}
         isLoading={isAddingBonsai}
       />
+      ok
     </div>
   );
 };
