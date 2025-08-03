@@ -27,6 +27,7 @@
       "TITLE": "Bonsai Collection",
       "ADD_TREE": "Add Tree",
       "SEARCH": "Search",
+      "SEARCH_PLACEHOLDER": "Search by name, species, or notes...",
       "STATUS": "Status",
       "TYPE": "Type",
       "SPECIES": "Species",

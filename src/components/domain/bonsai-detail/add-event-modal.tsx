@@ -57,10 +57,6 @@ export const AddEventModal: FC<AddEventModalProps> = ({
     { id: 'expired', label: t('BONSAI.COLLECTION.STATUSES.EXPIRED') },
   ];
 
-  console.log('Status options:', statusOptions);
-  console.log('Current status:', status);
-  console.log('Tree status:', tree.status);
-
   return (
     <ModalComponent isOpen={isOpen} onOpenChange={handleClose}>
       <Heading slot="title" className={styles.title}>
