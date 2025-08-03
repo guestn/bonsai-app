@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Heading, Text, TextField, Input, Label } from 'react-aria-components';
 import { BonsaiTree } from '../../../types/bonsai';
 import { ModalComponent, Button } from '../../../components/ui';
+import { Select } from '../../../components/ui/select';
 import styles from './add-event-modal.module.scss';
 
 interface AddEventModalProps {
@@ -13,6 +14,7 @@ interface AddEventModalProps {
     description: string;
     date: string;
     cost?: number;
+    status?: 'active' | 'expired';
   }) => void;
   isLoading?: boolean;
 }
@@ -28,6 +30,7 @@ export const AddEventModal: FC<AddEventModalProps> = ({
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [cost, setCost] = useState('');
+  const [status, setStatus] = useState<'active' | 'expired'>(tree.status);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +40,7 @@ export const AddEventModal: FC<AddEventModalProps> = ({
       description: description.trim(),
       date,
       cost: cost ? parseFloat(cost) : undefined,
+      status,
     });
   };
 
@@ -44,8 +48,18 @@ export const AddEventModal: FC<AddEventModalProps> = ({
     setDescription('');
     setDate('');
     setCost('');
+    setStatus(tree.status);
     onOpenChange(false);
   };
+
+  const statusOptions = [
+    { id: 'active', label: t('BONSAI.COLLECTION.STATUSES.ACTIVE') },
+    { id: 'expired', label: t('BONSAI.COLLECTION.STATUSES.EXPIRED') },
+  ];
+
+  console.log('Status options:', statusOptions);
+  console.log('Current status:', status);
+  console.log('Tree status:', tree.status);
 
   return (
     <ModalComponent isOpen={isOpen} onOpenChange={handleClose}>
@@ -100,6 +114,15 @@ export const AddEventModal: FC<AddEventModalProps> = ({
             min="0"
           />
         </TextField>
+
+        <Select
+          selectedKey={status}
+          onSelectionChange={(key) => setStatus(key as 'active' | 'expired')}
+          className={styles.field}
+          label={t('BONSAI.COLLECTION.STATUS')}
+          items={statusOptions}
+          isDisabled={isLoading}
+        />
 
         <div className={styles.actions}>
           <Button

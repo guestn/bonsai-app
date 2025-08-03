@@ -60,9 +60,12 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     description: string;
     date: string;
     cost?: number;
+    status?: 'active' | 'expired';
   }) => {
     try {
       setIsAddingEvent(true);
+
+      // Add the event
       await addEvent(
         tree.id,
         {
@@ -72,6 +75,12 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         },
         mutate,
       );
+
+      // Update tree status if it changed
+      if (event.status && event.status !== tree.status) {
+        await updateBonsai(tree.id, { status: event.status });
+      }
+
       setIsModalOpen(false);
     } catch (error) {
       console.error('Error adding event:', error);
@@ -91,11 +100,14 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     description: string;
     date: string;
     cost?: number;
+    status?: 'active' | 'expired';
   }) => {
     if (!eventToUpdate) return;
 
     try {
       setIsUpdatingEvent(true);
+
+      // Update the event
       await updateEvent(
         tree.id,
         eventToUpdate.id,
@@ -106,6 +118,12 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         },
         mutate,
       );
+
+      // Update tree status if it changed
+      if (event.status && event.status !== tree.status) {
+        await updateBonsai(tree.id, { status: event.status });
+      }
+
       setIsUpdateModalOpen(false);
       setEventToUpdate(null);
     } catch (error) {
