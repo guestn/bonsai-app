@@ -1,4 +1,4 @@
-import { FC, useState, useMemo, useEffect } from 'react';
+import { FC, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextField, Label } from 'react-aria-components';
 import { Select } from '../../ui/select';
@@ -27,9 +27,9 @@ export const BonsaiFiltersComponent: FC<BonsaiFiltersProps> = ({
     return Array.from(new Set(species));
   }, [bonsai]);
 
-  // Filter data
   const filteredData = useMemo(() => {
     if (!bonsai || !Array.isArray(bonsai)) return [];
+
     return bonsai.filter((tree) => {
       const matchesSearch =
         !filters.search ||
@@ -58,7 +58,6 @@ export const BonsaiFiltersComponent: FC<BonsaiFiltersProps> = ({
     });
   }, [bonsai, filters]);
 
-  // Notify parent of filtered data changes
   useEffect(() => {
     onFilteredDataChange(filteredData);
   }, [filteredData, onFilteredDataChange]);
@@ -92,9 +91,9 @@ export const BonsaiFiltersComponent: FC<BonsaiFiltersProps> = ({
 
       <Select
         selectedKey={filters.type}
-        onSelectionChange={(key) =>
-          onFiltersChange({ ...filters, type: key as string })
-        }
+        onSelectionChange={(key) => {
+          onFiltersChange({ ...filters, type: key as string });
+        }}
         className={styles.select}
         label={t('BONSAI.COLLECTION.TYPE')}
         items={[

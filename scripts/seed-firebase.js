@@ -1,7 +1,7 @@
 // This script seeds Firebase with mock data
 // Run with: node scripts/seed-firebase.js
 
-import { seedFirebase } from '../src/utils/seed-firebase.js';
+import { seedFirebase } from '../src/utils/seed-firebase.ts';
 
 console.log('Starting Firebase seeding...');
 seedFirebase()

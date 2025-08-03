@@ -1,4 +1,5 @@
 import { BonsaiService } from '../services/bonsai-service';
+import { mockBonsaiData } from '../data/mock-bonsai-data';
 
 // Helper function to recursively remove undefined values from objects
 const removeUndefinedValues = (obj: any): any => {
@@ -39,6 +40,12 @@ export const migrateAddTypeField = async () => {
 
     console.info(`Found ${existingData.length} bonsai trees to migrate.`);
 
+    // Create a map of mock data by name for easy lookup
+    const mockDataMap = new Map();
+    mockBonsaiData.forEach((tree) => {
+      mockDataMap.set(tree.name, tree);
+    });
+
     for (const tree of existingData) {
       // Skip if the tree already has a type field
       if (tree.type) {
@@ -46,10 +53,25 @@ export const migrateAddTypeField = async () => {
         continue;
       }
 
-      // Add a default type based on some logic or just use 'purchased' as default
+      // Find the corresponding mock data by name
+      const mockTree = mockDataMap.get(tree.name);
+      let correctType = 'purchased'; // fallback
+
+      if (mockTree) {
+        correctType = mockTree.type;
+        console.info(
+          `Found mock data for ${tree.name}, using type: ${correctType}`,
+        );
+      } else {
+        console.warn(
+          `No mock data found for ${tree.name}, using fallback type: ${correctType}`,
+        );
+      }
+
+      // Add the correct type from mock data
       const updatedTree = {
         ...tree,
-        type: 'purchased' as const, // Default to purchased
+        type: correctType,
       };
 
       // Recursively remove any undefined values from the object and its nested properties
@@ -60,7 +82,7 @@ export const migrateAddTypeField = async () => {
       const { db } = await import('./firebase');
       const docRef = doc(db, 'bonsai', tree.id);
       await setDoc(docRef, cleanTree, { merge: true });
-      console.info(`Updated tree ${tree.name} with type: purchased`);
+      console.info(`Updated tree ${tree.name} with type: ${correctType}`);
     }
 
     console.info('Migration completed successfully!');

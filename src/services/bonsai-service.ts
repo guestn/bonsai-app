@@ -44,6 +44,7 @@ const firestoreToBonsaiTree = (doc: any): BonsaiTree => {
     initialCost: data.initialCost,
     acquisitionDate: timestampToDate(data.acquisitionDate),
     status: data.status,
+    type: data.type,
     location: data.location,
     potType: data.potType,
     age: data.age,
@@ -68,6 +69,7 @@ const bonsaiTreeToFirestore = (tree: Omit<BonsaiTree, 'id'>) => {
     initialCost: tree.initialCost,
     acquisitionDate: dateToTimestamp(tree.acquisitionDate),
     status: tree.status,
+    type: tree.type,
     location: tree.location,
     potType: tree.potType,
     age: tree.age,
@@ -158,6 +160,7 @@ export class BonsaiService {
       if (tree.acquisitionDate !== undefined)
         updateData.acquisitionDate = dateToTimestamp(tree.acquisitionDate);
       if (tree.status !== undefined) updateData.status = tree.status;
+      if (tree.type !== undefined) updateData.type = tree.type;
       if (tree.location !== undefined) updateData.location = tree.location;
       if (tree.potType !== undefined) updateData.potType = tree.potType;
       if (tree.age !== undefined) updateData.age = tree.age;

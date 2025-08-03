@@ -92,6 +92,7 @@
       "ERROR_DELETING_EVENT": "Error deleting event. Please try again.",
       "ERROR_UPDATING_TREE": "Error updating tree. Please try again.",
       "ADD_EVENT": "Add Event",
+      "EDIT_TREE": "Edit Tree",
       "LABELS": {
         "STATUS": "Status",
         "SPECIES": "Species",

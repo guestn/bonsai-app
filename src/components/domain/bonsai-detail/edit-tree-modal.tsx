@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heading, Text, TextField, Input, Label } from 'react-aria-components';
 import { BonsaiTree } from '../../../types/bonsai';
@@ -35,7 +35,6 @@ export const EditTreeModal: FC<EditTreeModalProps> = ({
   const [potType, setPotType] = useState('');
   const [notes, setNotes] = useState('');
 
-  // Initialize form with tree data when modal opens
   useEffect(() => {
     if (isOpen && tree) {
       setName(tree.name);
@@ -47,7 +46,7 @@ export const EditTreeModal: FC<EditTreeModalProps> = ({
     }
   }, [isOpen, tree]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !species.trim()) return;
 

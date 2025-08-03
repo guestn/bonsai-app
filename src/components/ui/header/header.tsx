@@ -19,7 +19,7 @@ export const Header: FC = () => {
           </Link>
         </div>
 
-        <nav className={styles.navigation}>
+        {/* <nav className={styles.navigation}>
           <ul className={styles.navList}>
             <li className={styles.navItem}>
               <Link
@@ -30,7 +30,7 @@ export const Header: FC = () => {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         <div className={styles.auth}>
           {!loading && <>{user ? <UserProfile /> : <LoginButton />}</>}

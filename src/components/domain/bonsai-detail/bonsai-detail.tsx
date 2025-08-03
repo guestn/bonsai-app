@@ -75,7 +75,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       setIsModalOpen(false);
     } catch (error) {
       console.error('Error adding event:', error);
-      // You could add a toast notification here for better UX
+      // could add a toast notification here for better UX
       alert(t('BONSAI.DETAIL.ERROR_ADDING_EVENT'));
     } finally {
       setIsAddingEvent(false);
@@ -160,7 +160,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={styles.header}>
         <Button
           onPress={onBack}
@@ -172,7 +171,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         </Button>
       </div>
 
-      {/* Tree Information */}
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <div className={styles.treeHeader}>
@@ -185,7 +183,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
               size="sm"
               isDisabled={!isAuthorized}
             >
-              ✏️ Edit Tree
+              ✏️ {t('BONSAI.DETAIL.EDIT_TREE')}
             </Button>
           </div>
           <Chip
@@ -273,7 +271,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         </div>
       </div>
 
-      {/* Events Timeline */}
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <Heading level={2}>{t('BONSAI.DETAIL.CARE_HISTORY')}</Heading>
@@ -362,7 +359,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         </div>
       </div>
 
-      {/* Images Section */}
       {tree.images && tree.images.length > 0 && (
         <div className={styles.card}>
           <div className={styles.cardHeader}>

@@ -114,7 +114,7 @@ export const BonsaiList: FC = () => {
             onFilteredDataChange={setFilteredData}
           />
 
-          {/* Table */}
+          {/* Desktop Table */}
           <div className={styles.tableWrapper}>
             <Table aria-label="Bonsai trees" className={styles.table}>
               <TableHeader>
@@ -196,6 +196,75 @@ export const BonsaiList: FC = () => {
               </TableBody>
             </Table>
           </div>
+
+          {/* Mobile Card Layout */}
+          <div className={styles.mobileCards}>
+            {filteredData.map((tree) => (
+              <div key={tree.id} className={styles.mobileCard}>
+                <div className={styles.mobileCardHeader}>
+                  <div className={styles.mobileCardTitle}>
+                    <strong>{tree.name}</strong>
+                    {tree.notes && (
+                      <div className={styles.mobileCardNotes}>{tree.notes}</div>
+                    )}
+                  </div>
+                  <div className={styles.mobileCardChips}>
+                    <Chip
+                      label={t(
+                        `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
+                      )}
+                      variant={tree.status}
+                      size="sm"
+                    />
+                    <Chip
+                      label={t(
+                        `BONSAI.COLLECTION.TYPES.${(tree.type || 'purchased').toUpperCase()}`,
+                      )}
+                      variant={tree.type || 'purchased'}
+                      size="sm"
+                    />
+                  </div>
+                </div>
+                <div className={styles.mobileCardDetails}>
+                  <div className={styles.mobileCardRow}>
+                    <span className={styles.mobileCardLabel}>
+                      {t('BONSAI.COLLECTION.TABLE.SPECIES')}:
+                    </span>
+                    <span>{tree.species}</span>
+                  </div>
+                  <div className={styles.mobileCardRow}>
+                    <span className={styles.mobileCardLabel}>
+                      {t('BONSAI.COLLECTION.TABLE.COST')}:
+                    </span>
+                    <span>{formatCurrency(tree.initialCost)}</span>
+                  </div>
+                  <div className={styles.mobileCardRow}>
+                    <span className={styles.mobileCardLabel}>
+                      {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}:
+                    </span>
+                    <span>{formatDate(tree.acquisitionDate)}</span>
+                  </div>
+                  <div className={styles.mobileCardRow}>
+                    <span className={styles.mobileCardLabel}>
+                      {t('BONSAI.COLLECTION.TABLE.AGE')}:
+                    </span>
+                    <span>{formatAge(tree.age || 0, t)}</span>
+                  </div>
+                </div>
+                <div className={styles.mobileCardActions}>
+                  <Button
+                    onPress={() => {
+                      console.info('Navigating to tree:', tree.id, tree.name);
+                      navigate(`/${tree.id}`);
+                    }}
+                    className={styles.mobileViewButton}
+                  >
+                    {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <AddBonsaiModal
@@ -204,7 +273,6 @@ export const BonsaiList: FC = () => {
         onSubmit={handleAddBonsai}
         isLoading={isAddingBonsai}
       />
-      ok
     </div>
   );
 };
