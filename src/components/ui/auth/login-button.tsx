@@ -6,7 +6,7 @@ import styles from './login-button.module.scss';
 
 export const LoginButton: FC = () => {
   const { t } = useTranslation();
-  const { signInWithGoogle, signInWithGoogleRedirect } = useAuth();
+  const { signInWithGoogle } = useAuth();
 
   const handleSignIn = async () => {
     try {

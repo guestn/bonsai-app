@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth-provider';
 import { LoginButton, UserProfile } from '../auth';
 import styles from './header.module.scss';
 
 export const Header: FC = () => {
   const { t } = useTranslation();
-  const location = useLocation();
   const { user, loading } = useAuth();
 
   return (

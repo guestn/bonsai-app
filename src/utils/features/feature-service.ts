@@ -22,7 +22,7 @@ const FLAG_PREFIX = 'feature_';
 
 export const getEnvValue = (feature: FeatureFlag): boolean | null => {
   const envKey = `VITE_FEATURE_${feature.id}`;
-  const envValue = env[envKey];
+  const envValue = (env as Record<string, any>)[envKey];
   return envValue ? envValue.toLowerCase() === 'true' : null;
 };
 

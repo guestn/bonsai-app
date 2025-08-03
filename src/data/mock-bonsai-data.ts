@@ -1,40 +1,5 @@
 import { BonsaiTree } from '../types/bonsai';
 
-// Helper function to generate unique IDs in Firebase-like format
-const generateId = (name: string, index: number) => {
-  const chars =
-    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  const seed = name + index.toString();
-  for (let i = 0; i < 20; i++) {
-    const charIndex = (seed.charCodeAt(i % seed.length) + i) % chars.length;
-    result += chars.charAt(charIndex);
-  }
-  return result;
-};
-
-// Helper function to parse date from DD/MM/YYYY format
-const parseDate = (dateStr: string): string => {
-  if (!dateStr) return '';
-  const [day, month, year] = dateStr.split('/');
-  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-};
-
-// Helper function to check if plant is dead
-const isPlantDead = (events: string[]): boolean => {
-  return events.some(
-    (event) =>
-      event.toLowerCase().includes('dead') ||
-      event.toLowerCase().includes('died'),
-  );
-};
-
-// Helper function to parse price from € format
-const parsePrice = (priceStr: string): number => {
-  if (!priceStr) return 0;
-  return parseFloat(priceStr.replace('€', '').trim()) || 0;
-};
-
 export const mockBonsaiData: BonsaiTree[] = [
   // Real plants from CSV data
   {
