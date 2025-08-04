@@ -24,6 +24,7 @@ import { AddEventModal } from './add-event-modal';
 import { DeleteEventModal } from './delete-event-modal';
 import { UpdateEventModal } from './update-event-modal';
 import { EditTreeModal } from './edit-tree-modal';
+import { ImageUpload } from './image-upload';
 import styles from './bonsai-detail.module.scss';
 
 interface BonsaiDetailProps {
@@ -49,6 +50,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [eventToUpdate, setEventToUpdate] = useState<BonsaiEvent | null>(null);
   const [isEditTreeModalOpen, setIsEditTreeModalOpen] = useState(false);
   const [isUpdatingTree, setIsUpdatingTree] = useState(false);
+  const [isUploadingImages, setIsUploadingImages] = useState(false);
   const { addEvent, deleteEvent, updateEvent, updateBonsai } =
     useBonsaiMutations();
 
@@ -173,6 +175,20 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       alert(t('BONSAI.DETAIL.ERROR_UPDATING_TREE'));
     } finally {
       setIsUpdatingTree(false);
+    }
+  };
+
+  const handleImagesUploaded = async (newImages: string[]) => {
+    try {
+      setIsUploadingImages(true);
+      const updatedImages = [...(tree.images || []), ...newImages];
+      await updateBonsai(tree.id, { images: updatedImages });
+      await mutate();
+    } catch (error) {
+      console.error('Error uploading images:', error);
+      alert(t('BONSAI.DETAIL.ERROR_UPLOADING_IMAGES'));
+    } finally {
+      setIsUploadingImages(false);
     }
   };
 
@@ -377,12 +393,12 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         </div>
       </div>
 
-      {tree.images && tree.images.length > 0 && (
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <Heading level={2}>{t('BONSAI.DETAIL.IMAGES')}</Heading>
-          </div>
-          <div className={styles.cardBody}>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <Heading level={2}>{t('BONSAI.DETAIL.IMAGES')}</Heading>
+        </div>
+        <div className={styles.cardBody}>
+          {tree.images && tree.images.length > 0 && (
             <div className={styles.imagesGrid}>
               {[...(tree.images || [])].reverse().map((image, index) => (
                 <div key={index} className={styles.imageContainer}>
@@ -398,9 +414,17 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                 </div>
               ))}
             </div>
-          </div>
+          )}
+
+          {isAuthorized && (
+            <ImageUpload
+              onImagesUploaded={handleImagesUploaded}
+              isUploading={isUploadingImages}
+              isDisabled={!isAuthorized}
+            />
+          )}
         </div>
-      )}
+      </div>
 
       <AddEventModal
         tree={tree}
