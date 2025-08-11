@@ -1,4 +1,4 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { env } from '../utils/env';
 
 const GOOGLE_PHOTOS_API_BASE = 'https://photoslibrary.googleapis.com/v1';
@@ -74,15 +74,13 @@ class GooglePhotosService {
 
       // Use Google Identity Services to get a token with the correct scope
       return new Promise((resolve, reject) => {
-        console.info(
-          'Creating token client with scope:',
-          'https://www.googleapis.com/auth/photoslibrary.readonly https://www.googleapis.com/auth/photoslibrary',
-        );
+        const scope = 'https://www.googleapis.com/auth/photoslibrary.readonly';
+        console.info('Creating token client with scope:', scope);
         const tokenClient = new (
           window as any
         ).google.accounts.oauth2.TokenClient({
           client_id: env.VITE_GOOGLE_CLIENT_ID,
-          scope: 'https://www.googleapis.com/auth/photoslibrary.readonly',
+          scope: scope,
           callback: (tokenResponse: any) => {
             console.info('Token client callback received:', tokenResponse);
             if (tokenResponse.error) {
@@ -111,6 +109,16 @@ class GooglePhotosService {
     try {
       const accessToken = await this.getAccessToken();
       console.info('Got access token, making API request...');
+
+      // Test the token directly first
+      try {
+        const tokenInfoUrl = `https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${accessToken}`;
+        const tokenInfoResponse = await fetch(tokenInfoUrl);
+        const tokenInfo = await tokenInfoResponse.json();
+        console.info('Token info:', tokenInfo);
+      } catch (tokenError) {
+        console.error('Error checking token info:', tokenError);
+      }
 
       // First, let's test if the API is accessible
       const testUrl =
@@ -152,27 +160,17 @@ class GooglePhotosService {
         console.info('Albums data:', albumsData);
       }
 
-      // Use the search endpoint instead of direct mediaItems
-      const searchUrl = `${GOOGLE_PHOTOS_API_BASE}/mediaItems:search`;
-      console.info('Making search request to:', searchUrl);
+      // Try the albums endpoint to test basic API access
+      const testAlbumsUrl = `${GOOGLE_PHOTOS_API_BASE}/albums`;
+      console.info('Making albums request to:', testAlbumsUrl);
       console.info('Using access token:', accessToken.substring(0, 20) + '...');
 
-      const response = await fetch(searchUrl, {
-        method: 'POST',
+      const response = await fetch(testAlbumsUrl, {
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
-          Accept: 'application/json',
         },
-        body: JSON.stringify({
-          pageSize: 25,
-          pageToken: pageToken || undefined,
-          filters: {
-            mediaTypeFilter: {
-              mediaTypes: ['PHOTO'],
-            },
-          },
-        }),
       });
 
       console.info('Response status:', response.status);
@@ -192,6 +190,7 @@ class GooglePhotosService {
       return data;
     } catch (error) {
       console.error('Error fetching Google Photos:', error);
+
       throw error;
     }
   }

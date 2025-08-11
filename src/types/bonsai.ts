@@ -6,6 +6,20 @@ export interface BonsaiEvent {
   cost?: number;
 }
 
+export interface PhotoMetadata {
+  id: string;
+  url: string; // External image URL or Firebase Storage URL
+  fileName?: string; // Optional original filename
+  fileSize?: number; // Optional file size in bytes
+  contentType?: string; // Optional MIME type
+  uploadedAt: string; // ISO timestamp
+  takenAt?: string; // Optional EXIF date taken
+  width?: number; // Image width in pixels
+  height?: number; // Image height in pixels
+  source?: 'external' | 'uploaded' | 'base64' | 'stored' | 'github'; // Track if it's an external URL, uploaded, base64, stored, or github
+  storagePath?: string; // Firebase Storage path (for uploaded photos)
+}
+
 export interface BonsaiTree {
   id: string;
   name: string;
@@ -13,7 +27,7 @@ export interface BonsaiTree {
   initialCost: number;
   acquisitionDate: string;
   events: BonsaiEvent[];
-  images?: string[];
+  photos?: PhotoMetadata[];
   notes?: string;
   status: 'active' | 'expired';
   type: 'purchased' | 'collected' | 'field';

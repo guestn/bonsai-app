@@ -1,4 +1,4 @@
 export { BonsaiDetail } from './bonsai-detail';
-export { AddEventModal } from './add-event-modal';
-export { DeleteEventModal } from './delete-event-modal';
-export { UpdateEventModal } from './update-event-modal';
+export { AddEventModal } from './lib/add-event-modal';
+export { DeleteEventModal } from './lib/delete-event-modal';
+export { UpdateEventModal } from './lib/update-event-modal';

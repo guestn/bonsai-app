@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heading, Text } from 'react-aria-components';
-import { BonsaiEvent } from '../../../types/bonsai';
-import { ModalComponent, Button } from '../../../components/ui';
+import { BonsaiEvent } from '@/types/bonsai';
+import { ModalComponent, Button } from '@/components/ui';
 import styles from './delete-event-modal.module.scss';
 
 interface DeleteEventModalProps {

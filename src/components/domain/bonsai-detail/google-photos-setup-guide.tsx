@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../ui/button';
 import styles from './google-photos-setup-guide.module.scss';
+import { env } from '../../../utils/env';
 
 interface GooglePhotosSetupGuideProps {
   onClose: () => void;
@@ -63,7 +64,7 @@ export const GooglePhotosSetupGuide: FC<GooglePhotosSetupGuideProps> = ({
             <h3>{t('BONSAI.DETAIL.GOOGLE_PHOTOS_SETUP.STEP_3_TITLE')}</h3>
             <p>{t('BONSAI.DETAIL.GOOGLE_PHOTOS_SETUP.STEP_3_DESC')}</p>
             <div className={styles.codeBlock}>
-              <code>VITE_GOOGLE_CLIENT_ID=your-client-id-here</code>
+              <code>VITE_GOOGLE_CLIENT_ID={env.VITE_GOOGLE_CLIENT_ID}</code>
             </div>
           </div>
         </div>

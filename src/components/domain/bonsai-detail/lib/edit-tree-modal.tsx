@@ -1,8 +1,8 @@
 import { FC, useState, useEffect, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heading, Text, TextField, Input, Label } from 'react-aria-components';
-import { BonsaiTree } from '../../../types/bonsai';
-import { ModalComponent, Button, Select } from '../../../components/ui';
+import { BonsaiTree } from '../../../../types/bonsai';
+import { ModalComponent, Button, Select } from '../../../ui';
 import styles from './add-event-modal.module.scss'; // Reusing the same styles
 
 interface EditTreeModalProps {

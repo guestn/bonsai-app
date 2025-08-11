@@ -215,15 +215,32 @@
   gap: var(--spacing-4);
 }
 
-.imageContainer {
+.photoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.imageWrapper {
+  position: relative;
   aspect-ratio: 4/3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: transform var(--transition-base);
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.02);
+
+    .imageOverlay {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 
@@ -232,6 +249,79 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.viewDetails {
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+.photoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding: var(--spacing-2);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gray-200);
+}
+
+.uploadDate {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  font-weight: var(--font-weight-medium);
+}
+
+.dimensions {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  font-family: monospace;
+}
+
+// Photo loading and error states
+.photo-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  min-height: 200px;
+}
+
+.loading-spinner {
+  color: var(--color-gray-500);
+  font-size: 0.875rem;
+}
+
+.photo-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-red-50);
+  border: 1px solid var(--color-red-200);
+  border-radius: var(--radius-md);
+  min-height: 200px;
+}
+
+.error-message {
+  color: var(--color-red-600);
+  font-size: 0.875rem;
+  text-align: center;
 }
 
 // Responsive design

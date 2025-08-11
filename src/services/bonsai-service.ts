@@ -12,7 +12,9 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-import { BonsaiTree, BonsaiEvent } from '../types/bonsai';
+import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../types/bonsai';
+import { ExternalPhotoService } from './external-photo-service';
+import { GitHubPhotoService } from './github-photo-service';
 
 const BONSAI_COLLECTION = 'bonsai';
 
@@ -49,7 +51,18 @@ const firestoreToBonsaiTree = (doc: any): BonsaiTree => {
     potType: data.potType,
     age: data.age,
     notes: data.notes,
-    images: data.images || [],
+    photos: (data.photos || []).map((photo: any) => ({
+      id: photo.id,
+      url: photo.url,
+      fileName: photo.fileName,
+      fileSize: photo.fileSize,
+      contentType: photo.contentType,
+      uploadedAt: photo.uploadedAt,
+      takenAt: photo.takenAt,
+      width: photo.width,
+      height: photo.height,
+      source: photo.source,
+    })),
     events:
       data.events?.map((event: any) => ({
         id: event.id,
@@ -63,18 +76,33 @@ const firestoreToBonsaiTree = (doc: any): BonsaiTree => {
 
 // Convert BonsaiTree to Firestore document
 const bonsaiTreeToFirestore = (tree: Omit<BonsaiTree, 'id'>) => {
-  return {
+  const firestoreData: any = {
     name: tree.name,
     species: tree.species,
     initialCost: tree.initialCost,
     acquisitionDate: dateToTimestamp(tree.acquisitionDate),
     status: tree.status,
     type: tree.type,
-    location: tree.location,
-    potType: tree.potType,
-    age: tree.age,
     notes: tree.notes || '',
-    images: tree.images || [],
+    photos: (tree.photos || []).map((photo) => {
+      const cleanPhoto: any = {
+        id: photo.id,
+        url: photo.url,
+        uploadedAt: photo.uploadedAt,
+      };
+
+      // Only add optional fields if they are defined
+      if (photo.fileName !== undefined) cleanPhoto.fileName = photo.fileName;
+      if (photo.fileSize !== undefined) cleanPhoto.fileSize = photo.fileSize;
+      if (photo.contentType !== undefined)
+        cleanPhoto.contentType = photo.contentType;
+      if (photo.takenAt !== undefined) cleanPhoto.takenAt = photo.takenAt;
+      if (photo.width !== undefined) cleanPhoto.width = photo.width;
+      if (photo.height !== undefined) cleanPhoto.height = photo.height;
+      if (photo.source !== undefined) cleanPhoto.source = photo.source;
+
+      return cleanPhoto;
+    }),
     events:
       tree.events?.map((event) => ({
         id: event.id,
@@ -84,6 +112,13 @@ const bonsaiTreeToFirestore = (tree: Omit<BonsaiTree, 'id'>) => {
         cost: getSafeCost(event.cost),
       })) || [],
   };
+
+  // Only add optional fields if they are defined
+  if (tree.location !== undefined) firestoreData.location = tree.location;
+  if (tree.potType !== undefined) firestoreData.potType = tree.potType;
+  if (tree.age !== undefined) firestoreData.age = tree.age;
+
+  return firestoreData;
 };
 
 export class BonsaiService {
@@ -165,7 +200,30 @@ export class BonsaiService {
       if (tree.potType !== undefined) updateData.potType = tree.potType;
       if (tree.age !== undefined) updateData.age = tree.age;
       if (tree.notes !== undefined) updateData.notes = tree.notes;
-      if (tree.images !== undefined) updateData.images = tree.images;
+      if (tree.photos !== undefined) {
+        // Filter out undefined values from photo metadata to avoid Firestore errors
+        updateData.photos = tree.photos.map((photo) => {
+          const cleanPhoto: any = {
+            id: photo.id,
+            url: photo.url,
+            uploadedAt: photo.uploadedAt,
+          };
+
+          // Only add optional fields if they are defined
+          if (photo.fileName !== undefined)
+            cleanPhoto.fileName = photo.fileName;
+          if (photo.fileSize !== undefined)
+            cleanPhoto.fileSize = photo.fileSize;
+          if (photo.contentType !== undefined)
+            cleanPhoto.contentType = photo.contentType;
+          if (photo.takenAt !== undefined) cleanPhoto.takenAt = photo.takenAt;
+          if (photo.width !== undefined) cleanPhoto.width = photo.width;
+          if (photo.height !== undefined) cleanPhoto.height = photo.height;
+          if (photo.source !== undefined) cleanPhoto.source = photo.source;
+
+          return cleanPhoto;
+        });
+      }
       if (tree.events !== undefined) {
         updateData.events = tree.events.map((event) => ({
           id: event.id,
@@ -356,6 +414,109 @@ export class BonsaiService {
       return results;
     } catch (error) {
       console.error('Error fetching bonsai trees with filters:', error);
+      throw error;
+    }
+  }
+
+  // Add external photos to a bonsai tree
+  static async addExternalPhotos(
+    bonsaiId: string,
+    urls: string[],
+  ): Promise<PhotoMetadata[]> {
+    try {
+      // Add external photos
+      const photoMetadata =
+        await ExternalPhotoService.addMultipleExternalPhotos(urls, bonsaiId);
+
+      // Get current bonsai tree
+      const currentBonsai = await this.getBonsaiById(bonsaiId);
+      if (!currentBonsai) {
+        throw new Error('Bonsai tree not found');
+      }
+
+      // Add new photos to existing photos
+      const updatedPhotos = [...(currentBonsai.photos || []), ...photoMetadata];
+
+      // Update the bonsai tree with new photos
+      await this.updateBonsai(bonsaiId, { photos: updatedPhotos });
+
+      return photoMetadata;
+    } catch (error) {
+      console.error('Error adding external photos:', error);
+      throw error;
+    }
+  }
+
+  // Add uploaded photos to a bonsai tree (using GitHub for free storage)
+  static async addPhotos(
+    bonsaiId: string,
+    files: File[],
+  ): Promise<PhotoMetadata[]> {
+    try {
+      // Check if GitHub Photo Service is configured
+      if (!GitHubPhotoService.isInitialized()) {
+        throw new Error(
+          'GitHub photo storage is not configured. Please set up GitHub storage in the settings.',
+        );
+      }
+
+      // Use GitHub for storage
+      const photoMetadata = await GitHubPhotoService.addMultiplePhotos(
+        files,
+        bonsaiId,
+      );
+
+      // Get current bonsai tree
+      const currentBonsai = await this.getBonsaiById(bonsaiId);
+      if (!currentBonsai) {
+        throw new Error('Bonsai tree not found');
+      }
+
+      // Add new photos to existing photos
+      const updatedPhotos = [...(currentBonsai.photos || []), ...photoMetadata];
+
+      // Update the bonsai tree with new photos
+      await this.updateBonsai(bonsaiId, { photos: updatedPhotos });
+
+      return photoMetadata;
+    } catch (error) {
+      console.error('Error adding photos:', error);
+      throw error;
+    }
+  }
+
+  // Delete photos from a bonsai tree
+  static async deletePhotos(
+    bonsaiId: string,
+    photoIds: string[],
+  ): Promise<void> {
+    try {
+      // Get current bonsai tree
+      const currentBonsai = await this.getBonsaiById(bonsaiId);
+      if (!currentBonsai) {
+        throw new Error('Bonsai tree not found');
+      }
+
+      // Remove photos from bonsai tree (no need to delete from storage for external URLs)
+      const updatedPhotos =
+        currentBonsai.photos?.filter((photo) => !photoIds.includes(photo.id)) ||
+        [];
+
+      // Update the bonsai tree
+      await this.updateBonsai(bonsaiId, { photos: updatedPhotos });
+    } catch (error) {
+      console.error('Error deleting photos:', error);
+      throw error;
+    }
+  }
+
+  // Delete a bonsai tree and all its photos
+  static async deleteBonsaiWithPhotos(id: string): Promise<void> {
+    try {
+      // Delete the bonsai tree document (no need to delete external URLs)
+      await this.deleteBonsai(id);
+    } catch (error) {
+      console.error('Error deleting bonsai tree with photos:', error);
       throw error;
     }
   }

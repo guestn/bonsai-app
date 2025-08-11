@@ -1,8 +1,8 @@
 import { FC, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DropZone, FileTrigger, Text } from 'react-aria-components';
-import { Button } from '../../ui/button';
-import { PhotoMetadata } from '../../../types/bonsai';
+import { Button } from '../../../ui/button';
+import { PhotoMetadata } from '../../../../types/bonsai';
 import styles from './image-upload.module.scss';
 
 interface ImageUploadProps {
@@ -28,7 +28,7 @@ export const ImageUpload: FC<ImageUploadProps> = ({
 
         // Import the service dynamically to avoid circular dependencies
         const { BonsaiService } = await import(
-          '../../../services/bonsai-service'
+          '../../../../services/bonsai-service'
         );
 
         const photoMetadata = await BonsaiService.addPhotos(bonsaiId, files);
