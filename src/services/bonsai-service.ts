@@ -13,8 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../types/bonsai';
-import { ExternalPhotoService } from './external-photo-service';
-import { GitHubPhotoService } from './github-photo-service';
+import { GoogleDrivePhotoService } from './google-drive-photo-service';
 
 const BONSAI_COLLECTION = 'bonsai';
 
@@ -418,53 +417,41 @@ export class BonsaiService {
     }
   }
 
-  // Add external photos to a bonsai tree
-  static async addExternalPhotos(
-    bonsaiId: string,
-    urls: string[],
-  ): Promise<PhotoMetadata[]> {
-    try {
-      // Add external photos
-      const photoMetadata =
-        await ExternalPhotoService.addMultipleExternalPhotos(urls, bonsaiId);
-
-      // Get current bonsai tree
-      const currentBonsai = await this.getBonsaiById(bonsaiId);
-      if (!currentBonsai) {
-        throw new Error('Bonsai tree not found');
-      }
-
-      // Add new photos to existing photos
-      const updatedPhotos = [...(currentBonsai.photos || []), ...photoMetadata];
-
-      // Update the bonsai tree with new photos
-      await this.updateBonsai(bonsaiId, { photos: updatedPhotos });
-
-      return photoMetadata;
-    } catch (error) {
-      console.error('Error adding external photos:', error);
-      throw error;
-    }
-  }
-
-  // Add uploaded photos to a bonsai tree (using GitHub for free storage)
+  // Add uploaded photos to a bonsai tree
   static async addPhotos(
     bonsaiId: string,
-    files: File[],
+    filesOrPhotos: File[] | PhotoMetadata[],
   ): Promise<PhotoMetadata[]> {
     try {
-      // Check if GitHub Photo Service is configured
-      if (!GitHubPhotoService.isInitialized()) {
-        throw new Error(
-          'GitHub photo storage is not configured. Please set up GitHub storage in the settings.',
-        );
-      }
+      let photoMetadata: PhotoMetadata[];
 
-      // Use GitHub for storage
-      const photoMetadata = await GitHubPhotoService.addMultiplePhotos(
-        files,
-        bonsaiId,
-      );
+      if (filesOrPhotos.length > 0 && filesOrPhotos[0] instanceof File) {
+        // Handle file uploads - check for available photo services
+        const files = filesOrPhotos as File[];
+
+        // Try to auto-configure Google Drive if not already configured
+        if (!GoogleDrivePhotoService.isConfigured()) {
+          try {
+            await GoogleDrivePhotoService.ensureConfigured();
+          } catch (error) {
+            throw new Error(
+              'Google Drive not configured. Please check your environment variables: VITE_GOOGLE_DRIVE_API_KEY, VITE_GOOGLE_CLIENT_ID, VITE_PHOTO_FOLDER_ID',
+            );
+          }
+        }
+
+        // Use Google Drive for storage
+        photoMetadata = [];
+        for (const file of files) {
+          const photo = await GoogleDrivePhotoService.uploadPhoto(file, {
+            source: 'google-drive',
+          });
+          photoMetadata.push(photo);
+        }
+      } else {
+        // Handle pre-uploaded photos (e.g., from Google Drive)
+        photoMetadata = filesOrPhotos as PhotoMetadata[];
+      }
 
       // Get current bonsai tree
       const currentBonsai = await this.getBonsaiById(bonsaiId);

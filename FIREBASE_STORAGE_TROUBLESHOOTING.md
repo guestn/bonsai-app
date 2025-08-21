@@ -7,15 +7,17 @@ The CORS error you're experiencing is common when uploading to Firebase Storage 
 ### Option 1: Configure CORS via Google Cloud CLI (Recommended)
 
 1. **Install Google Cloud CLI** (if not already installed):
+
    ```bash
    # macOS
    brew install google-cloud-sdk
-   
+
    # Windows
    # Download from: https://cloud.google.com/sdk/docs/install
    ```
 
 2. **Authenticate with Google Cloud**:
+
    ```bash
    gcloud auth login
    gcloud config set project YOUR_PROJECT_ID
@@ -48,7 +50,7 @@ The CORS error you're experiencing is common when uploading to Firebase Storage 
      match /b/{bucket}/o {
        match /bonsai/{bonsaiId}/{allPaths=**} {
          allow read: if request.auth != null;
-         allow write: if request.auth != null 
+         allow write: if request.auth != null
                       && request.auth.uid != null
                       && request.resource.size < 10 * 1024 * 1024
                       && request.resource.contentType.matches('image/.*');
@@ -77,6 +79,7 @@ VITE_FIREBASE_APP_ID=your_app_id
 ## 🧪 Testing the Configuration
 
 1. **Check if CORS is configured**:
+
    ```bash
    gsutil cors get gs://YOUR_STORAGE_BUCKET
    ```
@@ -94,7 +97,8 @@ VITE_FIREBASE_APP_ID=your_app_id
 
 ### Issue: "storage/unauthorized" error
 
-**Solution**: 
+**Solution**:
+
 1. Check if user is authenticated
 2. Verify Firebase Storage rules allow authenticated users
 3. Ensure the user has the correct permissions
@@ -102,6 +106,7 @@ VITE_FIREBASE_APP_ID=your_app_id
 ### Issue: "storage/quota-exceeded" error
 
 **Solution**:
+
 1. Check your Firebase Storage quota
 2. Upgrade your Firebase plan if needed
 3. Consider implementing file size limits
@@ -109,6 +114,7 @@ VITE_FIREBASE_APP_ID=your_app_id
 ### Issue: Upload works but images don't display
 
 **Solution**:
+
 1. Check if the download URL is correct
 2. Verify the image file exists in Firebase Storage
 3. Check if the image URL is accessible
@@ -172,4 +178,4 @@ firebase use YOUR_PROJECT_ID
 - ✅ Images display correctly in the app
 - ✅ No CORS errors in browser console
 - ✅ Files appear in Firebase Storage console
-- ✅ Download URLs work when accessed directly 
+- ✅ Download URLs work when accessed directly

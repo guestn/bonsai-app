@@ -30,7 +30,7 @@
   color: var(--color-green-600);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .compressionStats {
     flex-direction: column;
     gap: var(--spacing-2);

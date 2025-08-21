@@ -60,6 +60,8 @@
         "COST_LABEL": "Costo Inicial",
         "COST_PLACEHOLDER": "0.00",
         "ACQUISITION_DATE_LABEL": "Fecha de Adquisición",
+        "AGE_LABEL": "Edad (Años)",
+        "AGE_PLACEHOLDER": "ej., 5",
         "LOCATION_LABEL": "Ubicación",
         "LOCATION_PLACEHOLDER": "ej., Sala de Estar, Jardín",
         "POT_TYPE_LABEL": "Tipo de Maceta",

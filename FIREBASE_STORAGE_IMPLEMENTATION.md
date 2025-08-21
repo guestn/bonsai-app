@@ -16,26 +16,28 @@ This implementation adds Firebase Storage support for storing bonsai photos, wit
 ### Data Structure
 
 #### PhotoMetadata Interface
+
 ```typescript
 interface PhotoMetadata {
   id: string;
-  url: string;           // Firebase Storage download URL
-  fileName: string;      // Original filename
-  fileSize: number;      // File size in bytes
-  contentType: string;   // MIME type (e.g., 'image/jpeg')
-  uploadedAt: string;    // ISO timestamp
-  takenAt?: string;      // Optional EXIF date taken
-  width?: number;        // Image width in pixels
-  height?: number;       // Image height in pixels
-  storagePath: string;   // Firebase Storage path
+  url: string; // Firebase Storage download URL
+  fileName: string; // Original filename
+  fileSize: number; // File size in bytes
+  contentType: string; // MIME type (e.g., 'image/jpeg')
+  uploadedAt: string; // ISO timestamp
+  takenAt?: string; // Optional EXIF date taken
+  width?: number; // Image width in pixels
+  height?: number; // Image height in pixels
+  storagePath: string; // Firebase Storage path
 }
 ```
 
 #### Updated BonsaiTree Interface
+
 ```typescript
 interface BonsaiTree {
   // ... existing fields
-  photos?: PhotoMetadata[];  // Replaces the old 'images?: string[]'
+  photos?: PhotoMetadata[]; // Replaces the old 'images?: string[]'
 }
 ```
 
@@ -46,6 +48,7 @@ interface BonsaiTree {
 Located at `src/services/photo-storage-service.ts`
 
 **Key Methods:**
+
 - `uploadPhoto(file, bonsaiId)`: Uploads a single photo and returns metadata
 - `uploadMultiplePhotos(files, bonsaiId)`: Uploads multiple photos
 - `deletePhoto(photoMetadata)`: Deletes a photo from storage
@@ -56,6 +59,7 @@ Located at `src/services/photo-storage-service.ts`
 Located at `src/services/bonsai-service.ts`
 
 **New Methods:**
+
 - `addPhotos(bonsaiId, files)`: Uploads photos and updates the bonsai tree
 - `deletePhotos(bonsaiId, photoIds)`: Deletes specific photos
 - `deleteBonsaiWithPhotos(id)`: Deletes a bonsai tree and all its photos
@@ -65,6 +69,7 @@ Located at `src/services/bonsai-service.ts`
 ### Updated ImageUpload Component
 
 The `ImageUpload` component now:
+
 - Takes a `bonsaiId` prop instead of just handling file conversion
 - Uses `BonsaiService.addPhotos()` to upload to Firebase Storage
 - Returns `PhotoMetadata[]` instead of `string[]`
@@ -73,6 +78,7 @@ The `ImageUpload` component now:
 ### Updated BonsaiDetail Component
 
 The bonsai detail view now:
+
 - Displays photos using their Firebase Storage URLs
 - Uses photo metadata for better image handling
 - Supports photo deletion with cleanup
@@ -91,6 +97,7 @@ The bonsai detail view now:
 ### From Base64 to Firebase Storage
 
 The implementation includes backward compatibility:
+
 - Old `images` field is replaced with `photos` field
 - Existing base64 images will continue to work
 - New uploads use Firebase Storage
@@ -131,6 +138,7 @@ service firebase.storage {
 ### Environment Variables
 
 Make sure these are set in your `.env` file:
+
 ```
 VITE_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
 ```
@@ -138,6 +146,7 @@ VITE_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
 ## Testing
 
 Tests are available at `src/services/__tests__/photo-storage-service.spec.ts` covering:
+
 - Photo upload functionality
 - Error handling
 - Multiple photo uploads
@@ -164,4 +173,4 @@ await BonsaiService.deleteBonsaiWithPhotos(bonsaiId);
 3. **Thumbnail Generation**: Create thumbnails for faster loading
 4. **Batch Operations**: Bulk upload/delete operations
 5. **Image Search**: Metadata-based photo search
-6. **Versioning**: Photo version history 
+6. **Versioning**: Photo version history

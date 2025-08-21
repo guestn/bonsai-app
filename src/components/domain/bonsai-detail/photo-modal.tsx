@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ModalComponent } from '@/components/ui/modal';
 import { Button } from '../../ui/button';
 import { PhotoMetadata } from '../../../types/bonsai';
+import { GoogleDrivePhotoService } from '../../../services/google-drive-photo-service';
 import { PhotoDisplay } from './photo-display';
 import styles from './photo-modal.module.scss';
 
@@ -54,15 +55,26 @@ export const PhotoModal: FC<PhotoModalProps> = ({
     setEditMode(false);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (
       confirm(
         t('BONSAI.DETAIL.PHOTO_MODAL.CONFIRM_DELETE') ||
           'Are you sure you want to delete this photo?',
       )
     ) {
-      onDelete(photo.id);
-      onOpenChange(false);
+      try {
+        // If it's a Google Drive photo, delete it from Google Drive first
+        if (photo.source === 'google-drive') {
+          await GoogleDrivePhotoService.deletePhoto(photo.id);
+        }
+
+        // Then remove it from the bonsai tree
+        onDelete(photo.id);
+        onOpenChange(false);
+      } catch (error) {
+        console.error('Error deleting photo:', error);
+        alert('Failed to delete photo. Please try again.');
+      }
     }
   };
 

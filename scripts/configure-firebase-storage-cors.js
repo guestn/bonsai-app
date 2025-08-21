@@ -37,23 +37,28 @@ const corsConfig = [
 async function configureCors() {
   try {
     console.log('🚀 Configuring Firebase Storage CORS rules...');
-    
+
     // Check if gcloud is installed
     try {
       execSync('gcloud --version', { stdio: 'ignore' });
     } catch (error) {
       console.error('❌ Google Cloud CLI (gcloud) is not installed.');
-      console.log('Please install it from: https://cloud.google.com/sdk/docs/install');
+      console.log(
+        'Please install it from: https://cloud.google.com/sdk/docs/install',
+      );
       console.log('Then run: gcloud auth login');
       return;
     }
 
     // Get the storage bucket from environment or config
-    const storageBucket = process.env.VITE_FIREBASE_STORAGE_BUCKET || 
-                         process.env.FIREBASE_STORAGE_BUCKET;
-    
+    const storageBucket =
+      process.env.VITE_FIREBASE_STORAGE_BUCKET ||
+      process.env.FIREBASE_STORAGE_BUCKET;
+
     if (!storageBucket) {
-      console.error('❌ VITE_FIREBASE_STORAGE_BUCKET environment variable is not set');
+      console.error(
+        '❌ VITE_FIREBASE_STORAGE_BUCKET environment variable is not set',
+      );
       console.log('Please set it in your .env file');
       return;
     }
@@ -67,20 +72,23 @@ async function configureCors() {
     // Apply CORS configuration
     const command = `gsutil cors set ${corsConfigPath} gs://${storageBucket}`;
     console.log(`🔧 Running: ${command}`);
-    
+
     execSync(command, { stdio: 'inherit' });
-    
+
     // Clean up
     fs.unlinkSync(corsConfigPath);
-    
+
     console.log('✅ Firebase Storage CORS rules configured successfully!');
-    console.log('📝 You may need to wait a few minutes for changes to take effect.');
-    
+    console.log(
+      '📝 You may need to wait a few minutes for changes to take effect.',
+    );
   } catch (error) {
     console.error('❌ Error configuring CORS:', error.message);
     console.log('💡 Alternative solutions:');
     console.log('1. Check if you are authenticated: gcloud auth login');
-    console.log('2. Check if you have the correct permissions for the storage bucket');
+    console.log(
+      '2. Check if you have the correct permissions for the storage bucket',
+    );
     console.log('3. Try running this script with elevated permissions');
   }
 }
@@ -109,4 +117,4 @@ service firebase.storage {
 // Run the configuration
 configureCors().then(() => {
   showManualInstructions();
-}); 
+});

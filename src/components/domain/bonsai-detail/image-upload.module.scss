@@ -74,6 +74,15 @@
   border-radius: var(--radius-md);
 }
 
+.notConfigured {
+  border: 2px dashed var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8);
+  text-align: center;
+  background: var(--color-gray-50);
+  opacity: 0.7;
+}
+
 // Mode toggle styles
 .modeToggle {
   display: flex;

@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { PhotoMetadata } from '../../../types/bonsai';
-import { PhotoStorageService } from '../../../services/photo-storage-service';
+import { GoogleDrivePhotoService } from '../../../services/google-drive-photo-service';
 
 interface PhotoDisplayProps {
   photo: PhotoMetadata;
@@ -23,19 +23,52 @@ export const PhotoDisplay: FC<PhotoDisplayProps> = ({
         setIsLoading(true);
         setError('');
 
-        if (photo.source === 'stored' && photo.url.startsWith('photo://')) {
-          // Load base64 data from Firestore
-          const photoId = photo.url.replace('photo://', '');
-          const base64Data = await PhotoStorageService.getPhotoData(photoId);
+        console.info('Photo source:', photo.source);
+        console.info('Photo ID:', photo.id);
+        console.info('Photo URL:', photo.url);
 
-          if (base64Data) {
-            setImageSrc(base64Data);
-          } else {
-            setError('Failed to load image data');
+        if (photo.source === 'google-drive') {
+          console.info('✅ Processing Google Drive photo');
+          // For Google Drive photos, get the working URL dynamically
+          try {
+            const workingUrl = await GoogleDrivePhotoService.getDirectPhotoUrl(
+              photo.id,
+            );
+            console.info('✅ Got working URL:', workingUrl);
+            console.info('🔍 Setting image source to:', workingUrl);
+            setImageSrc(workingUrl);
+          } catch (error) {
+            console.error('Failed to get working photo URL:', error);
+            // Fallback to the stored URL
+            console.warn('⚠️ Falling back to stored URL:', photo.url);
+            setImageSrc(photo.url);
           }
         } else {
-          // External URL - use directly
-          setImageSrc(photo.url);
+          console.info('⚠️ Photo source is not google-drive, using stored URL');
+          // Check if the URL looks like Google Drive anyway
+          if (
+            photo.url &&
+            (photo.url.includes('drive.google.com') ||
+              photo.url.includes('googleusercontent.com'))
+          ) {
+            console.info(
+              '🔍 URL looks like Google Drive, trying to get working URL anyway',
+            );
+            try {
+              const workingUrl =
+                await GoogleDrivePhotoService.getDirectPhotoUrl(photo.id);
+              console.info(
+                '✅ Got working URL for Google Drive-like photo:',
+                workingUrl,
+              );
+              setImageSrc(workingUrl);
+            } catch (error) {
+              console.warn('⚠️ Could not get working URL, using stored URL');
+              setImageSrc(photo.url);
+            }
+          } else {
+            setImageSrc(photo.url);
+          }
         }
       } catch (err) {
         console.error('Error loading image:', err);
@@ -64,5 +97,14 @@ export const PhotoDisplay: FC<PhotoDisplayProps> = ({
     );
   }
 
-  return <img src={imageSrc} alt={alt} className={className} loading="lazy" />;
+  console.info('🎯 Final image src being rendered:', imageSrc);
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      key={imageSrc} // Force re-render when URL changes
+    />
+  );
 };

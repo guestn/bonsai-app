@@ -16,7 +16,13 @@ export interface PhotoMetadata {
   takenAt?: string; // Optional EXIF date taken
   width?: number; // Image width in pixels
   height?: number; // Image height in pixels
-  source?: 'external' | 'uploaded' | 'base64' | 'stored' | 'github'; // Track if it's an external URL, uploaded, base64, stored, or github
+  source?:
+    | 'external'
+    | 'uploaded'
+    | 'base64'
+    | 'stored'
+    | 'github'
+    | 'google-drive'; // Track if it's an external URL, uploaded, base64, stored, github, or google-drive
   storagePath?: string; // Firebase Storage path (for uploaded photos)
 }
 

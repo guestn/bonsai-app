@@ -27,7 +27,7 @@ import {
   EditTreeModal,
   PhotoModal,
 } from './lib';
-import { HybridImageUpload } from './hybrid-image-upload';
+import { GoogleDriveImageUpload } from './google-drive-image-upload';
 import { PhotoDisplay } from './photo-display';
 import styles from './bonsai-detail.module.scss';
 
@@ -501,7 +501,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
           )}
 
           {isAuthorized && (
-            <HybridImageUpload
+            <GoogleDriveImageUpload
               bonsaiId={tree.id}
               onPhotosUploaded={handlePhotosUploaded}
               isUploading={isUploadingImages}

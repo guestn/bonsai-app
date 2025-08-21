@@ -37,6 +37,7 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
   const [initialCost, setInitialCost] = useState('');
   const [acquisitionDate, setAcquisitionDate] = useState('');
   const [location, setLocation] = useState('');
+  const [age, setAge] = useState('');
   const [potType, setPotType] = useState('');
   const [notes, setNotes] = useState('');
 
@@ -51,6 +52,7 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
       type,
       initialCost: initialCost ? parseFloat(initialCost) : 0,
       acquisitionDate,
+      age: age ? parseInt(age) : undefined,
       location: location.trim() || undefined,
       potType: potType.trim() || undefined,
       notes: notes.trim() || undefined,
@@ -64,6 +66,7 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
     setType('purchased');
     setInitialCost('');
     setAcquisitionDate('');
+    setAge('');
     setLocation('');
     setPotType('');
     setNotes('');
@@ -162,6 +165,22 @@ export const AddBonsaiModal: FC<AddBonsaiModalProps> = ({
             className={styles.input}
             disabled={isLoading}
             required
+          />
+        </TextField>
+
+        <TextField className={styles.field}>
+          <Label className={styles.label}>
+            {t('BONSAI.COLLECTION.ADD_MODAL.AGE_LABEL')}
+          </Label>
+          <Input
+            type="number"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            className={styles.input}
+            placeholder={t('BONSAI.COLLECTION.ADD_MODAL.AGE_PLACEHOLDER')}
+            disabled={isLoading}
+            min="0"
+            step="1"
           />
         </TextField>
 
