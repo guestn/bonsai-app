@@ -83,6 +83,12 @@
   gap: var(--spacing-4);
 }
 
+.treeActions {
+  display: flex;
+  gap: var(--spacing-2);
+  align-items: center;
+}
+
 .addEventButton {
   padding: var(--spacing-2) var(--spacing-4);
   background: var(--color-primary);

@@ -14,6 +14,14 @@ export const formatDate = (dateString: string) => {
   return `${day} ${month} ${year}`;
 };
 
+export const formatDateShort = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
 export const formatAge = (
   years: number,
   t: (key: string, options?: any) => string,

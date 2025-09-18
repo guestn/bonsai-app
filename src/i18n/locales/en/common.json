@@ -94,6 +94,7 @@
       "ERROR_UPDATING_EVENT": "Error updating event. Please try again.",
       "ERROR_DELETING_EVENT": "Error deleting event. Please try again.",
       "ERROR_UPDATING_TREE": "Error updating tree. Please try again.",
+      "ERROR_DELETING_TREE": "Error deleting tree. Please try again.",
       "ERROR_UPLOADING_IMAGES": "Error uploading images. Please try again.",
       "ADD_IMAGE_URL": "Add Image URL",
       "ADD_URL": "Add URL",
@@ -118,6 +119,7 @@
       "ERROR_GITHUB_NOT_CONFIGURED": "GitHub photo storage is not configured. Please set up GitHub storage in the settings.",
       "ADD_EVENT": "Add Event",
       "EDIT_TREE": "Edit Tree",
+      "DELETE_TREE": "Delete Tree",
       "DRAG_DROP_IMAGES": "Drag & Drop Images",
       "BROWSE_FILES": "Browse Files",
       "GOOGLE_PHOTOS": "Google Photos",
@@ -209,6 +211,13 @@
         "TITLE": "Delete Event",
         "DESCRIPTION": "Are you sure you want to delete the event \"{{eventDescription}}\"? This action cannot be undone.",
         "DELETE": "Delete Event",
+        "DELETING": "Deleting...",
+        "CANCEL": "Cancel"
+      },
+      "DELETE_TREE_MODAL": {
+        "TITLE": "Delete Bonsai Tree",
+        "DESCRIPTION": "Are you sure you want to delete \"{{treeName}}\"? This will permanently remove the tree and all its associated events and photos. This action cannot be undone.",
+        "DELETE": "Delete Tree",
         "DELETING": "Deleting...",
         "CANCEL": "Cancel"
       },

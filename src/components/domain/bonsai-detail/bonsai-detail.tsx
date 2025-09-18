@@ -13,7 +13,7 @@ import {
 import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../../../types/bonsai';
 import {
   formatCurrency,
-  formatDate,
+  formatDateShort,
   getTimeAgo,
   formatAge,
 } from '../../../utils/formatters';
@@ -23,11 +23,11 @@ import { Button, Chip } from '../../../components/ui';
 import {
   AddEventModal,
   DeleteEventModal,
+  DeleteTreeModal,
   UpdateEventModal,
   EditTreeModal,
   PhotoModal,
 } from './lib';
-import { GoogleDriveImageUpload } from './google-drive-image-upload';
 import { PhotoDisplay } from './photo-display';
 import styles from './bonsai-detail.module.scss';
 
@@ -54,14 +54,16 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [eventToUpdate, setEventToUpdate] = useState<BonsaiEvent | null>(null);
   const [isEditTreeModalOpen, setIsEditTreeModalOpen] = useState(false);
   const [isUpdatingTree, setIsUpdatingTree] = useState(false);
-  const [isUploadingImages, setIsUploadingImages] = useState(false);
+  const [isDeleteTreeModalOpen, setIsDeleteTreeModalOpen] = useState(false);
+  const [isDeletingTree, setIsDeletingTree] = useState(false);
+  // const [isUploadingImages, setIsUploadingImages] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(
     null,
   );
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
   const [isDeletingPhoto, setIsDeletingPhoto] = useState(false);
   const [isEditingPhotoUrl, setIsEditingPhotoUrl] = useState(false);
-  const { addEvent, deleteEvent, updateEvent, updateBonsai } =
+  const { addEvent, deleteEvent, updateEvent, updateBonsai, deleteBonsai } =
     useBonsaiMutations();
 
   const sortedEvents = [...tree.events].sort(
@@ -128,7 +130,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         mutate,
       );
 
-      // Update tree status if it changed
       if (event.status && event.status !== tree.status) {
         await updateBonsai(tree.id, { status: event.status });
       }
@@ -185,17 +186,17 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     }
   };
 
-  const handlePhotosUploaded = async (newPhotos: PhotoMetadata[]) => {
+  const handleDeleteTree = async () => {
     try {
-      setIsUploadingImages(true);
-      const updatedPhotos = [...(tree.photos || []), ...newPhotos];
-      await updateBonsai(tree.id, { photos: updatedPhotos });
-      await mutate();
+      setIsDeletingTree(true);
+      await deleteBonsai(tree.id);
+      // Navigate back to the list after successful deletion
+      onBack();
     } catch (error) {
-      console.error('Error uploading photos:', error);
-      alert(t('BONSAI.DETAIL.ERROR_UPLOADING_IMAGES'));
+      console.error('Error deleting tree:', error);
+      alert(t('BONSAI.DETAIL.ERROR_DELETING_TREE') || 'Error deleting tree');
     } finally {
-      setIsUploadingImages(false);
+      setIsDeletingTree(false);
     }
   };
 
@@ -241,14 +242,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
-
   console.info('Photo modal state:', { selectedPhoto, isPhotoModalOpen });
 
   return (
@@ -270,14 +263,24 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
             <Heading level={1} className={styles.treeName}>
               {tree.name}
             </Heading>
-            <Button
-              onPress={() => setIsEditTreeModalOpen(true)}
-              variant="secondary"
-              size="sm"
-              isDisabled={!isAuthorized}
-            >
-              ✏️ {t('BONSAI.DETAIL.EDIT_TREE')}
-            </Button>
+            <div className={styles.treeActions}>
+              <Button
+                onPress={() => setIsEditTreeModalOpen(true)}
+                variant="secondary"
+                size="sm"
+                isDisabled={!isAuthorized}
+              >
+                ✏️ {t('BONSAI.DETAIL.EDIT_TREE')}
+              </Button>
+              <Button
+                onPress={() => setIsDeleteTreeModalOpen(true)}
+                variant="danger"
+                size="sm"
+                isDisabled={!isAuthorized}
+              >
+                🗑️ {t('BONSAI.DETAIL.DELETE_TREE')}
+              </Button>
+            </div>
           </div>
           <Chip
             label={t(`BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`)}
@@ -320,7 +323,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                 {t('BONSAI.DETAIL.LABELS.ACQUISITION_DATE')}
               </Text>
               <Text className={styles.infoValue}>
-                {formatDate(tree.acquisitionDate)}
+                {formatDateShort(tree.acquisitionDate)}
               </Text>
             </div>
             <div className={styles.infoItem}>
@@ -400,7 +403,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                         {getTimeAgo(event.date, t)}
                       </Text>
                       <Text className={styles.eventDate}>
-                        {formatDate(event.date)}
+                        {formatDateShort(event.date)}
                       </Text>
                     </div>
                   </Cell>
@@ -487,7 +490,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                   </div>
                   <div className={styles.photoInfo}>
                     <span className={styles.uploadDate}>
-                      {formatDate(photo.uploadedAt)}
+                      {formatDateShort(photo.uploadedAt)}
                     </span>
                     {photo.width && photo.height && (
                       <span className={styles.dimensions}>
@@ -498,15 +501,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                 </div>
               ))}
             </div>
-          )}
-
-          {isAuthorized && (
-            <GoogleDriveImageUpload
-              bonsaiId={tree.id}
-              onPhotosUploaded={handlePhotosUploaded}
-              isUploading={isUploadingImages}
-              isDisabled={!isAuthorized}
-            />
           )}
         </div>
       </div>
@@ -546,6 +540,14 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         onOpenChange={setIsEditTreeModalOpen}
         onSubmit={handleEditTree}
         isLoading={isUpdatingTree}
+      />
+
+      <DeleteTreeModal
+        tree={tree}
+        isOpen={isDeleteTreeModalOpen}
+        onOpenChange={setIsDeleteTreeModalOpen}
+        onConfirm={handleDeleteTree}
+        isLoading={isDeletingTree}
       />
 
       {selectedPhoto && (

@@ -93,7 +93,10 @@
       "ERROR_UPDATING_EVENT": "Error al actualizar evento. Por favor, inténtalo de nuevo.",
       "ERROR_DELETING_EVENT": "Error al eliminar evento. Por favor, inténtalo de nuevo.",
       "ERROR_UPDATING_TREE": "Error al actualizar árbol. Por favor, inténtalo de nuevo.",
+      "ERROR_DELETING_TREE": "Error al eliminar árbol. Por favor, inténtalo de nuevo.",
       "ADD_EVENT": "Agregar Evento",
+      "EDIT_TREE": "Editar Árbol",
+      "DELETE_TREE": "Eliminar Árbol",
       "LABELS": {
         "STATUS": "Estado",
         "INITIAL_COST": "Costo Inicial",
@@ -129,6 +132,13 @@
         "TITLE": "Eliminar Evento",
         "DESCRIPTION": "¿Estás seguro de que quieres eliminar el evento \"{{eventDescription}}\"? Esta acción no se puede deshacer.",
         "DELETE": "Eliminar Evento",
+        "DELETING": "Eliminando...",
+        "CANCEL": "Cancelar"
+      },
+      "DELETE_TREE_MODAL": {
+        "TITLE": "Eliminar Árbol Bonsai",
+        "DESCRIPTION": "¿Estás seguro de que quieres eliminar \"{{treeName}}\"? Esto eliminará permanentemente el árbol y todos sus eventos y fotos asociados. Esta acción no se puede deshacer.",
+        "DELETE": "Eliminar Árbol",
         "DELETING": "Eliminando...",
         "CANCEL": "Cancelar"
       },
