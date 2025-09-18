@@ -10,7 +10,7 @@ import {
   Row,
   Cell,
 } from 'react-aria-components';
-import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../../../types/bonsai';
+import { BonsaiTree, BonsaiEvent } from '../../../types/bonsai';
 import {
   formatCurrency,
   formatDateShort,
@@ -26,9 +26,7 @@ import {
   DeleteTreeModal,
   UpdateEventModal,
   EditTreeModal,
-  PhotoModal,
 } from './lib';
-import { PhotoDisplay } from './photo-display';
 import styles from './bonsai-detail.module.scss';
 
 interface BonsaiDetailProps {
@@ -56,13 +54,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isUpdatingTree, setIsUpdatingTree] = useState(false);
   const [isDeleteTreeModalOpen, setIsDeleteTreeModalOpen] = useState(false);
   const [isDeletingTree, setIsDeletingTree] = useState(false);
-  // const [isUploadingImages, setIsUploadingImages] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(
-    null,
-  );
-  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
-  const [isDeletingPhoto, setIsDeletingPhoto] = useState(false);
-  const [isEditingPhotoUrl, setIsEditingPhotoUrl] = useState(false);
+
   const { addEvent, deleteEvent, updateEvent, updateBonsai, deleteBonsai } =
     useBonsaiMutations();
 
@@ -199,50 +191,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       setIsDeletingTree(false);
     }
   };
-
-  const handlePhotoClick = (photo: PhotoMetadata) => {
-    console.info('Photo clicked:', { photoId: photo.id, photoUrl: photo.url });
-    setSelectedPhoto(photo);
-    setIsPhotoModalOpen(true);
-  };
-
-  const handleDeletePhoto = async (photoId: string) => {
-    try {
-      setIsDeletingPhoto(true);
-      const { BonsaiService } = await import(
-        '../../../services/bonsai-service'
-      );
-      await BonsaiService.deletePhotos(tree.id, [photoId]);
-      await mutate();
-    } catch (error) {
-      console.error('Error deleting photo:', error);
-      alert(t('BONSAI.DETAIL.ERROR_DELETING_PHOTO') || 'Error deleting photo');
-    } finally {
-      setIsDeletingPhoto(false);
-    }
-  };
-
-  const handleEditPhotoUrl = async (photoId: string, newUrl: string) => {
-    try {
-      setIsEditingPhotoUrl(true);
-      const updatedPhotos =
-        tree.photos?.map((photo) =>
-          photo.id === photoId ? { ...photo, url: newUrl } : photo,
-        ) || [];
-      await updateBonsai(tree.id, { photos: updatedPhotos });
-      await mutate();
-    } catch (error) {
-      console.error('Error updating photo URL:', error);
-      alert(
-        t('BONSAI.DETAIL.ERROR_UPDATING_PHOTO_URL') ||
-          'Error updating photo URL',
-      );
-    } finally {
-      setIsEditingPhotoUrl(false);
-    }
-  };
-
-  console.info('Photo modal state:', { selectedPhoto, isPhotoModalOpen });
 
   return (
     <div className={styles.container}>
@@ -462,28 +410,19 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         <div className={styles.cardBody}>
           {tree.photos && tree.photos.length > 0 && (
             <div className={styles.imagesGrid}>
-              {[...(tree.photos || [])].reverse().map((photo, index) => (
+              {[...(tree.photos || [])].reverse().map((photo) => (
                 <div key={photo.id} className={styles.photoContainer}>
                   <div
                     className={styles.imageWrapper}
-                    onClick={() => handlePhotoClick(photo)}
+                    onClick={() => null}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        handlePhotoClick(photo);
                       }
                     }}
                   >
-                    <PhotoDisplay
-                      photo={photo}
-                      alt={t('BONSAI.DETAIL.IMAGE_ALT', {
-                        treeName: tree.name,
-                        imageNumber: (tree.photos?.length || 0) - index,
-                      })}
-                      className={styles.image}
-                    />
                     <div className={styles.imageOverlay}>
                       <span className={styles.viewDetails}>View Details</span>
                     </div>
@@ -549,18 +488,6 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         onConfirm={handleDeleteTree}
         isLoading={isDeletingTree}
       />
-
-      {selectedPhoto && (
-        <PhotoModal
-          photo={selectedPhoto}
-          isOpen={isPhotoModalOpen}
-          onOpenChange={setIsPhotoModalOpen}
-          onDelete={handleDeletePhoto}
-          onEditUrl={handleEditPhotoUrl}
-          isDeleting={isDeletingPhoto}
-          isEditing={isEditingPhotoUrl}
-        />
-      )}
     </div>
   );
 };

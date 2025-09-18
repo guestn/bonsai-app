@@ -11,6 +11,7 @@ interface AddBonsaiModalProps {
     name: string;
     species: string;
     status: 'active' | 'expired';
+    age?: number;
     type: 'purchased' | 'collected' | 'field';
     initialCost: number;
     acquisitionDate: string;

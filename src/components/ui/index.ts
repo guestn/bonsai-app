@@ -6,4 +6,3 @@ export { Button } from './button';
 export { Select } from './select';
 export { Chip } from './chip';
 export { LoginButton, UserProfile } from './auth';
-export { GoogleDriveConfig } from './google-drive-config';

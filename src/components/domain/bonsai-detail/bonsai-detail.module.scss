@@ -227,6 +227,17 @@
   gap: var(--spacing-2);
 }
 
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
 .imageWrapper {
   position: relative;
   aspect-ratio: 4/3;
@@ -255,17 +266,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgb(0 0 0 / 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-base);
 }
 
 .viewDetails {

@@ -12,8 +12,7 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../types/bonsai';
-import { GoogleDrivePhotoService } from './google-drive-photo-service';
+import { BonsaiTree, BonsaiEvent } from '../types/bonsai';
 
 const BONSAI_COLLECTION = 'bonsai';
 
@@ -413,61 +412,6 @@ export class BonsaiService {
       return results;
     } catch (error) {
       console.error('Error fetching bonsai trees with filters:', error);
-      throw error;
-    }
-  }
-
-  // Add uploaded photos to a bonsai tree
-  static async addPhotos(
-    bonsaiId: string,
-    filesOrPhotos: File[] | PhotoMetadata[],
-  ): Promise<PhotoMetadata[]> {
-    try {
-      let photoMetadata: PhotoMetadata[];
-
-      if (filesOrPhotos.length > 0 && filesOrPhotos[0] instanceof File) {
-        // Handle file uploads - check for available photo services
-        const files = filesOrPhotos as File[];
-
-        // Try to auto-configure Google Drive if not already configured
-        if (!GoogleDrivePhotoService.isConfigured()) {
-          try {
-            await GoogleDrivePhotoService.ensureConfigured();
-          } catch (error) {
-            throw new Error(
-              'Google Drive not configured. Please check your environment variables: VITE_GOOGLE_DRIVE_API_KEY, VITE_GOOGLE_CLIENT_ID, VITE_PHOTO_FOLDER_ID',
-            );
-          }
-        }
-
-        // Use Google Drive for storage
-        photoMetadata = [];
-        for (const file of files) {
-          const photo = await GoogleDrivePhotoService.uploadPhoto(file, {
-            source: 'google-drive',
-          });
-          photoMetadata.push(photo);
-        }
-      } else {
-        // Handle pre-uploaded photos (e.g., from Google Drive)
-        photoMetadata = filesOrPhotos as PhotoMetadata[];
-      }
-
-      // Get current bonsai tree
-      const currentBonsai = await this.getBonsaiById(bonsaiId);
-      if (!currentBonsai) {
-        throw new Error('Bonsai tree not found');
-      }
-
-      // Add new photos to existing photos
-      const updatedPhotos = [...(currentBonsai.photos || []), ...photoMetadata];
-
-      // Update the bonsai tree with new photos
-      await this.updateBonsai(bonsaiId, { photos: updatedPhotos });
-
-      return photoMetadata;
-    } catch (error) {
-      console.error('Error adding photos:', error);
       throw error;
     }
   }

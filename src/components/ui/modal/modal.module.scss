@@ -4,6 +4,7 @@
   background: rgb(0 0 0 / 50%);
   z-index: 999;
   backdrop-filter: blur(2px);
+  animation: overlay-fade-in 0.2s ease-out;
 }
 
 .modal {
@@ -20,6 +21,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  animation: modal-slide-in 0.2s ease-out;
 }
 
 // Size variants
@@ -108,15 +110,7 @@
 }
 
 // Animation
-.modal {
-  animation: modalSlideIn 0.2s ease-out;
-}
-
-.overlay {
-  animation: overlayFadeIn 0.2s ease-out;
-}
-
-@keyframes modalSlideIn {
+@keyframes modal-slide-in {
   from {
     opacity: 0;
     transform: translate(-50%, -60%);
@@ -128,7 +122,7 @@
   }
 }
 
-@keyframes overlayFadeIn {
+@keyframes overlay-fade-in {
   from {
     opacity: 0;
   }

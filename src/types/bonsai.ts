@@ -40,6 +40,7 @@ export interface BonsaiTree {
   location?: string;
   potType?: string;
   age?: number;
+  images?: PhotoMetadata[];
 }
 
 export interface BonsaiFilters {
