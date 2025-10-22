@@ -9,8 +9,7 @@ const config: Config = {
   setupFiles: ['<rootDir>/src/test/jest-polyfills.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/test/setup-tests.ts'],
   moduleNameMapper: {
-    '\\.(css|scss)$': 'jest-transform-css',
-    '^.+\\.svg$': 'jest-svg-transformer',
+    '\\.(css|scss)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {

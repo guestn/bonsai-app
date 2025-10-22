@@ -13,9 +13,6 @@ import './utils/dev-tools';
 // Import migration function for browser console access
 import './utils/migrate-add-type';
 
-// Global OAuth token extraction
-import './utils/oauth-token-extractor';
-
 import './styles/globals.scss';
 
 createRoot(document.getElementById('root')!).render(

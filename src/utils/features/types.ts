@@ -9,9 +9,4 @@ export type FeatureFlagValue = {
   source: FeatureSource;
 };
 
-export enum FeatureSource {
-  ENV = 'env',
-  LOCAL_STORAGE = 'localStorage',
-  QUERY_PARAM = 'queryParam',
-  DEFAULT = 'default',
-}
+export type FeatureSource = 'default' | 'env' | 'query' | 'localStorage';

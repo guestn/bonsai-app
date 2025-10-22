@@ -5,31 +5,21 @@ import { featureFlags, FEATURE_FLAGS, FeatureFlagId } from './feature-flags';
 
 const FLAG_PREFIX = 'feature_';
 
-/*
- * Feature flag service
- *
- * This service is used to check if a feature flag is enabled.
- * It checks the URL query parameters, localStorage, environment variables in that order.
- * If a feature flag is not found in any of these sources, it returns the default value.
- * env values are in the format "VITE_FEATURE_{{featureID}}". Query params and localStorage
- * are used in the format "feature_{{featureID}}".
- *
- * example use in React code:
- *   const { isFeatureEnabled, FEATURE_FLAGS } = useFeatureService();
- *
- *   const isExampleFeatureEnabled = isFeatureEnabled(FEATURE_FLAGS.EXAMPLE_FEATURE);
+/**
+ * Get feature flag value from environment variables
+ * Looks for VITE_FEATURE_{FLAG_ID} in environment
  */
 
 export const getEnvValue = (feature: FeatureFlag): boolean | null => {
   const envKey = `VITE_FEATURE_${feature.id}`;
   const envValue = (env as Record<string, any>)[envKey];
-  return envValue ? envValue.toLowerCase() === 'true' : null;
+  return envValue !== undefined ? Boolean(envValue) : null;
 };
 
 const getQueryParamValue = (feature: FeatureFlag): boolean | null => {
   const params = new URLSearchParams(window.location.search);
   const paramValue = params.get(`${FLAG_PREFIX}${feature.id}`);
-  return paramValue ? paramValue.toLowerCase() === 'true' : null;
+  return paramValue ? paramValue === 'true' : null;
 };
 
 const getLocalStorageValue = (feature: FeatureFlag): boolean | null => {
@@ -41,25 +31,29 @@ export const getFeatureValue = (featureId: FeatureFlagId): FeatureFlagValue => {
   const feature = featureFlags[featureId];
   if (!feature) {
     console.warn(`Feature flag ${featureId} not found`);
-    return { value: false, source: FeatureSource.DEFAULT };
+    return { value: false, source: 'default' };
   }
 
-  const queryValue = getQueryParamValue(feature);
-  if (queryValue !== null) {
-    return { value: queryValue, source: FeatureSource.QUERY_PARAM };
-  }
-
+  // Check localStorage first (highest priority)
   const localStorageValue = getLocalStorageValue(feature);
   if (localStorageValue !== null) {
-    return { value: localStorageValue, source: FeatureSource.LOCAL_STORAGE };
+    return { value: localStorageValue, source: 'localStorage' };
   }
 
+  // Check query parameters (second priority)
+  const queryValue = getQueryParamValue(feature);
+  if (queryValue !== null) {
+    return { value: queryValue, source: 'query' };
+  }
+
+  // Check environment variables (third priority)
   const envValue = getEnvValue(feature);
   if (envValue !== null) {
-    return { value: envValue, source: FeatureSource.ENV };
+    return { value: envValue, source: 'env' };
   }
 
-  return { value: feature.defaultValue, source: FeatureSource.DEFAULT };
+  // Fall back to default value
+  return { value: feature.defaultValue, source: 'default' };
 };
 
 export const setLocalStorageValue = (
@@ -77,7 +71,7 @@ export const clearLocalStorageValue = (featureId: FeatureFlagId): void => {
   localStorage.removeItem(`${FLAG_PREFIX}${feature.id}`);
 };
 
-export const useFeatureService = () => {
+export const useFeatureFlag = () => {
   const isFeatureEnabled = useMemo(
     () =>
       (featureId: FeatureFlagId): boolean =>
@@ -85,8 +79,5 @@ export const useFeatureService = () => {
     [],
   );
 
-  return {
-    isFeatureEnabled,
-    FEATURE_FLAGS,
-  };
+  return { isFeatureEnabled };
 };
