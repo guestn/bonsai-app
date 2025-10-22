@@ -44,7 +44,7 @@ export const BonsaiList: FC = () => {
   const [sortDescriptor, setSortDescriptor] = useState<{
     column: string;
     direction: 'ascending' | 'descending';
-  }>({ column: 'name', direction: 'ascending' });
+  }>({ column: 'acquired', direction: 'descending' });
 
   // Sort the filtered data based on the sort descriptor
   const sortedData = useMemo(() => {
