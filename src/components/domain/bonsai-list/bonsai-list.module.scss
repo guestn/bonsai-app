@@ -179,6 +179,41 @@
   }
 }
 
+.sortButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-4);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color var(--transition-base);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &:focus {
+    outline: none;
+    color: var(--color-primary);
+  }
+}
+
+.sortIndicator {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-left: var(--spacing-2);
+}
+
 .treeName {
   strong {
     display: block;

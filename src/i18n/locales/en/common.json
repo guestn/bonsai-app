@@ -43,6 +43,7 @@
         "NAME": "Name",
         "SPECIES": "Species",
         "STATUS": "Status",
+        "TYPE": "Type",
         "COST": "Cost",
         "ACQUIRED": "Acquired",
         "AGE": "Age",

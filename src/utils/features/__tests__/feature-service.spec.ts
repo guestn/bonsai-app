@@ -3,7 +3,6 @@ import {
   setLocalStorageValue,
   clearLocalStorageValue,
 } from '../feature-service';
-import { FEATURE_FLAGS } from '../feature-flags';
 
 describe('Feature Service', () => {
   beforeEach(() => {
