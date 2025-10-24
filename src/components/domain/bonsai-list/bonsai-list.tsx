@@ -46,7 +46,6 @@ export const BonsaiList: FC = () => {
     direction: 'ascending' | 'descending';
   }>({ column: 'acquired', direction: 'descending' });
 
-  // Sort the filtered data based on the sort descriptor
   const sortedData = useMemo(() => {
     if (!filteredData.length) return [];
 
@@ -162,7 +161,6 @@ export const BonsaiList: FC = () => {
           </Button>
         </div>
         <div className={styles.body}>
-          {/* Filters */}
           <BonsaiFiltersComponent
             bonsai={bonsai}
             filters={filters}
@@ -170,11 +168,10 @@ export const BonsaiList: FC = () => {
             onFilteredDataChange={setFilteredData}
           />
 
-          {/* Desktop Table */}
           <div className={styles.tableWrapper}>
             <Table aria-label="Bonsai trees" className={styles.table}>
               <TableHeader>
-                <Column isRowHeader defaultWidth="2fr">
+                <Column isRowHeader defaultWidth="8fr">
                   <button
                     onClick={() =>
                       setSortDescriptor((prev) => ({
