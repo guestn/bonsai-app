@@ -14,7 +14,7 @@
   min-height: 40px;
   padding: var(--spacing-2) var(--spacing-3);
   border: 1px solid var(--color-gray-300);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--radius-md);
   background: var(--color-white);
   font-size: var(--font-size-sm);
   color: var(--color-gray-900);
@@ -55,7 +55,7 @@
 
 .selectPopoverWrapper {
   border: 1px solid var(--color-gray-300);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--radius-md);
   background: var(--color-white);
   box-shadow: 0 4px 6px rgb(var(--color-black-rgb) / 10%);
   max-height: 200px;

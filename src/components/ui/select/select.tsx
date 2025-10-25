@@ -8,6 +8,7 @@ import {
   ListBox,
   ListBoxItem,
 } from 'react-aria-components';
+import { joinClasses } from '@/utils/join-classes';
 import { Button } from '../button/button';
 import styles from './select.module.scss';
 
@@ -56,7 +57,7 @@ export const Select: FC<SelectProps<Option>> = ({
     {customTrigger || (
       <Button
         variant={buttonVariant}
-        className={`${styles.selectButton} ${buttonClassName || ''}`}
+        className={joinClasses(styles.selectButton, buttonClassName)}
         isDisabled={isDisabled}
       >
         <SelectValue className={styles.selectValue} />
