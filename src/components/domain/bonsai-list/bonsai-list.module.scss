@@ -240,9 +240,10 @@
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: background-color var(--transition-base);
+  white-space: nowrap;
 
   &:hover {
-    background: var(--color-primary-dark);
+    opacity: 0.8;
   }
 
   &:focus {
