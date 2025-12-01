@@ -51,18 +51,43 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
     });
 
-    // Check for redirect result
-    getRedirectResult(auth).catch((error) => {
-      console.error('Error getting redirect result:', error);
-    });
+    // Check for redirect result (after redirect from OAuth provider)
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          console.info('Sign-in successful via redirect');
+          // onAuthStateChanged will update the user state
+        }
+      })
+      .catch((error) => {
+        // Only log errors that aren't "no redirect result" (which is normal)
+        if (error.code !== 'auth/no-auth-event') {
+          console.error('Error getting redirect result:', error);
+        }
+      });
 
     return () => unsubscribe();
   }, []);
 
+  // Detect if user is on a mobile device
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    );
+  };
+
   const signInWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      console.info('Attempting Google sign-in...');
+
+      // Use redirect on mobile devices, popup on desktop
+      if (isMobileDevice()) {
+        console.info('Mobile device detected, using redirect flow...');
+        await signInWithRedirect(auth, provider);
+        return; // Redirect will navigate away, so we return here
+      }
+
+      console.info('Attempting Google sign-in with popup...');
       console.info('Firebase auth instance:', auth);
       console.info('Firebase config:', auth.app.options);
       await signInWithPopup(auth, provider);
@@ -86,6 +111,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
       } else if (errorCode === 'auth/popup-closed-by-user') {
         console.error('User closed the popup before completing sign-in.');
+      } else if (errorCode === 'auth/popup-blocked') {
+        // If popup is blocked, fall back to redirect
+        console.warn('Popup blocked, falling back to redirect flow...');
+        const provider = new GoogleAuthProvider();
+        await signInWithRedirect(auth, provider);
+        return;
       }
 
       console.error('Full error object:', error);

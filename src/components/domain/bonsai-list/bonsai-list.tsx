@@ -1,4 +1,4 @@
-import { FC, useState, useMemo } from 'react';
+import { FC, useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -10,11 +10,13 @@ import {
   Cell,
   Heading,
   Text,
+  Checkbox,
 } from 'react-aria-components';
 import { Button, Chip } from '../../ui';
 import { BonsaiFilters, BonsaiTree } from '../../../types/bonsai';
 import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
+import { useRepotList } from '../../../hooks/use-repot-list';
 import {
   formatCurrency,
   formatDate,
@@ -30,6 +32,16 @@ export const BonsaiList: FC = () => {
   const { bonsai, isLoading, error } = useBonsai();
   const { createBonsai } = useBonsaiMutations();
   const { isAuthorized } = useAuth();
+  const {
+    repotList,
+    addToRepotList,
+    removeFromRepotList,
+  } = useRepotList();
+  
+  const isInRepotList = useCallback(
+    (treeId: string) => repotList.includes(treeId),
+    [repotList],
+  );
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isAddingBonsai, setIsAddingBonsai] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
@@ -151,14 +163,27 @@ export const BonsaiList: FC = () => {
       <div className={styles.card}>
         <div className={styles.header}>
           <Heading level={1}>{t('BONSAI.COLLECTION.TITLE')}</Heading>
-          <Button
-            onPress={() => setIsAddModalOpen(true)}
-            variant="primary"
-            className={styles.addButton}
-            isDisabled={!isAuthorized}
-          >
-            {t('BONSAI.COLLECTION.ADD_TREE')}
-          </Button>
+          <div className={styles.headerActions}>
+            <Button
+              onPress={() => navigate('/repot-list')}
+              variant="secondary"
+              className={styles.repotListButton}
+            >
+              {repotList.length > 0
+                ? t('BONSAI.COLLECTION.VIEW_REPOT_LIST', {
+                    count: repotList.length,
+                  })
+                : t('BONSAI.COLLECTION.VIEW_REPOT_LIST_EMPTY')}
+            </Button>
+            <Button
+              onPress={() => setIsAddModalOpen(true)}
+              variant="primary"
+              className={styles.addButton}
+              isDisabled={!isAuthorized}
+            >
+              {t('BONSAI.COLLECTION.ADD_TREE')}
+            </Button>
+          </div>
         </div>
         <div className={styles.body}>
           <BonsaiFiltersComponent
@@ -328,6 +353,9 @@ export const BonsaiList: FC = () => {
                 <Column defaultWidth="1fr">
                   {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
                 </Column>
+                <Column defaultWidth="0.5fr">
+                  {t('BONSAI.COLLECTION.TABLE.REPOT')}
+                </Column>
               </TableHeader>
               <TableBody items={sortedData}>
                 {(tree) => (
@@ -377,6 +405,28 @@ export const BonsaiList: FC = () => {
                         {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
                       </Button>
                     </Cell>
+                    <Cell>
+                      <Checkbox
+                        className={styles.repotCheckbox}
+                        isSelected={isInRepotList(tree.id)}
+                        onChange={async (isSelected) => {
+                          try {
+                            if (isSelected) {
+                              await addToRepotList(tree.id);
+                            } else {
+                              await removeFromRepotList(tree.id);
+                            }
+                          } catch (error) {
+                            console.error('Error updating repot list:', error);
+                          }
+                        }}
+                        aria-label={t('BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST', {
+                          treeName: tree.name,
+                        })}
+                      >
+                        <span slot="indicator" aria-hidden="true" />
+                      </Checkbox>
+                    </Cell>
                   </Row>
                 )}
               </TableBody>
@@ -389,10 +439,32 @@ export const BonsaiList: FC = () => {
               <div key={tree.id} className={styles.mobileCard}>
                 <div className={styles.mobileCardHeader}>
                   <div className={styles.mobileCardTitle}>
-                    <strong>{tree.name}</strong>
-                    {tree.notes && (
-                      <div className={styles.mobileCardNotes}>{tree.notes}</div>
-                    )}
+                    <Checkbox
+                      className={styles.mobileRepotCheckbox}
+                      isSelected={isInRepotList(tree.id)}
+                      onChange={async (isSelected) => {
+                        try {
+                          if (isSelected) {
+                            await addToRepotList(tree.id);
+                          } else {
+                            await removeFromRepotList(tree.id);
+                          }
+                        } catch (error) {
+                          console.error('Error updating repot list:', error);
+                        }
+                      }}
+                      aria-label={t('BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST', {
+                        treeName: tree.name,
+                      })}
+                    >
+                      <span slot="indicator" aria-hidden="true" />
+                    </Checkbox>
+                    <div>
+                      <strong>{tree.name}</strong>
+                      {tree.notes && (
+                        <div className={styles.mobileCardNotes}>{tree.notes}</div>
+                      )}
+                    </div>
                   </div>
                   <div className={styles.mobileCardChips}>
                     <Chip

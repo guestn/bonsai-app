@@ -48,8 +48,12 @@
         "ACQUIRED": "Acquired",
         "AGE": "Age",
         "ACTIONS": "Actions",
-        "VIEW_DETAILS": "View Details"
+        "VIEW_DETAILS": "View Details",
+        "REPOT": "Repot",
+        "ADD_TO_REPOT_LIST": "Add {{treeName}} to repot list"
       },
+      "VIEW_REPOT_LIST": "View Repot List ({{count}})",
+      "VIEW_REPOT_LIST_EMPTY": "View Repot List",
       "ADD_MODAL": {
         "TITLE": "Add Bonsai Tree",
         "DESCRIPTION": "Add a new bonsai tree to your collection",
@@ -256,6 +260,15 @@
     "NOT_FOUND": {
       "TITLE": "Bonsai Tree Not Found",
       "DESCRIPTION": "The bonsai tree you're looking for doesn't exist.",
+      "BACK_TO_COLLECTION": "← Back to Collection"
+    },
+    "REPOT_LIST": {
+      "TITLE": "Repot List",
+      "LOADING": "Loading repot list...",
+      "ERROR": "Error loading repot list: {{message}}",
+      "EMPTY": "Your repot list is empty. Select trees from the main collection to add them to your repot list.",
+      "COUNT": "{{count}} tree{{plural}} in repot list",
+      "CLEAR_LIST": "Clear List",
       "BACK_TO_COLLECTION": "← Back to Collection"
     }
   },

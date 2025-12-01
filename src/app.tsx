@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { env } from './utils/env';
 
 // Pages
-import { HomePage, BonsaiDetailPage } from './pages';
+import { HomePage, BonsaiDetailPage, RepotListPage } from './pages';
 
 // Components
 import { Header, Footer } from './components/ui';
@@ -72,6 +72,7 @@ const AppContent: FC = () => {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/repot-list" element={<RepotListPage />} />
           <Route path="/:id" element={<BonsaiDetailPage />} />
         </Routes>
       </main>

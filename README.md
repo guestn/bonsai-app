@@ -75,6 +75,33 @@ node scripts/seed-firebase.js
 
 **Note:** The `firebase.ts` file in the root directory is gitignored and contains the actual Firebase configuration. For production, use environment variables instead.
 
+### Firestore Security Rules
+
+The app requires Firestore security rules to be configured. Deploy the rules from `firestore.rules` to your Firebase project:
+
+```bash
+firebase deploy --only firestore:rules
+```
+
+Or manually add these rules in the Firebase Console under Firestore Database > Rules:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Bonsai collection rules
+    match /bonsai/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Repot lists collection - users can only read/write their own repot list
+    match /repotLists/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
 ## Authentication
 
 The app uses Google Authentication through Firebase. To enable Google sign-in:
