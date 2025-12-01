@@ -32,12 +32,8 @@ export const BonsaiList: FC = () => {
   const { bonsai, isLoading, error } = useBonsai();
   const { createBonsai } = useBonsaiMutations();
   const { isAuthorized } = useAuth();
-  const {
-    repotList,
-    addToRepotList,
-    removeFromRepotList,
-  } = useRepotList();
-  
+  const { repotList, addToRepotList, removeFromRepotList } = useRepotList();
+
   const isInRepotList = useCallback(
     (treeId: string) => repotList.includes(treeId),
     [repotList],
@@ -420,9 +416,12 @@ export const BonsaiList: FC = () => {
                             console.error('Error updating repot list:', error);
                           }
                         }}
-                        aria-label={t('BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST', {
-                          treeName: tree.name,
-                        })}
+                        aria-label={t(
+                          'BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST',
+                          {
+                            treeName: tree.name,
+                          },
+                        )}
                       >
                         <span slot="indicator" aria-hidden="true" />
                       </Checkbox>
@@ -453,16 +452,21 @@ export const BonsaiList: FC = () => {
                           console.error('Error updating repot list:', error);
                         }
                       }}
-                      aria-label={t('BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST', {
-                        treeName: tree.name,
-                      })}
+                      aria-label={t(
+                        'BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST',
+                        {
+                          treeName: tree.name,
+                        },
+                      )}
                     >
                       <span slot="indicator" aria-hidden="true" />
                     </Checkbox>
                     <div>
                       <strong>{tree.name}</strong>
                       {tree.notes && (
-                        <div className={styles.mobileCardNotes}>{tree.notes}</div>
+                        <div className={styles.mobileCardNotes}>
+                          {tree.notes}
+                        </div>
                       )}
                     </div>
                   </div>

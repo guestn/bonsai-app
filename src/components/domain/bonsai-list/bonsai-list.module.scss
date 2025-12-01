@@ -261,32 +261,22 @@
     background: var(--color-white);
     flex-shrink: 0;
     position: relative;
-
-    &::after {
-      content: '';
-      width: 6px;
-      height: 10px;
-      border: solid var(--color-white);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-      transition: opacity var(--transition-base);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -5px;
-      margin-left: -3px;
-    }
   }
 
-  &[data-selected] :global([slot='indicator']) {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-white);
-
-    &::after {
-      opacity: 1;
-    }
+  :global([slot='indicator'])::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--color-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -3px;
   }
 
   &:hover :global([slot='indicator']) {
@@ -324,32 +314,22 @@
     background: var(--color-white);
     flex-shrink: 0;
     position: relative;
-
-    &::after {
-      content: '';
-      width: 6px;
-      height: 10px;
-      border: solid var(--color-white);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-      transition: opacity var(--transition-base);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -5px;
-      margin-left: -3px;
-    }
   }
 
-  &[data-selected] :global([slot='indicator']) {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-white);
-
-    &::after {
-      opacity: 1;
-    }
+  :global([slot='indicator'])::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--color-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -3px;
   }
 
   &:hover :global([slot='indicator']) {
@@ -362,6 +342,26 @@
     :global([slot='indicator']) {
       box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
     }
+  }
+}
+
+.repotCheckbox[data-selected] :global([slot='indicator']) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+
+  &::after {
+    opacity: 1;
+  }
+}
+
+.mobileRepotCheckbox[data-selected] :global([slot='indicator']) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+
+  &::after {
+    opacity: 1;
   }
 }
 

@@ -311,42 +311,22 @@
     flex-shrink: 0;
     position: relative;
     box-sizing: border-box;
-
-    &::after {
-      content: '';
-      width: 6px;
-      height: 10px;
-      border: solid var(--color-white);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-      transition: opacity var(--transition-base);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -5px;
-      margin-left: -3px;
-    }
   }
 
-  &[data-selected='true'] .checkboxIcon {
-    background: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
-
-    &::after {
-      opacity: 1 !important;
-    }
-  }
-  
-  // Also check if react-aria sets data-selected on the Checkbox itself
-  :global(.react-aria-Checkbox[data-selected='true']) .checkboxIcon,
-  :global([data-selected='true']) .checkboxIcon {
-    background: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
-
-    &::after {
-      opacity: 1 !important;
-    }
+  .checkboxIcon::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--color-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -3px;
   }
 
   &:hover .checkboxIcon {
@@ -358,6 +338,34 @@
 
     .checkboxIcon {
       box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
+    }
+  }
+
+  &[data-selected='true'] .checkboxIcon {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+
+    &::after {
+      opacity: 1 !important;
+    }
+  }
+
+  // Also check if react-aria sets data-selected on the Checkbox itself
+  :global([data-selected='true']) .checkboxIcon {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+
+    &::after {
+      opacity: 1 !important;
+    }
+  }
+
+  :global(.react-aria-Checkbox[data-selected='true']) .checkboxIcon {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+
+    &::after {
+      opacity: 1 !important;
     }
   }
 }
@@ -422,4 +430,3 @@
     box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 10%);
   }
 }
-

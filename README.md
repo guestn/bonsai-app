@@ -93,7 +93,7 @@ service cloud.firestore {
     match /bonsai/{document=**} {
       allow read, write: if request.auth != null;
     }
-    
+
     // Repot lists collection - users can only read/write their own repot list
     match /repotLists/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;

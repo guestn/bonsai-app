@@ -60,7 +60,7 @@ export const useRepotList = () => {
 
         // Update Firebase
         await RepotListService.addToRepotList(userId, treeId);
-        
+
         // Revalidate to ensure sync
         await mutate();
       } catch (error) {
@@ -86,7 +86,7 @@ export const useRepotList = () => {
 
         // Update Firebase
         await RepotListService.removeFromRepotList(userId, treeId);
-        
+
         // Revalidate to ensure sync
         await mutate();
       } catch (error) {
@@ -148,4 +148,3 @@ export const useRepotList = () => {
     error,
   };
 };
-
