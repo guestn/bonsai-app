@@ -158,97 +158,39 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const signInWithGoogle = async () => {
-    setShowDebug(true); // Show debug panel on sign-in attempt
+    setShowDebug(true);
     try {
       const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({
+        prompt: 'select_account',
+      });
 
-      // Use redirect on mobile devices, popup on desktop
-      if (isMobileDevice()) {
-        debugLog('=== MOBILE SIGN-IN INITIATED ===');
-        debugLog(`User agent: ${navigator.userAgent.slice(0, 50)}...`);
-        debugLog(`Current URL: ${window.location.href}`);
-        debugLog(`Origin: ${window.location.origin}`);
-        debugLog(`Auth domain: ${auth.app.options.authDomain}`);
-
-        // Ensure persistence is set before redirect
-        try {
-          await setPersistence(auth, browserLocalPersistence);
-          debugLog('Persistence set to LOCAL');
-        } catch (e) {
-          debugLog(`Could not set persistence: ${e}`);
-        }
-
-        // Add custom parameters
-        provider.setCustomParameters({
-          prompt: 'select_account',
-        });
-
-        debugLog('Initiating redirect to Google...');
-        await signInWithRedirect(auth, provider);
-        return; // Redirect will navigate away, so we return here
-      }
-
-      debugLog('Desktop: using popup sign-in...');
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
-      console.error('Error code:', (error as any)?.code);
-      console.error('Error message:', (error as any)?.message);
-
-      // Provide specific guidance based on error code
-      const errorCode = (error as any)?.code;
-      const errorMessage = (error as any)?.message || '';
-
-      if (errorCode === 'auth/internal-error') {
-        console.error(
-          'This usually means Google Authentication is not enabled in Firebase Console.',
-        );
-        console.error(
-          'Please enable Google Authentication in Firebase Console > Authentication > Sign-in method',
-        );
-      } else if (errorCode === 'auth/unauthorized-domain') {
-        console.error(
-          'This domain is not authorized. Add the domain to authorized domains in Firebase Console.',
-        );
-        console.error('Current domain:', window.location.hostname);
-      } else if (
-        errorCode === 'auth/redirect-uri-mismatch' ||
-        errorMessage.includes('redirect_uri_mismatch') ||
-        errorMessage.includes('redirect_uri')
-      ) {
-        console.error('=== REDIRECT URI MISMATCH ERROR ===');
-        console.error(
-          'The redirect URI used by Firebase does not match what is configured in Google Cloud Console.',
-        );
-        console.error('Current URL:', window.location.href);
-        console.error('Current origin:', window.location.origin);
-        console.error('Auth domain:', auth.app.options.authDomain);
-        console.error('To fix this:');
-        console.error(
-          '1. Go to Google Cloud Console > APIs & Services > Credentials',
-        );
-        console.error('2. Find your OAuth 2.0 Client ID (used by Firebase)');
-        console.error('3. Add the following authorized redirect URIs:');
-        console.error(`   - ${window.location.origin}/__/auth/handler`);
-        console.error(
-          `   - https://${auth.app.options.authDomain}/__/auth/handler`,
-        );
-        console.error(
-          '4. Also check Firebase Console > Authentication > Settings > Authorized domains',
-        );
-        console.error('   and ensure your domain is listed there.');
-        console.error('=== END ERROR INFO ===');
-      } else if (errorCode === 'auth/popup-closed-by-user') {
-        console.error('User closed the popup before completing sign-in.');
-      } else if (errorCode === 'auth/popup-blocked') {
-        // If popup is blocked, fall back to redirect
-        console.warn('Popup blocked, falling back to redirect flow...');
-        const provider = new GoogleAuthProvider();
-        await signInWithRedirect(auth, provider);
+      // Try popup first (works better on modern mobile browsers)
+      try {
+        debugLog('Attempting popup sign-in...');
+        await signInWithPopup(auth, provider);
+        debugLog('Popup sign-in successful!');
         return;
-      }
+      } catch (popupError: any) {
+        // If popup was blocked or failed, try redirect on mobile
+        if (
+          popupError.code === 'auth/popup-blocked' ||
+          popupError.code === 'auth/popup-closed-by-user' ||
+          popupError.code === 'auth/cancelled-popup-request'
+        ) {
+          debugLog(`Popup failed (${popupError.code}), trying redirect...`);
 
-      console.error('Full error object:', error);
+          if (isMobileDevice()) {
+            await setPersistence(auth, browserLocalPersistence);
+            await signInWithRedirect(auth, provider);
+            return;
+          }
+        }
+        throw popupError;
+      }
+    } catch (error) {
+      debugLog(`Sign-in error: ${(error as any)?.code}`);
+      debugLog(`Message: ${(error as any)?.message}`);
       throw error;
     }
   };
