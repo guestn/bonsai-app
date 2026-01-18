@@ -24,16 +24,7 @@ const AppContent: FC = () => {
   if (loading) {
     return (
       <div className="app">
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-          }}
-        >
-          Loading...
-        </div>
+        <div className="loading-screen">Loading...</div>
       </div>
     );
   }
@@ -43,7 +34,7 @@ const AppContent: FC = () => {
     return <NotAuthorized />;
   }
 
-  // If no user, show login screen (Header will show login buttons)
+  // If no user, show login screen
   if (!user) {
     return (
       <div className="app">

@@ -59,6 +59,14 @@
 }
 
 .searchField {
+  gap: var(--spacing-2);
+
+  @media (width <= 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   :global(.react-aria-TextField) {
     display: flex;
     flex-direction: column;
@@ -77,6 +85,7 @@
     font-size: var(--font-size-base);
     transition: border-color var(--transition-base);
     border-radius: var(--radius-md);
+    height: 14px;
 
     &:focus {
       outline: none;
@@ -396,6 +405,8 @@
   .header,
   .body {
     padding: var(--spacing-4);
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .filters {

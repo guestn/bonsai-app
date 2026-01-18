@@ -42,7 +42,7 @@ export const BonsaiList: FC = () => {
   const [isAddingBonsai, setIsAddingBonsai] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
-    status: 'active', // Set active as default
+    status: 'active',
     type: '',
     species: '',
     dateRange: { start: '', end: '' },
