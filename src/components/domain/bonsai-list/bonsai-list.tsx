@@ -194,7 +194,7 @@ export const BonsaiList: FC = () => {
             <ResizableTableContainer>
               <Table aria-label="Bonsai trees" className={styles.table}>
                 <TableHeader>
-                  <Column isRowHeader defaultWidth="3fr">
+                  <Column isRowHeader defaultWidth="2fr">
                     <button
                       onClick={() =>
                         setSortDescriptor((prev) => ({
@@ -288,31 +288,6 @@ export const BonsaiList: FC = () => {
                       )}
                     </button>
                   </Column>
-
-                  <Column defaultWidth="1fr">
-                    <button
-                      onClick={() =>
-                        setSortDescriptor((prev) => ({
-                          column: 'cost',
-                          direction:
-                            prev.column === 'cost' &&
-                            prev.direction === 'ascending'
-                              ? 'descending'
-                              : 'ascending',
-                        }))
-                      }
-                      className={styles.sortButton}
-                    >
-                      {t('BONSAI.COLLECTION.TABLE.COST')}
-                      {sortDescriptor.column === 'cost' && (
-                        <span className={styles.sortIndicator}>
-                          {sortDescriptor.direction === 'ascending'
-                            ? ' ↑'
-                            : ' ↓'}
-                        </span>
-                      )}
-                    </button>
-                  </Column>
                   <Column defaultWidth="1fr">
                     <button
                       onClick={() =>
@@ -329,30 +304,6 @@ export const BonsaiList: FC = () => {
                     >
                       {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
                       {sortDescriptor.column === 'acquired' && (
-                        <span className={styles.sortIndicator}>
-                          {sortDescriptor.direction === 'ascending'
-                            ? ' ↑'
-                            : ' ↓'}
-                        </span>
-                      )}
-                    </button>
-                  </Column>
-                  <Column defaultWidth="1fr">
-                    <button
-                      onClick={() =>
-                        setSortDescriptor((prev) => ({
-                          column: 'age',
-                          direction:
-                            prev.column === 'age' &&
-                            prev.direction === 'ascending'
-                              ? 'descending'
-                              : 'ascending',
-                        }))
-                      }
-                      className={styles.sortButton}
-                    >
-                      {t('BONSAI.COLLECTION.TABLE.AGE')}
-                      {sortDescriptor.column === 'age' && (
                         <span className={styles.sortIndicator}>
                           {sortDescriptor.direction === 'ascending'
                             ? ' ↑'
@@ -396,9 +347,7 @@ export const BonsaiList: FC = () => {
                           size="sm"
                         />
                       </Cell>
-                      <Cell>{formatCurrency(tree.initialCost)}</Cell>
                       <Cell>{formatDate(tree.acquisitionDate)}</Cell>
-                      <Cell>{formatAge(tree.age || 0, t)}</Cell>
                       <Cell>
                         <Button
                           onPress={() => {
