@@ -186,7 +186,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       onBack();
     } catch (error) {
       console.error('Error deleting tree:', error);
-      alert(t('BONSAI.DETAIL.ERROR_DELETING_TREE') || 'Error deleting tree');
+      alert(t('BONSAI.DETAIL.ERROR_DELETING_TREE'));
     } finally {
       setIsDeletingTree(false);
     }

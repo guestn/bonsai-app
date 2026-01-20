@@ -11,6 +11,7 @@ import {
   Heading,
   Text,
   Checkbox,
+  ResizableTableContainer,
 } from 'react-aria-components';
 import { Button, Chip } from '../../ui';
 import { BonsaiFilters, BonsaiTree } from '../../../types/bonsai';
@@ -190,246 +191,262 @@ export const BonsaiList: FC = () => {
           />
 
           <div className={styles.tableWrapper}>
-            <Table aria-label="Bonsai trees" className={styles.table}>
-              <TableHeader>
-                <Column isRowHeader defaultWidth="8fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'name',
-                        direction:
-                          prev.column === 'name' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.NAME')}
-                    {sortDescriptor.column === 'name' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="1.5fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'species',
-                        direction:
-                          prev.column === 'species' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.SPECIES')}
-                    {sortDescriptor.column === 'species' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="0.8fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'status',
-                        direction:
-                          prev.column === 'status' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.STATUS')}
-                    {sortDescriptor.column === 'status' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="0.8fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'type',
-                        direction:
-                          prev.column === 'type' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.TYPE')}
-                    {sortDescriptor.column === 'type' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="1fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'cost',
-                        direction:
-                          prev.column === 'cost' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.COST')}
-                    {sortDescriptor.column === 'cost' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="1fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'acquired',
-                        direction:
-                          prev.column === 'acquired' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
-                    {sortDescriptor.column === 'acquired' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="1fr">
-                  <button
-                    onClick={() =>
-                      setSortDescriptor((prev) => ({
-                        column: 'age',
-                        direction:
-                          prev.column === 'age' &&
-                          prev.direction === 'ascending'
-                            ? 'descending'
-                            : 'ascending',
-                      }))
-                    }
-                    className={styles.sortButton}
-                  >
-                    {t('BONSAI.COLLECTION.TABLE.AGE')}
-                    {sortDescriptor.column === 'age' && (
-                      <span className={styles.sortIndicator}>
-                        {sortDescriptor.direction === 'ascending' ? ' ↑' : ' ↓'}
-                      </span>
-                    )}
-                  </button>
-                </Column>
-                <Column defaultWidth="1fr">
-                  {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
-                </Column>
-                <Column defaultWidth="0.5fr">
-                  {t('BONSAI.COLLECTION.TABLE.REPOT')}
-                </Column>
-              </TableHeader>
-              <TableBody items={sortedData}>
-                {(tree) => (
-                  <Row key={tree.id}>
-                    <Cell>
-                      <div className={styles.treeName}>
-                        <strong>{tree.name}</strong>
-                        {tree.notes && (
-                          <div className={styles.notes}>{tree.notes}</div>
-                        )}
-                      </div>
-                    </Cell>
-                    <Cell>{tree.species}</Cell>
-                    <Cell>
-                      <Chip
-                        label={t(
-                          `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
-                        )}
-                        variant={tree.status}
-                        size="sm"
-                      />
-                    </Cell>
-                    <Cell>
-                      <Chip
-                        label={t(
-                          `BONSAI.COLLECTION.TYPES.${(tree.type || 'purchased').toUpperCase()}`,
-                        )}
-                        variant={tree.type || 'purchased'}
-                        size="sm"
-                      />
-                    </Cell>
-                    <Cell>{formatCurrency(tree.initialCost)}</Cell>
-                    <Cell>{formatDate(tree.acquisitionDate)}</Cell>
-                    <Cell>{formatAge(tree.age || 0, t)}</Cell>
-                    <Cell>
-                      <Button
-                        onPress={() => {
-                          console.info(
-                            'Navigating to tree:',
-                            tree.id,
-                            tree.name,
-                          );
-                          navigate(`/${tree.id}`);
-                        }}
-                        className={styles.viewButton}
-                      >
-                        {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
-                      </Button>
-                    </Cell>
-                    <Cell>
-                      <Checkbox
-                        className={styles.repotCheckbox}
-                        isSelected={isInRepotList(tree.id)}
-                        onChange={async (isSelected) => {
-                          try {
-                            if (isSelected) {
-                              await addToRepotList(tree.id);
-                            } else {
-                              await removeFromRepotList(tree.id);
+            <ResizableTableContainer>
+              <Table aria-label="Bonsai trees" className={styles.table}>
+                <TableHeader>
+                  <Column isRowHeader defaultWidth="3fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'name',
+                          direction:
+                            prev.column === 'name' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.NAME')}
+                      {sortDescriptor.column === 'name' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+                  <Column defaultWidth="1.5fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'species',
+                          direction:
+                            prev.column === 'species' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.SPECIES')}
+                      {sortDescriptor.column === 'species' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+                  <Column defaultWidth="0.8fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'status',
+                          direction:
+                            prev.column === 'status' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.STATUS')}
+                      {sortDescriptor.column === 'status' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'type',
+                          direction:
+                            prev.column === 'type' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.TYPE')}
+                      {sortDescriptor.column === 'type' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+
+                  <Column defaultWidth="1fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'cost',
+                          direction:
+                            prev.column === 'cost' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.COST')}
+                      {sortDescriptor.column === 'cost' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+                  <Column defaultWidth="1fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'acquired',
+                          direction:
+                            prev.column === 'acquired' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}
+                      {sortDescriptor.column === 'acquired' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+                  <Column defaultWidth="1fr">
+                    <button
+                      onClick={() =>
+                        setSortDescriptor((prev) => ({
+                          column: 'age',
+                          direction:
+                            prev.column === 'age' &&
+                            prev.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending',
+                        }))
+                      }
+                      className={styles.sortButton}
+                    >
+                      {t('BONSAI.COLLECTION.TABLE.AGE')}
+                      {sortDescriptor.column === 'age' && (
+                        <span className={styles.sortIndicator}>
+                          {sortDescriptor.direction === 'ascending'
+                            ? ' ↑'
+                            : ' ↓'}
+                        </span>
+                      )}
+                    </button>
+                  </Column>
+                  <Column defaultWidth="1fr">
+                    {t('BONSAI.COLLECTION.TABLE.ACTIONS')}
+                  </Column>
+                  <Column defaultWidth="0.5fr">
+                    {t('BONSAI.COLLECTION.TABLE.REPOT')}
+                  </Column>
+                </TableHeader>
+                <TableBody items={sortedData}>
+                  {(tree) => (
+                    <Row key={tree.id}>
+                      <Cell>
+                        <div className={styles.treeName}>
+                          <strong>{tree.name}</strong>
+                          {tree.notes && (
+                            <div className={styles.notes}>{tree.notes}</div>
+                          )}
+                        </div>
+                      </Cell>
+                      <Cell>{tree.species}</Cell>
+                      <Cell>
+                        <Chip
+                          label={t(
+                            `BONSAI.COLLECTION.STATUSES.${tree.status.toUpperCase()}`,
+                          )}
+                          variant={tree.status}
+                          size="sm"
+                        />
+                        <Chip
+                          label={t(
+                            `BONSAI.COLLECTION.TYPES.${(tree.type || 'purchased').toUpperCase()}`,
+                          )}
+                          variant={tree.type || 'purchased'}
+                          size="sm"
+                        />
+                      </Cell>
+                      <Cell>{formatCurrency(tree.initialCost)}</Cell>
+                      <Cell>{formatDate(tree.acquisitionDate)}</Cell>
+                      <Cell>{formatAge(tree.age || 0, t)}</Cell>
+                      <Cell>
+                        <Button
+                          onPress={() => {
+                            console.info(
+                              'Navigating to tree:',
+                              tree.id,
+                              tree.name,
+                            );
+                            navigate(`/${tree.id}`);
+                          }}
+                          className={styles.viewButton}
+                        >
+                          {t('BONSAI.COLLECTION.TABLE.VIEW_DETAILS')}
+                        </Button>
+                      </Cell>
+                      <Cell>
+                        <Checkbox
+                          className={styles.repotCheckbox}
+                          isSelected={isInRepotList(tree.id)}
+                          onChange={async (isSelected) => {
+                            try {
+                              if (isSelected) {
+                                await addToRepotList(tree.id);
+                              } else {
+                                await removeFromRepotList(tree.id);
+                              }
+                            } catch (error) {
+                              console.error(
+                                'Error updating repot list:',
+                                error,
+                              );
                             }
-                          } catch (error) {
-                            console.error('Error updating repot list:', error);
-                          }
-                        }}
-                        aria-label={t(
-                          'BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST',
-                          {
-                            treeName: tree.name,
-                          },
-                        )}
-                      >
-                        <span slot="indicator" aria-hidden="true" />
-                      </Checkbox>
-                    </Cell>
-                  </Row>
-                )}
-              </TableBody>
-            </Table>
+                          }}
+                          aria-label={t(
+                            'BONSAI.COLLECTION.TABLE.ADD_TO_REPOT_LIST',
+                            {
+                              treeName: tree.name,
+                            },
+                          )}
+                        >
+                          <span slot="indicator" aria-hidden="true" />
+                        </Checkbox>
+                      </Cell>
+                    </Row>
+                  )}
+                </TableBody>
+              </Table>
+            </ResizableTableContainer>
           </div>
 
           {/* Mobile Card Layout */}
