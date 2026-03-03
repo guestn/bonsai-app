@@ -28,10 +28,21 @@ export const formatAge = (
 ) => {
   if (years < 1) {
     const months = Math.floor(years * 12);
-    return t('TIME.UNITS.MONTH', {
-      count: months,
-      plural: months === 1 ? '' : 's',
-    });
+    const days = Math.floor(years * 365);
+    const daysRemaining = days % 30;
+    if (months === 0) {
+      return `${t('TIME.UNITS.DAY', {
+        count: days,
+        plural: days === 1 ? '' : 's',
+      })}`;
+    }
+    return `${t('TIME.UNITS.MONTH', { count: months, plural: months === 1 ? '' : 's' })} ${t(
+      'TIME.UNITS.DAY',
+      {
+        count: daysRemaining,
+        plural: daysRemaining === 1 ? '' : 's',
+      },
+    )}`;
   } else if (years < 2) {
     const remainingMonths = Math.floor((years - Math.floor(years)) * 12);
     if (remainingMonths === 0) {

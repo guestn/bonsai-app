@@ -347,15 +347,17 @@ export const BonsaiList: FC = () => {
                           size="sm"
                         />
                       </Cell>
-                      <Cell>{formatDate(tree.acquisitionDate)}</Cell>
+                      <Cell>
+                        {formatAge(
+                          (new Date().getTime() -
+                            new Date(tree.acquisitionDate).getTime()) /
+                            (1000 * 60 * 60 * 24 * 365.25),
+                          t,
+                        )}
+                      </Cell>
                       <Cell>
                         <Button
                           onPress={() => {
-                            console.info(
-                              'Navigating to tree:',
-                              tree.id,
-                              tree.name,
-                            );
                             navigate(`/${tree.id}`);
                           }}
                           className={styles.viewButton}
@@ -470,7 +472,14 @@ export const BonsaiList: FC = () => {
                     <span className={styles.mobileCardLabel}>
                       {t('BONSAI.COLLECTION.TABLE.ACQUIRED')}:
                     </span>
-                    <span>{formatDate(tree.acquisitionDate)}</span>
+                    <span>
+                      {formatAge(
+                        (new Date().getTime() -
+                          new Date(tree.acquisitionDate).getTime()) /
+                          (1000 * 60 * 60 * 24 * 365.25),
+                        t,
+                      )}
+                    </span>
                   </div>
                   <div className={styles.mobileCardRow}>
                     <span className={styles.mobileCardLabel}>
