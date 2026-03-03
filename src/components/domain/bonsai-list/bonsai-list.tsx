@@ -18,11 +18,7 @@ import { BonsaiFilters, BonsaiTree } from '../../../types/bonsai';
 import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
 import { useRepotList } from '../../../hooks/use-repot-list';
-import {
-  formatCurrency,
-  formatDate,
-  formatAge,
-} from '../../../utils/formatters';
+import { formatCurrency, formatAge } from '../../../utils/formatters';
 import { AddBonsaiModal } from './add-bonsai-modal';
 import { BonsaiFiltersComponent } from './bonsai-filters';
 import styles from './bonsai-list.module.scss';
