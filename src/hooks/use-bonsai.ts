@@ -193,6 +193,27 @@ export const useBonsaiMutations = () => {
     }
   };
 
+  // Get the general notes for all bonsai trees
+  const getNotes = async () => {
+    try {
+      return await BonsaiService.getNotes();
+    } catch (error) {
+      console.error('Error getting notes:', error);
+      throw error;
+    }
+  };
+
+  // Update the general notes for all bonsai trees
+  const updateNotes = async (note: string) => {
+    try {
+      await BonsaiService.updateNote(note);
+      await mutateAll(); // Refresh the list
+    } catch (error) {
+      console.error('Error updating note:', error);
+      throw error;
+    }
+  };
+
   const deleteEvent = async (
     bonsaiId: string,
     eventId: string,
@@ -217,5 +238,7 @@ export const useBonsaiMutations = () => {
     addEvent,
     updateEvent,
     deleteEvent,
+    getNotes,
+    updateNotes,
   };
 };

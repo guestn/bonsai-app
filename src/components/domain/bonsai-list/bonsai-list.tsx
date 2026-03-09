@@ -19,15 +19,16 @@ import { useBonsai, useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
 import { useRepotList } from '../../../hooks/use-repot-list';
 import { formatCurrency, formatAge } from '../../../utils/formatters';
-import { AddBonsaiModal } from './add-bonsai-modal';
-import { BonsaiFiltersComponent } from './bonsai-filters';
+import { AddBonsaiModal } from './lib/add-bonsai-modal';
+import { BonsaiFiltersComponent } from './lib/bonsai-filters';
+import { AddNoteModal } from './lib/add-note-modal';
 import styles from './bonsai-list.module.scss';
 
 export const BonsaiList: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { bonsai, isLoading, error } = useBonsai();
-  const { createBonsai } = useBonsaiMutations();
+  const { createBonsai, getNotes, updateNotes } = useBonsaiMutations();
   const { isAuthorized } = useAuth();
   const { repotList, addToRepotList, removeFromRepotList } = useRepotList();
 
@@ -37,6 +38,8 @@ export const BonsaiList: FC = () => {
   );
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isAddingBonsai, setIsAddingBonsai] = useState(false);
+  const [isAddingNoteModalOpen, setIsAddingNoteModalOpen] = useState(false);
+  const [isAddingNote, setIsAddingNote] = useState(false);
   const [filters, setFilters] = useState<BonsaiFilters>({
     search: '',
     status: 'active',
@@ -129,6 +132,16 @@ export const BonsaiList: FC = () => {
     }
   };
 
+  const handleAddNote = async (note: string) => {
+    try {
+      setIsAddingNote(true);
+      await updateNotes(note);
+      setIsAddingNote(false);
+    } catch (error) {
+      console.error('Error adding note:', error);
+    }
+  };
+
   if (error) {
     return (
       <div className={styles.container}>
@@ -174,7 +187,14 @@ export const BonsaiList: FC = () => {
               className={styles.addButton}
               isDisabled={!isAuthorized}
             >
-              {t('BONSAI.COLLECTION.ADD_TREE')}
+              +
+            </Button>
+            <Button
+              onPress={() => setIsAddingNoteModalOpen(true)}
+              variant="primary"
+              className={styles.addButton}
+            >
+              N
             </Button>
           </div>
         </div>
@@ -505,6 +525,13 @@ export const BonsaiList: FC = () => {
         onOpenChange={setIsAddModalOpen}
         onSubmit={handleAddBonsai}
         isLoading={isAddingBonsai}
+      />
+      <AddNoteModal
+        isOpen={isAddingNoteModalOpen}
+        onOpenChange={setIsAddingNoteModalOpen}
+        getNotes={getNotes}
+        onSubmit={(note) => handleAddNote(note.note)}
+        isLoading={isAddingNote}
       />
     </div>
   );

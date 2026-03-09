@@ -1,2 +1,2 @@
 export { BonsaiList } from './bonsai-list';
-export { AddBonsaiModal } from './add-bonsai-modal';
+export { AddBonsaiModal } from './lib/add-bonsai-modal';

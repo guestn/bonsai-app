@@ -15,6 +15,7 @@ import { db } from '../utils/firebase';
 import { BonsaiTree, BonsaiEvent } from '../types/bonsai';
 
 const BONSAI_COLLECTION = 'bonsai';
+const BONSAI_NOTES_COLLECTION = 'notes';
 
 // Convert Firestore timestamp to string date
 const timestampToDate = (timestamp: Timestamp | string): string => {
@@ -368,6 +369,30 @@ export class BonsaiService {
       });
     } catch (error) {
       console.error('Error deleting event:', error);
+      throw error;
+    }
+  }
+
+  // Get the general notes for all bonsai trees
+  static async getNotes(): Promise<string> {
+    try {
+      const docRef = doc(db, BONSAI_NOTES_COLLECTION, 'notes');
+
+      const docSnap = await getDoc(docRef);
+      return docSnap.data()?.notes || '';
+    } catch (error) {
+      console.error('Error getting notes:', error);
+      throw error;
+    }
+  }
+
+  // Update a note in a bonsai tree
+  static async updateNote(note: string): Promise<void> {
+    try {
+      const docRef = doc(db, BONSAI_NOTES_COLLECTION, 'notes');
+      await updateDoc(docRef, 'notes', note);
+    } catch (error) {
+      console.error('Error updating note:', error);
       throw error;
     }
   }

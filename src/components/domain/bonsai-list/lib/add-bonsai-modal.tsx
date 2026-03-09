@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heading, Text, TextField, Input, Label } from 'react-aria-components';
-import { ModalComponent, Button as UIButton, Select } from '../../ui';
+import { ModalComponent, Button as UIButton, Select } from '../../../ui';
 import styles from './add-bonsai-modal.module.scss';
 
 interface AddBonsaiModalProps {

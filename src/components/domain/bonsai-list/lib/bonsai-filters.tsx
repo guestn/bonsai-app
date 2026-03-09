@@ -1,9 +1,9 @@
 import { FC, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextField, Label, Input } from 'react-aria-components';
-import { Select } from '../../ui/select';
-import { BonsaiFilters, BonsaiTree } from '../../../types/bonsai';
-import styles from './bonsai-list.module.scss';
+import { Select } from '../../../ui/select';
+import { BonsaiFilters, BonsaiTree } from '../../../../types/bonsai';
+import styles from '../bonsai-list.module.scss';
 
 interface BonsaiFiltersProps {
   bonsai: BonsaiTree[];

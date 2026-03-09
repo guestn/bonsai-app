@@ -78,6 +78,15 @@
         "ADDING": "Adding...",
         "CANCEL": "Cancel"
       },
+      "ADD_NOTE_MODAL": {
+        "TITLE": "Update General Notes",
+        "DESCRIPTION": "Update the general notes",
+        "NOTE_LABEL": "General Notes  ",
+        "NOTE_PLACEHOLDER": "e.g., My general notes",
+        "UPDATE": "Update Notes",
+        "UPDATING": "Updating...",
+        "CANCEL": "Cancel"
+      },
       "STATUSES": {
         "ACTIVE": "Active",
         "EXPIRED": "Expired"
@@ -110,14 +119,6 @@
         "ORIGINAL_SIZE": "Original Size",
         "COMPRESSED_SIZE": "Compressed Size",
         "REDUCTION": "Size Reduction"
-      },
-      "GITHUB_CONFIG": {
-        "TITLE": "GitHub Photo Storage",
-        "DESCRIPTION": "Store your bonsai photos for free using GitHub Issues",
-        "SETUP_INSTRUCTIONS": "Setup Instructions",
-        "SAVE_CONFIG": "Save Configuration",
-        "SAVING": "Saving...",
-        "CONFIG_SAVED": "Configuration saved successfully!"
       },
       "ERROR_DELETING_PHOTO": "Error deleting photo. Please try again.",
       "ERROR_UPDATING_PHOTO_URL": "Error updating photo URL. Please try again.",
