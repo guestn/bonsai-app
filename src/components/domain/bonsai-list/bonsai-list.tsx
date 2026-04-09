@@ -22,6 +22,7 @@ import { formatCurrency, formatAge } from '../../../utils/formatters';
 import { AddBonsaiModal } from './lib/add-bonsai-modal';
 import { BonsaiFiltersComponent } from './lib/bonsai-filters';
 import { AddNoteModal } from './lib/add-note-modal';
+
 import styles from './bonsai-list.module.scss';
 
 export const BonsaiList: FC = () => {

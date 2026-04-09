@@ -22,8 +22,9 @@ export interface PhotoMetadata {
     | 'base64'
     | 'stored'
     | 'github'
-    | 'google-drive'; // Track if it's an external URL, uploaded, base64, stored, github, or google-drive
-  storagePath?: string; // Firebase Storage path (for uploaded photos)
+    | 'google-drive'
+    | 'vercel-blob';
+  storagePath?: string; // Firebase Storage path, or Vercel Blob pathname when source is vercel-blob
 }
 
 export interface BonsaiTree {

@@ -218,6 +218,37 @@
   color: var(--color-secondary);
 }
 
+.photoHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.hiddenFileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.photosHint {
+  display: block;
+  margin: 0 0 var(--spacing-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.emptyPhotos {
+  margin: 0;
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+}
+
 .imagesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -228,6 +259,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2);
+}
+
+.photoThumbWrap {
+  position: relative;
 }
 
 .imageOverlay {
@@ -243,12 +278,15 @@
 
 .imageWrapper {
   position: relative;
+  display: block;
   aspect-ratio: 4/3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: transform var(--transition-base);
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     transform: scale(1.02);
@@ -262,6 +300,16 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
+}
+
+.deletePhotoButton {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  z-index: 1;
+  box-shadow: var(--shadow-md);
+  min-width: 2.25rem;
+  padding-inline: var(--spacing-2);
 }
 
 .image {

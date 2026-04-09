@@ -231,6 +231,23 @@ export const useBonsaiMutations = () => {
     }
   };
 
+  const deletePhotos = async (
+    bonsaiId: string,
+    photoIds: string[],
+    mutateSpecific?: () => Promise<any>,
+  ) => {
+    try {
+      await BonsaiService.deletePhotos(bonsaiId, photoIds);
+      await mutateAll();
+      if (mutateSpecific) {
+        await mutateSpecific();
+      }
+    } catch (error) {
+      console.error('Error deleting photos:', error);
+      throw error;
+    }
+  };
+
   return {
     createBonsai,
     updateBonsai,
@@ -238,6 +255,7 @@ export const useBonsaiMutations = () => {
     addEvent,
     updateEvent,
     deleteEvent,
+    deletePhotos,
     getNotes,
     updateNotes,
   };

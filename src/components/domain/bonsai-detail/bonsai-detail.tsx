@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { type ChangeEvent, FC, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Heading,
@@ -10,7 +10,7 @@ import {
   Row,
   Cell,
 } from 'react-aria-components';
-import { BonsaiTree, BonsaiEvent } from '../../../types/bonsai';
+import { BonsaiTree, BonsaiEvent, PhotoMetadata } from '../../../types/bonsai';
 import {
   formatCurrency,
   formatDateShort,
@@ -19,6 +19,11 @@ import {
 } from '../../../utils/formatters';
 import { useBonsaiMutations } from '../../../hooks/use-bonsai';
 import { useAuth } from '../../../context/auth-provider';
+import {
+  deleteBonsaiBlobFromStore,
+  getPhotoMetadataFromFile,
+  uploadBonsaiPhotoToBlob,
+} from '../../../services/vercel-blob-client';
 import { Button, Chip } from '../../../components/ui';
 import {
   AddEventModal,
@@ -41,7 +46,8 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   mutate,
 }) => {
   const { t } = useTranslation();
-  const { isAuthorized } = useAuth();
+  const { isAuthorized, user } = useAuth();
+  const photoInputRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddingEvent, setIsAddingEvent] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -54,9 +60,17 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isUpdatingTree, setIsUpdatingTree] = useState(false);
   const [isDeleteTreeModalOpen, setIsDeleteTreeModalOpen] = useState(false);
   const [isDeletingTree, setIsDeletingTree] = useState(false);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [deletingPhotoId, setDeletingPhotoId] = useState<string | null>(null);
 
-  const { addEvent, deleteEvent, updateEvent, updateBonsai, deleteBonsai } =
-    useBonsaiMutations();
+  const {
+    addEvent,
+    deleteEvent,
+    updateEvent,
+    updateBonsai,
+    deleteBonsai,
+    deletePhotos,
+  } = useBonsaiMutations();
 
   const sortedEvents = [...tree.events].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -189,6 +203,77 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       alert(t('BONSAI.DETAIL.ERROR_DELETING_TREE'));
     } finally {
       setIsDeletingTree(false);
+    }
+  };
+
+  const handlePhotoInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file || !user) return;
+
+    try {
+      setIsUploadingPhoto(true);
+      const idToken = await user.getIdToken();
+      const [{ width, height }, blobResult] = await Promise.all([
+        getPhotoMetadataFromFile(file),
+        uploadBonsaiPhotoToBlob(tree.id, file, idToken),
+      ]);
+
+      const newPhoto: PhotoMetadata = {
+        id: `${Date.now()}`,
+        url: blobResult.url,
+        fileName: file.name,
+        fileSize: file.size,
+        contentType: file.type || blobResult.contentType,
+        uploadedAt: new Date().toISOString(),
+        width,
+        height,
+        source: 'vercel-blob',
+        storagePath: blobResult.pathname,
+      };
+
+      const nextPhotos = [...(tree.photos || []), newPhoto];
+      await updateBonsai(tree.id, { photos: nextPhotos });
+      await mutate();
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      alert(t('BONSAI.DETAIL.ERROR_UPLOADING_IMAGES'));
+    } finally {
+      setIsUploadingPhoto(false);
+    }
+  };
+
+  const handleDeletePhoto = async (photo: PhotoMetadata) => {
+    if (
+      !window.confirm(
+        t('BONSAI.DETAIL.CONFIRM_DELETE_PHOTO', {
+          fileName: photo.fileName || t('BONSAI.DETAIL.PHOTO_FALLBACK_LABEL'),
+        }),
+      )
+    ) {
+      return;
+    }
+
+    if (!user) return;
+
+    try {
+      setDeletingPhotoId(photo.id);
+      const idToken = await user.getIdToken();
+
+      if (photo.source === 'vercel-blob' && photo.url) {
+        try {
+          await deleteBonsaiBlobFromStore(photo.url, idToken);
+        } catch (blobError) {
+          console.warn('Could not delete blob object:', blobError);
+        }
+      }
+
+      await deletePhotos(tree.id, [photo.id], mutate);
+    } catch (error) {
+      console.error('Error deleting photo:', error);
+      alert(t('BONSAI.DETAIL.ERROR_DELETING_PHOTO'));
+    } finally {
+      setDeletingPhotoId(null);
     }
   };
 
@@ -406,40 +491,102 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <Heading level={2}>{t('BONSAI.DETAIL.IMAGES')}</Heading>
+          {isAuthorized && (
+            <div className={styles.photoHeaderActions}>
+              <input
+                ref={photoInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                className={styles.hiddenFileInput}
+                onChange={handlePhotoInputChange}
+                aria-label={t('BONSAI.DETAIL.UPLOAD_PHOTO')}
+              />
+              <Button
+                onPress={() => photoInputRef.current?.click()}
+                variant="primary"
+                size="sm"
+                isDisabled={isUploadingPhoto || !user}
+              >
+                {isUploadingPhoto
+                  ? t('BONSAI.DETAIL.UPLOADING_PHOTO')
+                  : t('BONSAI.DETAIL.UPLOAD_PHOTO')}
+              </Button>
+            </div>
+          )}
         </div>
         <div className={styles.cardBody}>
-          {tree.photos && tree.photos.length > 0 && (
+          {isAuthorized && (
+            <Text className={styles.photosHint}>
+              {t('BONSAI.DETAIL.PHOTOS_HINT')}
+            </Text>
+          )}
+          {tree.photos && tree.photos.length > 0 ? (
             <div className={styles.imagesGrid}>
-              {[...(tree.photos || [])].reverse().map((photo) => (
-                <div key={photo.id} className={styles.photoContainer}>
-                  <div
-                    className={styles.imageWrapper}
-                    onClick={() => null}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                      }
-                    }}
-                  >
-                    <div className={styles.imageOverlay}>
-                      <span className={styles.viewDetails}>View Details</span>
+              {[...(tree.photos || [])].reverse().map((photo, index) => {
+                const imageNumber = (tree.photos?.length ?? 0) - index;
+                return (
+                  <div key={photo.id} className={styles.photoContainer}>
+                    <div className={styles.photoThumbWrap}>
+                      <a
+                        href={photo.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.imageWrapper}
+                        aria-label={t('BONSAI.DETAIL.IMAGE_ALT', {
+                          treeName: tree.name,
+                          imageNumber,
+                        })}
+                      >
+                        <img
+                          src={photo.url}
+                          alt=""
+                          className={styles.image}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div className={styles.imageOverlay}>
+                          <span className={styles.viewDetails}>
+                            {t('BONSAI.DETAIL.VIEW_FULL_SIZE')}
+                          </span>
+                        </div>
+                      </a>
+                      {isAuthorized && (
+                        <Button
+                          onPress={() => handleDeletePhoto(photo)}
+                          variant="danger"
+                          size="sm"
+                          className={styles.deletePhotoButton}
+                          isDisabled={deletingPhotoId !== null}
+                          aria-label={t('BONSAI.DETAIL.DELETE_PHOTO_ARIA', {
+                            fileName:
+                              photo.fileName ||
+                              t('BONSAI.DETAIL.PHOTO_FALLBACK_LABEL'),
+                          })}
+                        >
+                          {deletingPhotoId === photo.id
+                            ? t('BONSAI.DETAIL.PHOTO_MODAL.DELETING')
+                            : '🗑️'}
+                        </Button>
+                      )}
+                    </div>
+                    <div className={styles.photoInfo}>
+                      <span className={styles.uploadDate}>
+                        {formatDateShort(photo.uploadedAt)}
+                      </span>
+                      {photo.width && photo.height && (
+                        <span className={styles.dimensions}>
+                          {photo.width} × {photo.height}
+                        </span>
+                      )}
                     </div>
                   </div>
-                  <div className={styles.photoInfo}>
-                    <span className={styles.uploadDate}>
-                      {formatDateShort(photo.uploadedAt)}
-                    </span>
-                    {photo.width && photo.height && (
-                      <span className={styles.dimensions}>
-                        {photo.width} × {photo.height}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+          ) : (
+            <Text className={styles.emptyPhotos}>
+              {t('BONSAI.DETAIL.NO_PHOTOS_YET')}
+            </Text>
           )}
         </div>
       </div>

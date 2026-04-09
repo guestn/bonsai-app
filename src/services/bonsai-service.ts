@@ -61,6 +61,7 @@ const firestoreToBonsaiTree = (doc: any): BonsaiTree => {
       width: photo.width,
       height: photo.height,
       source: photo.source,
+      storagePath: photo.storagePath,
     })),
     events:
       data.events?.map((event: any) => ({
@@ -99,6 +100,8 @@ const bonsaiTreeToFirestore = (tree: Omit<BonsaiTree, 'id'>) => {
       if (photo.width !== undefined) cleanPhoto.width = photo.width;
       if (photo.height !== undefined) cleanPhoto.height = photo.height;
       if (photo.source !== undefined) cleanPhoto.source = photo.source;
+      if (photo.storagePath !== undefined)
+        cleanPhoto.storagePath = photo.storagePath;
 
       return cleanPhoto;
     }),
@@ -219,6 +222,8 @@ export class BonsaiService {
           if (photo.width !== undefined) cleanPhoto.width = photo.width;
           if (photo.height !== undefined) cleanPhoto.height = photo.height;
           if (photo.source !== undefined) cleanPhoto.source = photo.source;
+          if (photo.storagePath !== undefined)
+            cleanPhoto.storagePath = photo.storagePath;
 
           return cleanPhoto;
         });
