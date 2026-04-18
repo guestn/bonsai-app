@@ -88,6 +88,7 @@
       "CARE_HISTORY": "Historial de Cuidado",
       "IMAGES": "Imágenes",
       "UPLOAD_PHOTO": "Subir foto",
+      "TAKE_PHOTO": "Tomar foto",
       "UPLOADING_PHOTO": "Subiendo…",
       "NO_PHOTOS_YET": "Aún no hay fotos. Sube una para guardar un registro visual de este árbol.",
       "PHOTOS_HINT": "Las fotos se almacenan con Vercel Blob (JPEG, PNG, WebP o GIF, hasta 15 MB). Necesitas un despliegue con Blob y rutas de API configuradas.",

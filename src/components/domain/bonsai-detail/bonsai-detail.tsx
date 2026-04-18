@@ -48,6 +48,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const { t } = useTranslation();
   const { isAuthorized, user } = useAuth();
   const photoInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddingEvent, setIsAddingEvent] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -206,7 +207,9 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     }
   };
 
-  const handlePhotoInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
+  const handlePhotoInputChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     event.target.value = '';
     if (!file || !user) return;
@@ -501,6 +504,23 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                 onChange={handlePhotoInputChange}
                 aria-label={t('BONSAI.DETAIL.UPLOAD_PHOTO')}
               />
+              <input
+                ref={cameraInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className={styles.hiddenFileInput}
+                onChange={handlePhotoInputChange}
+                aria-label={t('BONSAI.DETAIL.TAKE_PHOTO')}
+              />
+              <Button
+                onPress={() => cameraInputRef.current?.click()}
+                variant="secondary"
+                size="sm"
+                isDisabled={isUploadingPhoto || !user}
+              >
+                {t('BONSAI.DETAIL.TAKE_PHOTO')}
+              </Button>
               <Button
                 onPress={() => photoInputRef.current?.click()}
                 variant="primary"
