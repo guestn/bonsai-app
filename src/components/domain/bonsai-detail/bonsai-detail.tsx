@@ -24,6 +24,11 @@ import {
   getPhotoMetadataFromFile,
   uploadBonsaiPhotoToBlob,
 } from '../../../services/vercel-blob-client';
+import { getExifTakenAtIso } from '../../../utils/photo-exif';
+import {
+  getPhotoDisplayDate,
+  sameCalendarDay,
+} from '../../../utils/photo-date';
 import { Button, Chip } from '../../../components/ui';
 import {
   AddEventModal,
@@ -31,6 +36,7 @@ import {
   DeleteTreeModal,
   UpdateEventModal,
   EditTreeModal,
+  EditPhotoDateModal,
 } from './lib';
 import styles from './bonsai-detail.module.scss';
 
@@ -63,6 +69,9 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
   const [isDeletingTree, setIsDeletingTree] = useState(false);
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
   const [deletingPhotoId, setDeletingPhotoId] = useState<string | null>(null);
+  const [photoForDateEdit, setPhotoForDateEdit] =
+    useState<PhotoMetadata | null>(null);
+  const [isSavingPhotoDate, setIsSavingPhotoDate] = useState(false);
 
   const {
     addEvent,
@@ -75,6 +84,12 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
 
   const sortedEvents = [...tree.events].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
+
+  const sortedPhotos = [...(tree.photos || [])].sort(
+    (a, b) =>
+      new Date(getPhotoDisplayDate(b)).getTime() -
+      new Date(getPhotoDisplayDate(a)).getTime(),
   );
 
   const handleAddEvent = async (event: {
@@ -217,7 +232,8 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
     try {
       setIsUploadingPhoto(true);
       const idToken = await user.getIdToken();
-      const [{ width, height }, blobResult] = await Promise.all([
+      const [exifTakenAt, { width, height }, blobResult] = await Promise.all([
+        getExifTakenAtIso(file),
         getPhotoMetadataFromFile(file),
         uploadBonsaiPhotoToBlob(tree.id, file, idToken),
       ]);
@@ -229,6 +245,7 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         fileSize: file.size,
         contentType: file.type || blobResult.contentType,
         uploadedAt: new Date().toISOString(),
+        ...(exifTakenAt ? { takenAt: exifTakenAt } : {}),
         width,
         height,
         source: 'vercel-blob',
@@ -243,6 +260,33 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
       alert(t('BONSAI.DETAIL.ERROR_UPLOADING_IMAGES'));
     } finally {
       setIsUploadingPhoto(false);
+    }
+  };
+
+  const handleSavePhotoDate = async (takenAtIso: string | null) => {
+    if (!photoForDateEdit) return;
+
+    try {
+      setIsSavingPhotoDate(true);
+      const editingId = photoForDateEdit.id;
+      const nextPhotos = (tree.photos || []).map((p) => {
+        if (p.id !== editingId) return p;
+        if (takenAtIso === null) {
+          const rest = { ...p };
+          delete rest.takenAt;
+          return rest;
+        }
+        return { ...p, takenAt: takenAtIso };
+      });
+
+      await updateBonsai(tree.id, { photos: nextPhotos });
+      await mutate();
+      setPhotoForDateEdit(null);
+    } catch (error) {
+      console.error('Error updating photo date:', error);
+      alert(t('BONSAI.DETAIL.ERROR_UPDATING_PHOTO_DATE'));
+    } finally {
+      setIsSavingPhotoDate(false);
     }
   };
 
@@ -542,8 +586,8 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
           )}
           {tree.photos && tree.photos.length > 0 ? (
             <div className={styles.imagesGrid}>
-              {[...(tree.photos || [])].reverse().map((photo, index) => {
-                const imageNumber = (tree.photos?.length ?? 0) - index;
+              {sortedPhotos.map((photo, index) => {
+                const imageNumber = sortedPhotos.length - index;
                 return (
                   <div key={photo.id} className={styles.photoContainer}>
                     <div className={styles.photoThumbWrap}>
@@ -571,28 +615,60 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
                         </div>
                       </a>
                       {isAuthorized && (
-                        <Button
-                          onPress={() => handleDeletePhoto(photo)}
-                          variant="danger"
-                          size="sm"
-                          className={styles.deletePhotoButton}
-                          isDisabled={deletingPhotoId !== null}
-                          aria-label={t('BONSAI.DETAIL.DELETE_PHOTO_ARIA', {
-                            fileName:
-                              photo.fileName ||
-                              t('BONSAI.DETAIL.PHOTO_FALLBACK_LABEL'),
-                          })}
-                        >
-                          {deletingPhotoId === photo.id
-                            ? t('BONSAI.DETAIL.PHOTO_MODAL.DELETING')
-                            : '🗑️'}
-                        </Button>
+                        <>
+                          <Button
+                            onPress={() => setPhotoForDateEdit(photo)}
+                            variant="secondary"
+                            size="sm"
+                            className={styles.editPhotoDateButton}
+                            isDisabled={
+                              deletingPhotoId !== null || isSavingPhotoDate
+                            }
+                            aria-label={t(
+                              'BONSAI.DETAIL.EDIT_PHOTO_DATE_ARIA',
+                              {
+                                fileName:
+                                  photo.fileName ||
+                                  t('BONSAI.DETAIL.PHOTO_FALLBACK_LABEL'),
+                              },
+                            )}
+                          >
+                            ✏️
+                          </Button>
+                          <Button
+                            onPress={() => handleDeletePhoto(photo)}
+                            variant="danger"
+                            size="sm"
+                            className={styles.deletePhotoButton}
+                            isDisabled={deletingPhotoId !== null}
+                            aria-label={t('BONSAI.DETAIL.DELETE_PHOTO_ARIA', {
+                              fileName:
+                                photo.fileName ||
+                                t('BONSAI.DETAIL.PHOTO_FALLBACK_LABEL'),
+                            })}
+                          >
+                            {deletingPhotoId === photo.id
+                              ? t('BONSAI.DETAIL.PHOTO_MODAL.DELETING')
+                              : '🗑️'}
+                          </Button>
+                        </>
                       )}
                     </div>
                     <div className={styles.photoInfo}>
                       <span className={styles.uploadDate}>
-                        {formatDateShort(photo.uploadedAt)}
+                        {formatDateShort(getPhotoDisplayDate(photo))}
                       </span>
+                      {photo.takenAt &&
+                        !sameCalendarDay(
+                          photo.takenAt,
+                          photo.uploadedAt,
+                        ) && (
+                          <span className={styles.uploadedMeta}>
+                            {t('BONSAI.DETAIL.PHOTO_UPLOADED_ON', {
+                              date: formatDateShort(photo.uploadedAt),
+                            })}
+                          </span>
+                        )}
                       {photo.width && photo.height && (
                         <span className={styles.dimensions}>
                           {photo.width} × {photo.height}
@@ -655,6 +731,19 @@ export const BonsaiDetail: FC<BonsaiDetailProps> = ({
         onConfirm={handleDeleteTree}
         isLoading={isDeletingTree}
       />
+
+      {photoForDateEdit && (
+        <EditPhotoDateModal
+          tree={tree}
+          photo={photoForDateEdit}
+          isOpen
+          onOpenChange={(open) => {
+            if (!open) setPhotoForDateEdit(null);
+          }}
+          onSubmit={handleSavePhotoDate}
+          isLoading={isSavingPhotoDate}
+        />
+      )}
     </div>
   );
 };

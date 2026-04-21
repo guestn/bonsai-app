@@ -312,6 +312,16 @@
   padding-inline: var(--spacing-2);
 }
 
+.editPhotoDateButton {
+  position: absolute;
+  bottom: var(--spacing-2);
+  left: var(--spacing-2);
+  z-index: 1;
+  box-shadow: var(--shadow-md);
+  min-width: 2.25rem;
+  padding-inline: var(--spacing-2);
+}
+
 .image {
   width: 100%;
   height: 100%;
@@ -339,6 +349,11 @@
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
   font-weight: var(--font-weight-medium);
+}
+
+.uploadedMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
 }
 
 .dimensions {
