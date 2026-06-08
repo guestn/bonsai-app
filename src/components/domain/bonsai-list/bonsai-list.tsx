@@ -33,6 +33,8 @@ export const BonsaiList: FC = () => {
   const { isAuthorized } = useAuth();
   const { repotList, addToRepotList, removeFromRepotList } = useRepotList();
 
+  console.log('bonsai', bonsai);
+
   const isInRepotList = useCallback(
     (treeId: string) => repotList.includes(treeId),
     [repotList],

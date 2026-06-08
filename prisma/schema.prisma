@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum BonsaiStatus {
+  active
+  expired
+}
+
+enum BonsaiType {
+  purchased
+  collected
+  field
+}
+
+model BonsaiTree {
+  id              String       @id
+  name            String
+  species         String
+  initialCost     Float
+  acquisitionDate DateTime     @db.Date
+  status          BonsaiStatus
+  type            BonsaiType
+  location        String?
+  potType         String?
+  age             Int?
+  notes           String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  events BonsaiEvent[]
+  photos BonsaiPhoto[]
+}
+
+model BonsaiEvent {
+  id          String     @id
+  description String
+  date        DateTime   @db.Date
+  value       Float?
+  cost        Float      @default(0)
+  bonsaiId    String
+  bonsai      BonsaiTree @relation(fields: [bonsaiId], references: [id], onDelete: Cascade)
+
+  @@index([bonsaiId])
+}
+
+model BonsaiPhoto {
+  id          String     @id
+  url         String
+  fileName    String?
+  fileSize    Int?
+  contentType String?
+  uploadedAt  DateTime
+  takenAt     DateTime?
+  width       Int?
+  height      Int?
+  source      String?
+  storagePath String?
+  bonsaiId    String
+  bonsai      BonsaiTree @relation(fields: [bonsaiId], references: [id], onDelete: Cascade)
+
+  @@index([bonsaiId])
+}
+
+model RepotList {
+  userId    String   @id
+  treeIds   String[]
+  updatedAt DateTime @updatedAt
+}
+
+model GlobalNotes {
+  id    String @id @default("notes")
+  notes String @default("")
+}

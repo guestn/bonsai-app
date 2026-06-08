@@ -1,0 +1,2610 @@
+[
+    {
+        "id": "10wKP52xfREKuu48Z2z7",
+        "name": "Japanese Black Pine (Kotobuki)",
+        "species": "Pinus Thunbergii Kotobuki",
+        "initialCost": 25,
+        "acquisitionDate": "2026-01-14",
+        "status": "active",
+        "type": "purchased",
+        "notes": "Kensho",
+        "photos": [],
+        "events": [
+            {
+                "id": "1772548168024",
+                "description": "Repot into akadama/pumice mix",
+                "date": "2026-03-03",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "34r0p34nL4rchTr33D4t4B4s",
+        "name": "European Larch",
+        "species": "Larix decidua",
+        "initialCost": 9,
+        "acquisitionDate": "2023-07-07",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Crespi - hot temps and bad sun positioning",
+        "photos": [],
+        "events": [
+            {
+                "id": "european-larch-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 9
+            },
+            {
+                "id": "european-larch-1-2",
+                "description": "Trunk wiring",
+                "date": "2023-07-15",
+                "value": 8,
+                "cost": 0
+            },
+            {
+                "id": "european-larch-1-3",
+                "description": "Repot",
+                "date": "2023-07-19",
+                "value": 4,
+                "cost": 0
+            },
+            {
+                "id": "european-larch-1-4",
+                "description": "Nearly died",
+                "date": "2023-08-01",
+                "value": 13,
+                "cost": 0
+            },
+            {
+                "id": "european-larch-1-5",
+                "description": "Died",
+                "date": "2023-09-01",
+                "value": 31,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "34r0p34nOl1v3Tr33D4t4B4s3",
+        "name": "European Olive",
+        "species": "Olea europaea",
+        "initialCost": 10.5,
+        "acquisitionDate": "2023-08-12",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "CIP - better soil, but some brown sphagnum",
+        "photos": [],
+        "events": [
+            {
+                "id": "european-olive-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-12",
+                "value": 0,
+                "cost": 10.5
+            },
+            {
+                "id": "european-olive-1-2",
+                "description": "Wire lower branch",
+                "date": "2023-08-13",
+                "value": 1,
+                "cost": 0
+            },
+            {
+                "id": "european-olive-1-3",
+                "description": "Repot",
+                "date": "2024-03-14",
+                "value": 214,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "34st3rnR3dC3d4rTr33D4t4",
+        "name": "Eastern Red Cedar",
+        "species": "Juniperus virginiana",
+        "initialCost": 0,
+        "acquisitionDate": "2023-07-01",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Air layer x 2 - dumped it, not enough space to bother keeping",
+        "photos": [],
+        "events": [
+            {
+                "id": "eastern-red-cedar-1-1",
+                "description": "Air layer x 2",
+                "date": "2023-07-01",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "eastern-red-cedar-1-2",
+                "description": "Remove air layer and pot",
+                "date": "2024-05-25",
+                "value": 329,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "4c3rP4lm4tumD3sh0j0Tr33D4t4",
+        "name": "Acer palmatum deshojo",
+        "species": "Acer palmatum",
+        "initialCost": 40,
+        "acquisitionDate": "2025-06-06",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 7,
+        "notes": "Auro Jardiners Andorra. Label says 7yrs old",
+        "photos": [
+            {
+                "id": "1CyhSoS54RbD-TYF7sT6GS5CgiaXGj8lq",
+                "url": "https://drive.google.com/uc?export=view&id=1CyhSoS54RbD-TYF7sT6GS5CgiaXGj8lq",
+                "fileName": "IMG_8985.jpg",
+                "fileSize": null,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2025-08-12T13:23:52.293Z",
+                "takenAt": "2025-08-12T13:23:52.293Z",
+                "source": "google-drive"
+            },
+            {
+                "id": "10uVCWcig1PFzTLSl6bbMKYlIG1t-Ngbs",
+                "url": "https://drive.google.com/uc?export=view&id=10uVCWcig1PFzTLSl6bbMKYlIG1t-Ngbs",
+                "fileName": "IMG_1130.jpg",
+                "fileSize": null,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2025-08-12T13:25:32.688Z",
+                "takenAt": "2025-08-12T13:25:32.688Z",
+                "source": "google-drive"
+            },
+            {
+                "id": "16ZTc4cngK_VXIwrWH8vZG1FQ7qyyZkaf",
+                "url": "https://drive.google.com/uc?export=view&id=16ZTc4cngK_VXIwrWH8vZG1FQ7qyyZkaf",
+                "fileName": "IMG_8985.jpg",
+                "fileSize": null,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2025-08-12T13:26:47.795Z",
+                "takenAt": "2025-08-12T13:26:47.795Z",
+                "source": "google-drive"
+            }
+        ],
+        "events": [
+            {
+                "id": "acer-palmatum-deshojo-1-1",
+                "description": "Initial acquisition",
+                "date": "2025-06-06",
+                "value": 0,
+                "cost": 40
+            },
+            {
+                "id": "acer-palmatum-deshojo-1-2",
+                "description": "Up-pot to training pot, trim graft",
+                "date": "2025-06-08",
+                "value": 2,
+                "cost": 0
+            },
+            {
+                "id": "acer-palmatum-deshojo-1-3",
+                "description": "Trim back, crap leaf removal",
+                "date": "2025-06-29",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "4lb3rt4Spr0c3Tr33D4t4",
+        "name": "Alberta Spruce",
+        "species": "Picea glauca var. albertiana",
+        "initialCost": 2,
+        "acquisitionDate": "2023-05-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "White circular pot",
+        "age": 2,
+        "notes": "CIP",
+        "photos": [
+            {
+                "id": "1754403008514_ew9io63ep",
+                "url": "https://photos.google.com/album/AF1QipMOQJoKiSa91K5raGPttJhGK_lQyTZYbKC3bYvG/photo/AF1QipN30Gr10bdpFyMKz3kfA2JIFCDDcXJD-YsKiLpE",
+                "uploadedAt": "2025-08-05T14:10:08.514Z",
+                "source": "external"
+            },
+            {
+                "id": "1754492811701_t52qufh7c",
+                "url": "data:image/jpeg;base64,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",
+                "fileName": "IMG_1130.jpg",
+                "fileSize": 26649,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2025-08-06T15:06:51.701Z",
+                "width": 246,
+                "height": 328,
+                "source": "base64"
+            }
+        ],
+        "events": [
+            {
+                "id": "alberta-spruce-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-05-15",
+                "value": 0,
+                "cost": 2
+            },
+            {
+                "id": "alberta-spruce-1-2",
+                "description": "Repot",
+                "date": "2023-06-10",
+                "value": 26,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-1-3",
+                "description": "1st wiring",
+                "date": "2023-06-24",
+                "value": 14,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-1-4",
+                "description": "Unwiring",
+                "date": "2023-09-22",
+                "value": 90,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-1-5",
+                "description": "Repot into white circular",
+                "date": "2025-04-04",
+                "value": 560,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "4lb3rt4Spr0c3Tr33D4t4B",
+        "name": "Alberta Spruce",
+        "species": "Picea glauca var. albertiana",
+        "initialCost": 20,
+        "acquisitionDate": "2023-07-09",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Low wide clay pot",
+        "age": 2,
+        "notes": "Double trunker - had lots of new white roots at the bottom",
+        "photos": [],
+        "events": [
+            {
+                "id": "alberta-spruce-2-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-09",
+                "value": 0,
+                "cost": 20
+            },
+            {
+                "id": "alberta-spruce-2-2",
+                "description": "Wiring",
+                "date": "2023-07-12",
+                "value": 3,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-2-3",
+                "description": "Repot",
+                "date": "2024-02-17",
+                "value": 220,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-2-4",
+                "description": "Unwiring whole tree",
+                "date": "2024-03-21",
+                "value": 33,
+                "cost": 0
+            },
+            {
+                "id": "alberta-spruce-2-5",
+                "description": "Repot into low wide clay pot",
+                "date": "2025-04-08",
+                "value": 383,
+                "cost": 0
+            },
+            {
+                "id": "1768925147517",
+                "description": "Prune and rewire low branches",
+                "date": "2026-01-20",
+                "cost": 0
+            },
+            {
+                "id": "1772548259047",
+                "description": "Repot lower and remove some heavy root",
+                "date": "2026-03-03",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "6YBS1Im1okSnQK8d7HhX",
+        "name": "Japanese Black Pine 3",
+        "species": "Pinus Thunbergii",
+        "initialCost": 5,
+        "acquisitionDate": "2026-01-14",
+        "status": "active",
+        "type": "purchased",
+        "notes": "Kensho",
+        "photos": [],
+        "events": [
+            {
+                "id": "1770300790834",
+                "description": "Repot in pumice to larger plastic pot",
+                "date": "2026-02-05",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "B33chR00tSl1c1ngsTr33D4t4B4s3D4",
+        "name": "Beech root slicings *2",
+        "species": "Fagus sylvatica",
+        "initialCost": 0,
+        "acquisitionDate": "2023-11-24",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - 1 never budded - too weak, no roots in the end",
+        "photos": [],
+        "events": [
+            {
+                "id": "B33chR00tSl1c1ngsTr33D4t4B4s3D4-1",
+                "description": "Collection",
+                "date": "2023-11-24",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "B33chR00tSl1c1ngsTr33D4t4B4s3D4-2",
+                "description": "Black bag",
+                "date": "2023-11-25",
+                "value": 1,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4",
+        "name": "Beech",
+        "species": "Fagus sylvatica",
+        "initialCost": 0,
+        "acquisitionDate": "2023-10-12",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde steep uphill",
+        "photos": [
+            {
+                "id": "1776525868461",
+                "url": "https://lokxxf6j2b3mgcs7.public.blob.vercel-storage.com/bonsai/B33chTr33D4t4B4s3D4t4B4s3D4t4/1776525864293-IMG_2254-wcoIGVVGSV8pXq97jShloEH0jY3gWJ.jpeg",
+                "fileName": "IMG_2254.jpeg",
+                "fileSize": 3227406,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2026-04-18T15:24:28.461Z",
+                "width": 3024,
+                "height": 4032,
+                "source": "vercel-blob",
+                "storagePath": "bonsai/B33chTr33D4t4B4s3D4t4B4s3D4t4/1776525864293-IMG_2254-wcoIGVVGSV8pXq97jShloEH0jY3gWJ.jpeg"
+            }
+        ],
+        "events": [
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4-1",
+                "description": "Collection",
+                "date": "2023-10-12",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4-2",
+                "description": "Black bag",
+                "date": "2023-11-08",
+                "value": 27,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4-3",
+                "description": "Out of black bag",
+                "date": "2024-02-15",
+                "value": 99,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4-4",
+                "description": "Remove trunk- big cut",
+                "date": "2024-12-01",
+                "value": 290,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4-5",
+                "description": "Repot with more pumice",
+                "date": "2025-03-15",
+                "value": 104,
+                "cost": 0
+            },
+            {
+                "id": "1776461296274",
+                "description": "Repot into pond basket, remove higher roots",
+                "date": "2026-04-17",
+                "cost": 0
+            },
+            {
+                "id": "1777411899148",
+                "description": "Bud break",
+                "date": "2026-04-25",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4",
+        "name": "Beech",
+        "species": "Fagus sylvatica",
+        "initialCost": 0,
+        "acquisitionDate": "2024-01-27",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Val di Muggio - all leaves died/ underwatering",
+        "photos": [],
+        "events": [
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4-1",
+                "description": "Collection & pot",
+                "date": "2024-01-27",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4-2",
+                "description": "Buds opening",
+                "date": "2024-03-24",
+                "value": 57,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4-3",
+                "description": "Cut back extremities",
+                "date": "2024-07-02",
+                "value": 100,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4-4",
+                "description": "Mild wiring and redirection",
+                "date": "2024-08-21",
+                "value": 50,
+                "cost": 0
+            },
+            {
+                "id": "B33chTr33D4t4B4s3D4t4B4s3D4t4B4-5",
+                "description": "All leaves died/ underwatering",
+                "date": "2025-06-23",
+                "value": 306,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "BRtZryHuRAKff8gxCgdf",
+        "name": "Japanese Maple (Orange Dream)",
+        "species": "Acer Palmatum",
+        "initialCost": 8,
+        "acquisitionDate": "2026-01-14",
+        "status": "active",
+        "type": "purchased",
+        "potType": "Plastic",
+        "notes": "Kensho",
+        "photos": [],
+        "events": [
+            {
+                "id": "1771369418596",
+                "description": "Repot, just taproot removed",
+                "date": "2026-02-17",
+                "cost": 0
+            },
+            {
+                "id": "1775769818857",
+                "description": "Bend trunk with thick wire",
+                "date": "2026-04-09",
+                "cost": 0
+            },
+            {
+                "id": "1778707876538",
+                "description": "All leaves died, even though was well watered (I believe). Unwired trunk",
+                "date": "2026-05-13",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "C0mm0nJ0n1p3rTr33D4t4",
+        "name": "Common Juniper",
+        "species": "Juniperus communis",
+        "initialCost": 18,
+        "acquisitionDate": "2023-06-03",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Heavy clay soil from nursery",
+        "photos": [],
+        "events": [
+            {
+                "id": "common-juniper-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-06-03",
+                "value": 0,
+                "cost": 18
+            },
+            {
+                "id": "common-juniper-1-2",
+                "description": "Root clean",
+                "date": "2023-06-10",
+                "value": 7,
+                "cost": 0
+            },
+            {
+                "id": "common-juniper-1-3",
+                "description": "Repot",
+                "date": "2023-10-05",
+                "value": 117,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "C0mm0nY3wTr33D4t4B4s3D4t4B4s3D4",
+        "name": "Common Yew",
+        "species": "Taxus baccata",
+        "initialCost": 0,
+        "acquisitionDate": "2023-11-30",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - 24yr rings counted - growing but had to dump for house move",
+        "photos": [],
+        "events": [
+            {
+                "id": "C0mm0nY3wTr33D4t4B4s3D4t4B4s3D4-1",
+                "description": "Collection & black bag",
+                "date": "2023-11-30",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "C0t0n34st3rTr33D4t4B4s3D4t4B4s3",
+        "name": "Cotoneaster",
+        "species": "Cotoneaster sp.",
+        "initialCost": 0,
+        "acquisitionDate": "2023-11-07",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Dead- never grew roots and perhaps got too dry",
+        "photos": [],
+        "events": [
+            {
+                "id": "C0t0n34st3rTr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection",
+                "date": "2023-11-07",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "C3drusD30d0r4Y1Tr33D4t4B4s3D4t4",
+        "name": "Cedrus Deodora y1",
+        "species": "Cedrus deodara",
+        "initialCost": 0,
+        "acquisitionDate": "2023-12-03",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - small - killed it with the twisting",
+        "photos": [],
+        "events": [
+            {
+                "id": "C3drusD30d0r4Y1Tr33D4t4B4s3D4t4-1",
+                "description": "Collection & pot",
+                "date": "2023-12-03",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "C3drusD30d0r4Y1Tr33D4t4B4s3D4t4-2",
+                "description": "Massive twist",
+                "date": "2025-04-20",
+                "value": 504,
+                "cost": 0
+            },
+            {
+                "id": "C3drusD30d0r4Y1Tr33D4t4B4s3D4t4-3",
+                "description": "Killed it with the twisting",
+                "date": "2025-06-20",
+                "value": 61,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "C3drusD30d4r4P3ndul0Arg3nt0",
+        "name": "Himalayan Cedar",
+        "species": "Cedrus Deodara Pendulo Argento",
+        "initialCost": 62,
+        "acquisitionDate": "2023-08-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Shallow pot",
+        "age": 2,
+        "notes": "Very large, good rootbase",
+        "photos": [],
+        "events": [
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-15",
+                "value": 0,
+                "cost": 62
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-2",
+                "description": "Minor pruning",
+                "date": "2023-08-21",
+                "value": 6,
+                "cost": 0
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-3",
+                "description": "Wire main branches",
+                "date": "2023-08-23",
+                "value": 2,
+                "cost": 0
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-4",
+                "description": "Chopping, jin",
+                "date": "2023-09-24",
+                "value": 32,
+                "cost": 0
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-5",
+                "description": "Repot, root-prune",
+                "date": "2023-11-19",
+                "value": 56,
+                "cost": 0
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-6",
+                "description": "Repot to shallower, better soil",
+                "date": "2024-02-17",
+                "value": 90,
+                "cost": 0
+            },
+            {
+                "id": "cedrus-deodara-pendulo-argento-1-7",
+                "description": "Wire across medium branch, pulling in",
+                "date": "2025-03-08",
+                "value": 385,
+                "cost": 0
+            },
+            {
+                "id": "1769210980871",
+                "description": "Big prune, wire large branches",
+                "date": "2026-01-23",
+                "cost": 0
+            },
+            {
+                "id": "1771509003613",
+                "description": "Repot to same pot, soil change etc",
+                "date": "2026-02-19",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3",
+        "name": "Cherry plum",
+        "species": "Prunus cerasifera",
+        "initialCost": 0,
+        "acquisitionDate": "2023-10-28",
+        "status": "active",
+        "type": "collected",
+        "location": "Indoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Via belvedere, tiny mame root - missed watering one day in the hot sun",
+        "photos": [],
+        "events": [
+            {
+                "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection",
+                "date": "2023-10-28",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3-2",
+                "description": "Black bag",
+                "date": "2023-11-08",
+                "value": 11,
+                "cost": 0
+            },
+            {
+                "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3-3",
+                "description": "All leaves died, take them off",
+                "date": "2024-08-10",
+                "value": 276,
+                "cost": 0
+            },
+            {
+                "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3-4",
+                "description": "Inside, growing many branches and leaves",
+                "date": "2024-12-12",
+                "value": 124,
+                "cost": 0
+            },
+            {
+                "id": "Ch3rryPlumTr33D4t4B4s3D4t4B4s3-5",
+                "description": "Started budding new leaves",
+                "date": "2025-06-20",
+                "value": 190,
+                "cost": 0
+            },
+            {
+                "id": "1766277305238",
+                "description": "Started budding new leaves (inside)",
+                "date": "2025-12-11",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Ch43n0m3l3sSub3rb4R3dJ0yD4",
+        "name": "Chaenomeles Suberba red joy",
+        "species": "Chaenomeles speciosa",
+        "initialCost": 9,
+        "acquisitionDate": "2023-10-23",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Indoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Direct from Crespi - too much root removal??",
+        "photos": [],
+        "events": [
+            {
+                "id": "chaenomeles-suberba-red-joy-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-10-23",
+                "value": 0,
+                "cost": 9
+            },
+            {
+                "id": "chaenomeles-suberba-red-joy-1-2",
+                "description": "Flowering!",
+                "date": "2024-02-02",
+                "value": 102,
+                "cost": 0
+            },
+            {
+                "id": "chaenomeles-suberba-red-joy-1-3",
+                "description": "Trim back, and lower leaves",
+                "date": "2024-08-04",
+                "value": 184,
+                "cost": 0
+            },
+            {
+                "id": "chaenomeles-suberba-red-joy-1-4",
+                "description": "Bring inside",
+                "date": "2024-12-01",
+                "value": 119,
+                "cost": 0
+            },
+            {
+                "id": "chaenomeles-suberba-red-joy-1-5",
+                "description": "Repot (inside), 50% roots removed",
+                "date": "2024-12-21",
+                "value": 20,
+                "cost": 0
+            },
+            {
+                "id": "chaenomeles-suberba-red-joy-1-6",
+                "description": "Died",
+                "date": "2025-03-01",
+                "value": 70,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Chr1stm4sTr33D4t4B4s3D4t4B4",
+        "name": "Christmas tree (picea abies excelsior)",
+        "species": "Picea abies",
+        "initialCost": 0,
+        "acquisitionDate": "2025-01-01",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Not sure when started",
+        "photos": [],
+        "events": [
+            {
+                "id": "christmas-tree-1-1",
+                "description": "Initial acquisition",
+                "date": "2025-01-01",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "christmas-tree-1-2",
+                "description": "Repot and root cut",
+                "date": "2025-01-26",
+                "value": 25,
+                "cost": 0
+            },
+            {
+                "id": "christmas-tree-1-3",
+                "description": "Remove many branches",
+                "date": "2025-05-20",
+                "value": 114,
+                "cost": 0
+            },
+            {
+                "id": "1758203809179",
+                "description": "Died",
+                "date": "2025-09-01",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3",
+        "name": "Field Maple",
+        "species": "Acer campestre",
+        "initialCost": 0,
+        "acquisitionDate": "2023-10-21",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde steep uphill - water bath 48hrs - buds nearly opening, 15 rings counted",
+        "photos": [
+            {
+                "id": "1775738823634",
+                "url": "https://lokxxf6j2b3mgcs7.public.blob.vercel-storage.com/bonsai/F13ldM4pl3Tr33D4t4B4s3D4t4B4s3/1775738821038-maple-ASL2N9QmpsMTFMsOZQ9IO23nW1aHRX.jpg",
+                "fileName": "maple.jpg",
+                "fileSize": 350368,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2026-04-09T12:47:03.634Z",
+                "width": 1360,
+                "height": 1668,
+                "source": "vercel-blob",
+                "storagePath": "bonsai/F13ldM4pl3Tr33D4t4B4s3D4t4B4s3/1775738821038-maple-ASL2N9QmpsMTFMsOZQ9IO23nW1aHRX.jpg"
+            }
+        ],
+        "events": [
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection",
+                "date": "2023-10-21",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-2",
+                "description": "Black bag",
+                "date": "2023-11-08",
+                "value": 18,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-3",
+                "description": "Clean trunk cut",
+                "date": "2024-03-14",
+                "value": 127,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-4",
+                "description": "Wire the small branches",
+                "date": "2024-04-06",
+                "value": 23,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-5",
+                "description": "Unwire the small branches",
+                "date": "2024-04-17",
+                "value": 11,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-6",
+                "description": "Repot",
+                "date": "2025-03-22",
+                "value": 339,
+                "cost": 0
+            },
+            {
+                "id": "F13ldM4pl3Tr33D4t4B4s3D4t4B4s3-7",
+                "description": "Trim huge shoots and wire main branches",
+                "date": "2025-06-29",
+                "value": 99,
+                "cost": 0
+            },
+            {
+                "id": "1771509066901",
+                "description": "Repot to Tokoname #7",
+                "date": "2026-02-19",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "F1cusG1ns3ngTr33D4t4B4",
+        "name": "Ficus Ginseng",
+        "species": "Ficus microcarpa",
+        "initialCost": 12,
+        "acquisitionDate": "2023-05-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Indoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "CIP",
+        "photos": [],
+        "events": [
+            {
+                "id": "ficus-ginseng-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-05-15",
+                "value": 0,
+                "cost": 12
+            },
+            {
+                "id": "ficus-ginseng-1-2",
+                "description": "Repot",
+                "date": "2023-06-10",
+                "value": 26,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "G0ld3nL4rchTr33D4t4B4s3",
+        "name": "Golden Larch",
+        "species": "Pseudolarix amabilis",
+        "initialCost": 50,
+        "acquisitionDate": "2023-07-07",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 18,
+        "notes": "18yrs old from Japan label says - Crespi",
+        "photos": [],
+        "events": [
+            {
+                "id": "golden-larch-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 50
+            },
+            {
+                "id": "golden-larch-1-2",
+                "description": "Wiring",
+                "date": "2023-07-15",
+                "value": 8,
+                "cost": 0
+            },
+            {
+                "id": "golden-larch-1-3",
+                "description": "Unwiring",
+                "date": "2023-09-20",
+                "value": 67,
+                "cost": 0
+            },
+            {
+                "id": "golden-larch-1-4",
+                "description": "Repot",
+                "date": "2024-01-08",
+                "value": 110,
+                "cost": 0
+            },
+            {
+                "id": "golden-larch-1-5",
+                "description": "Repot (same pot- not that many roots...)",
+                "date": "2025-03-22",
+                "value": 439,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "H1n0k1Cyp3ssTr33D4t4B4s3",
+        "name": "Hinoki Cypress",
+        "species": "Chamaecyparis obtusa (sekka)",
+        "initialCost": 25,
+        "acquisitionDate": "2023-07-07",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Crespi",
+        "photos": [],
+        "events": [
+            {
+                "id": "hinoki-cypress-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 25
+            },
+            {
+                "id": "hinoki-cypress-1-2",
+                "description": "Rootball into more stable pot",
+                "date": "2023-07-10",
+                "value": 3,
+                "cost": 0
+            },
+            {
+                "id": "hinoki-cypress-1-3",
+                "description": "Repot",
+                "date": "2024-02-26",
+                "value": 231,
+                "cost": 0
+            },
+            {
+                "id": "1765890510378",
+                "description": "Repot (deeper)",
+                "date": "2025-12-08",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "J0n1p3r1sCh1n3ns1sTr33D4t4B",
+        "name": "Juniperis Chinensis",
+        "species": "Juniperus chinensis",
+        "initialCost": 40,
+        "acquisitionDate": "2023-10-23",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Twisty one direct from Crespi - is it itoigawa?",
+        "photos": [],
+        "events": [
+            {
+                "id": "juniperis-chinensis-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-10-23",
+                "value": 0,
+                "cost": 40
+            },
+            {
+                "id": "juniperis-chinensis-1-2",
+                "description": "Wired up big branch, slip pot",
+                "date": "2023-10-27",
+                "value": 4,
+                "cost": 0
+            },
+            {
+                "id": "juniperis-chinensis-1-3",
+                "description": "Unwire big top branch",
+                "date": "2024-03-18",
+                "value": 143,
+                "cost": 0
+            },
+            {
+                "id": "1769211053037",
+                "description": "Attempt to replace heavy soil with pumice",
+                "date": "2026-01-23",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "J0n1p3r1sPr0cumb3nsN4n4D4",
+        "name": "Juniperis procumbens nana",
+        "species": "Juniperus procumbens",
+        "initialCost": 18,
+        "acquisitionDate": "2023-08-12",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Clay pot",
+        "age": 2,
+        "notes": "Mysteriously died entirely over winter",
+        "photos": [],
+        "events": [
+            {
+                "id": "juniperis-procumbens-nana-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-12",
+                "value": 0,
+                "cost": 18
+            },
+            {
+                "id": "juniperis-procumbens-nana-1-2",
+                "description": "Wire tendrils",
+                "date": "2023-08-24",
+                "value": 12,
+                "cost": 0
+            },
+            {
+                "id": "juniperis-procumbens-nana-1-3",
+                "description": "Repot to clay pot, not real rootwork",
+                "date": "2023-11-12",
+                "value": 80,
+                "cost": 0
+            },
+            {
+                "id": "juniperis-procumbens-nana-1-4",
+                "description": "Unwire back tendril",
+                "date": "2024-01-13",
+                "value": 62,
+                "cost": 0
+            },
+            {
+                "id": "juniperis-procumbens-nana-1-5",
+                "description": "Unwire front tendril",
+                "date": "2024-01-26",
+                "value": 13,
+                "cost": 0
+            },
+            {
+                "id": "juniperis-procumbens-nana-1-6",
+                "description": "Mysteriously died entirely over winter",
+                "date": "2024-04-01",
+                "value": 66,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "J0n1p3rusCh1n3ns1sStr1ct4D4",
+        "name": "Juniperus Chinensis Stricta",
+        "species": "Juniperus chinensis",
+        "initialCost": 12,
+        "acquisitionDate": "2023-09-01",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "OBI",
+        "photos": [],
+        "events": [
+            {
+                "id": "juniperus-chinensis-stricta-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-09-01",
+                "value": 0,
+                "cost": 12
+            },
+            {
+                "id": "juniperus-chinensis-stricta-1-2",
+                "description": "Heavy wiring experiment",
+                "date": "2023-09-02",
+                "value": 1,
+                "cost": 0
+            },
+            {
+                "id": "juniperus-chinensis-stricta-1-3",
+                "description": "More wiring of main branches, Jin",
+                "date": "2023-09-20",
+                "value": 18,
+                "cost": 0
+            },
+            {
+                "id": "1778416896934",
+                "description": "Planted out in the field, forever",
+                "date": "2026-03-01",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "O4kTr33D4t4B4s3D4t4B4s3D4",
+        "name": "Oak",
+        "species": "Quercus sp.",
+        "initialCost": 0,
+        "acquisitionDate": "2023-09-29",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde steep uphill - roots didn't grow, although trunk shoots did",
+        "photos": [],
+        "events": [
+            {
+                "id": "O4kTr33D4t4B4s3D4t4B4s3D4-1",
+                "description": "Collection",
+                "date": "2023-09-29",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "O4kTr33D4t4B4s3D4t4B4s3D4-2",
+                "description": "Black bag",
+                "date": "2023-11-08",
+                "value": 40,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "O4kTr33D4t4B4s3D4t4B4s3D4t4B4",
+        "name": "Oak",
+        "species": "Quercus sp.",
+        "initialCost": 0,
+        "acquisitionDate": "2023-12-26",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - small 3 trunk",
+        "photos": [],
+        "events": [
+            {
+                "id": "O4kTr33D4t4B4s3D4t4B4s3D4t4B4-1",
+                "description": "Collection & pot",
+                "date": "2023-12-26",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "O4kTr33D4t4B4s3D4t4B4s3D4t4B4-2",
+                "description": "Buds opening",
+                "date": "2024-02-14",
+                "value": 50,
+                "cost": 0
+            },
+            {
+                "id": "O4kTr33D4t4B4s3D4t4B4s3D4t4B4-3",
+                "description": "Trim deadwood, add wire to cut thing (roots?)",
+                "date": "2025-06-09",
+                "value": 481,
+                "cost": 0
+            },
+            {
+                "id": "1774393510281",
+                "description": "Move in pot, add spagnum to lower trunk",
+                "date": "2026-03-23",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1c34Pung3nsGl4uc4Gl0b0s4",
+        "name": "Picea Pungens Glauca Globosa",
+        "species": "Picea pungens",
+        "initialCost": 30,
+        "acquisitionDate": "2023-08-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Garden Green planet",
+        "photos": [],
+        "events": [
+            {
+                "id": "picea-pungens-glauca-globosa-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-15",
+                "value": 0,
+                "cost": 30
+            },
+            {
+                "id": "picea-pungens-glauca-globosa-1-2",
+                "description": "Wire to the pot",
+                "date": "2023-09-15",
+                "value": 31,
+                "cost": 0
+            },
+            {
+                "id": "picea-pungens-glauca-globosa-1-3",
+                "description": "Repot, wiring",
+                "date": "2023-09-23",
+                "value": 8,
+                "cost": 0
+            },
+            {
+                "id": "picea-pungens-glauca-globosa-1-4",
+                "description": "Trim outer buds",
+                "date": "2024-08-04",
+                "value": 316,
+                "cost": 0
+            },
+            {
+                "id": "picea-pungens-glauca-globosa-1-5",
+                "description": "Trim tips",
+                "date": "2025-06-29",
+                "value": 329,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusSylv3str1sN4n4Tr33D4t4",
+        "name": "Scots Pine (Nana)",
+        "species": "Pinus Sylvestris Nana",
+        "initialCost": 49,
+        "acquisitionDate": "2023-12-11",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Tokaname 9",
+        "age": 2,
+        "notes": "",
+        "photos": [],
+        "events": [
+            {
+                "id": "pinus-sylvestris-nana-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-12-11",
+                "value": 0,
+                "cost": 49
+            },
+            {
+                "id": "pinus-sylvestris-nana-1-2",
+                "description": "Big branch removal, leaving sacrifice top",
+                "date": "2023-12-14",
+                "value": 3,
+                "cost": 0
+            },
+            {
+                "id": "pinus-sylvestris-nana-1-3",
+                "description": "Remove big branches, maybe 30%",
+                "date": "2025-03-16",
+                "value": 458,
+                "cost": 0
+            },
+            {
+                "id": "pinus-sylvestris-nana-1-4",
+                "description": "Repot into big japanese pot thing",
+                "date": "2025-04-19",
+                "value": 34,
+                "cost": 0
+            },
+            {
+                "id": "pinus-sylvestris-nana-1-5",
+                "description": "Pinch tips",
+                "date": "2025-06-29",
+                "value": 71,
+                "cost": 0
+            },
+            {
+                "id": "1765323290714",
+                "description": "Chop top of sacrifice (60-70cm)",
+                "date": "2025-12-10",
+                "cost": 0
+            },
+            {
+                "id": "1768691001441",
+                "description": "Major pruning and wiring, cleanup sacrifice stump",
+                "date": "2026-01-17",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2024-08-07",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Ordino up the path - this is the one with the many branches",
+        "photos": [],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4-1",
+                "description": "Collection & pot",
+                "date": "2024-08-07",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4-2",
+                "description": "Repot, straighter",
+                "date": "2025-04-04",
+                "value": 240,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4-3",
+                "description": "Died",
+                "date": "2025-06-09",
+                "value": 66,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4B",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2024-08-26",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "This is the one with the very few roots but the twisty trunk - not enough needlage and roots",
+        "photos": [],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4B-1",
+                "description": "Collection & pot",
+                "date": "2024-08-26",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4B-2",
+                "description": "Died",
+                "date": "2024-08-26",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4C",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2024-09-22",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Anyos rocky path - small with crappy needles (some fungal?)",
+        "photos": [],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4C-1",
+                "description": "Collection & pot",
+                "date": "2024-09-22",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4C-2",
+                "description": "Cut all the branches- doubt this one will survive",
+                "date": "2025-04-13",
+                "value": 203,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4C-3",
+                "description": "Died",
+                "date": "2025-06-09",
+                "value": 57,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4D",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2024-10-16",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Coll d'Ordino - big twisty one",
+        "photos": [],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4D-1",
+                "description": "Collection & pot",
+                "date": "2024-10-16",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4D-2",
+                "description": "Died",
+                "date": "2025-07-01",
+                "value": 258,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4E",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2025-04-13",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Beixalis - greener colour one",
+        "photos": [
+            {
+                "id": "1775739129854",
+                "url": "https://lokxxf6j2b3mgcs7.public.blob.vercel-storage.com/bonsai/P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4E/1775739126905-pine-shiiHeQQ5ZOaN0JGWQockk092dNZzb.jpg",
+                "fileName": "pine.jpg",
+                "fileSize": 594857,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2026-04-09T12:52:09.854Z",
+                "width": 1444,
+                "height": 1926,
+                "source": "vercel-blob",
+                "storagePath": "bonsai/P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4E/1775739126905-pine-shiiHeQQ5ZOaN0JGWQockk092dNZzb.jpg"
+            }
+        ],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4E-1",
+                "description": "Collection & pot",
+                "date": "2025-04-13",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "1758061958241",
+                "description": "Mild wiring",
+                "date": "2025-09-17",
+                "cost": 0
+            },
+            {
+                "id": "1777402137851",
+                "description": "Major wiring",
+                "date": "2026-04-28",
+                "cost": 0
+            },
+            {
+                "id": "1777935198162",
+                "description": "Bend main trunk with cork leverage thing",
+                "date": "2026-05-04",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4F",
+        "name": "Pinus Uncinata",
+        "species": "Pinus uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2025-04-13",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Pumice pot",
+        "age": 1,
+        "notes": "Beixalis",
+        "photos": [],
+        "events": [
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4F-1",
+                "description": "Collection & pot",
+                "date": "2025-04-13",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "P1nusUnc1n4t4Tr33D4t4B4s3D4t4B4F-2",
+                "description": "Repot into pumice",
+                "date": "2025-07-05",
+                "value": 83,
+                "cost": 0
+            },
+            {
+                "id": "1761260318711",
+                "description": "Expired",
+                "date": "2025-08-24",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Pr0nus1nc1s4K0j0N0M41D4t4",
+        "name": "Fuji Cherry",
+        "species": "Prunus incisa kojo no mai",
+        "initialCost": 9,
+        "acquisitionDate": "2023-07-07",
+        "status": "active",
+        "type": "purchased",
+        "location": "Indoors",
+        "potType": "High grey pot",
+        "age": 2,
+        "notes": "",
+        "photos": [],
+        "events": [
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 9
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-2",
+                "description": "Wiring",
+                "date": "2023-07-13",
+                "value": 6,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-3",
+                "description": "Unwiring",
+                "date": "2023-09-21",
+                "value": 70,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-4",
+                "description": "Flowering!",
+                "date": "2024-03-08",
+                "value": 169,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-5",
+                "description": "Trim big growth back a bit",
+                "date": "2024-07-04",
+                "value": 118,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-6",
+                "description": "Repot with more pumice, put indoors",
+                "date": "2025-03-15",
+                "value": 254,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-7",
+                "description": "Flowering!",
+                "date": "2025-03-22",
+                "value": 7,
+                "cost": 0
+            },
+            {
+                "id": "prunus-incisa-kojo-no-mai-1-8",
+                "description": "Repot into high grey pot",
+                "date": "2025-03-28",
+                "value": 6,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Q6LAs5bnlWzOhAxN4qpj",
+        "name": "European Aspen",
+        "species": "Populus tremula",
+        "initialCost": 0,
+        "acquisitionDate": "2026-03-08",
+        "status": "active",
+        "type": "collected",
+        "notes": "Pot stump in basic soil (cover in plastic)",
+        "photos": [],
+        "events": [
+            {
+                "id": "1774902513735",
+                "description": "Small shoots showing",
+                "date": "2026-03-30",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "R0s3m4ryTr33D4t4B4s3D4",
+        "name": "Rosemary",
+        "species": "Rosmarinus officinalis",
+        "initialCost": 8,
+        "acquisitionDate": "2023-05-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Rock planting",
+        "age": 2,
+        "notes": "Crespi",
+        "photos": [],
+        "events": [
+            {
+                "id": "rosemary-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-05-15",
+                "value": 0,
+                "cost": 8
+            },
+            {
+                "id": "rosemary-1-2",
+                "description": "Repot over rock",
+                "date": "2025-04-04",
+                "value": 690,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y1Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y1",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2023-11-24",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y1Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot",
+                "date": "2023-11-24",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y1Tr33D4t4B4s3D4t4B4s3-2",
+                "description": "Major bending",
+                "date": "2023-11-26",
+                "value": 2,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y1Tr33D4t4B4s3D4t4B4s3-3",
+                "description": "Pinch tips and wire",
+                "date": "2025-06-29",
+                "value": 581,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y2Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y2",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2023-12-03",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - small, very weak died",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y2Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot",
+                "date": "2023-12-03",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y3",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2023-12-03",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Japanese terracotta pot",
+        "age": 2,
+        "notes": "Spina verde - growing cascade sideways - small",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot",
+                "date": "2023-12-03",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3-2",
+                "description": "Pull half the candle at the top (furthest extension)",
+                "date": "2024-06-01",
+                "value": 181,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3-3",
+                "description": "Give it a downward cascadey bend",
+                "date": "2024-07-22",
+                "value": 51,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3-4",
+                "description": "Remove wire",
+                "date": "2024-09-16",
+                "value": 56,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y3Tr33D4t4B4s3D4t4B4s3-5",
+                "description": "Repot",
+                "date": "2025-03-22",
+                "value": 187,
+                "cost": 0
+            },
+            {
+                "id": "1755732990334",
+                "description": "Died",
+                "date": "2025-08-14",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y4Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y4",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2023-12-17",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Spina verde - this is the bigger one without many roots really - died- too wet? or not enough roots?",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y4Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot & wiring",
+                "date": "2023-12-17",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y5Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y5",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2024-01-03",
+        "status": "active",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Spina verde",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y5Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot- tie top down",
+                "date": "2024-01-03",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y6Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y6",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2024-01-03",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Spina verde - 3X scion grafts from different collected Scots - tree in very dry shape",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y6Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot",
+                "date": "2024-01-03",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y6Tr33D4t4B4s3D4t4B4s3-2",
+                "description": "3X scion grafts from different collected Scots",
+                "date": "2024-01-11",
+                "value": 8,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y6Tr33D4t4B4s3D4t4B4s3-3",
+                "description": "Grafts failed",
+                "date": "2024-03-20",
+                "value": 69,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Sc0tsP1n3Y7Tr33D4t4B4s3D4t4B4s3",
+        "name": "Scots pine y7",
+        "species": "Pinus sylvestris",
+        "initialCost": 0,
+        "acquisitionDate": "2024-01-15",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 1,
+        "notes": "Spina verde compound...",
+        "photos": [],
+        "events": [
+            {
+                "id": "Sc0tsP1n3Y7Tr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection & pot",
+                "date": "2024-01-15",
+                "value": 0,
+                "cost": 0
+            },
+            {
+                "id": "Sc0tsP1n3Y7Tr33D4t4B4s3D4t4B4s3-2",
+                "description": "Hard(ish) top bend downwards",
+                "date": "2024-02-19",
+                "value": 35,
+                "cost": 0
+            },
+            {
+                "id": "1754258219397",
+                "description": "Died",
+                "date": "2025-08-03",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "T1ny4shTr33D4t4B4s3D4t4B4s3",
+        "name": "Tiny Ash",
+        "species": "Fraxinus sp.",
+        "initialCost": 0,
+        "acquisitionDate": "2023-10-11",
+        "status": "expired",
+        "type": "collected",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Santo Stefano path - never budded out",
+        "photos": [],
+        "events": [
+            {
+                "id": "T1ny4shTr33D4t4B4s3D4t4B4s3-1",
+                "description": "Collection",
+                "date": "2023-10-11",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "UQJK3aZ0V80l5M68mIBB",
+        "name": "unknown Spruce",
+        "species": "Pinus",
+        "initialCost": 0,
+        "acquisitionDate": "2024-03-01",
+        "status": "active",
+        "type": "collected",
+        "location": "San Fermo garden",
+        "potType": "Clay",
+        "age": 1,
+        "notes": "Sprouted from compost",
+        "photos": [],
+        "events": [
+            {
+                "id": "1755817945903",
+                "description": "Repot to clay low pot",
+                "date": "2025-08-09",
+                "cost": 0
+            },
+            {
+                "id": "1758061900262",
+                "description": "Trunk first wiring",
+                "date": "2025-09-17",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "Ulm4sP4rv1fl0r4Tr33D4t4B4s3",
+        "name": "Ulmus Parviflora (Chinese Elm)",
+        "species": "Ulmus parviflora",
+        "initialCost": 59,
+        "acquisitionDate": "2023-10-23",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Direct from Crespi - Japan",
+        "photos": [],
+        "events": [
+            {
+                "id": "ulmus-parviflora-1-1",
+                "description": "Initial acquisition",
+                "date": "2023-10-23",
+                "value": 0,
+                "cost": 59
+            },
+            {
+                "id": "ulmus-parviflora-1-2",
+                "description": "Repot, remove crazy roots, wire structure",
+                "date": "2023-10-30",
+                "value": 7,
+                "cost": 0
+            },
+            {
+                "id": "ulmus-parviflora-1-3",
+                "description": "Unwire",
+                "date": "2023-11-19",
+                "value": 20,
+                "cost": 0
+            },
+            {
+                "id": "ulmus-parviflora-1-4",
+                "description": "Repot",
+                "date": "2025-03-22",
+                "value": 489,
+                "cost": 0
+            },
+            {
+                "id": "ulmus-parviflora-1-5",
+                "description": "Budbreak",
+                "date": "2025-04-12",
+                "value": 21,
+                "cost": 0
+            },
+            {
+                "id": "1768906630275",
+                "description": "Repot into Tokoname #7",
+                "date": "2026-01-18",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "WOyWn3cvSt6ZF831fwKP",
+        "name": "Japanese Black Pine 4",
+        "species": "Pinus Thunbergii",
+        "initialCost": 5,
+        "acquisitionDate": "2026-01-14",
+        "status": "expired",
+        "type": "purchased",
+        "age": 2,
+        "notes": "Kensho",
+        "photos": [],
+        "events": [
+            {
+                "id": "1770300829996",
+                "description": "Repot in pumice in plastic pot",
+                "date": "2026-02-05",
+                "cost": 0
+            },
+            {
+                "id": "1775301336742",
+                "description": "Died. too much synthetic fertilizer",
+                "date": "2026-04-03",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "d6l4JBZogTRP5cC3gyhr",
+        "name": "Common Box",
+        "species": "Buxus sempervirens",
+        "initialCost": 0,
+        "acquisitionDate": "2026-02-18",
+        "status": "active",
+        "type": "collected",
+        "potType": "Mesh",
+        "age": 5,
+        "notes": "",
+        "photos": [],
+        "events": []
+    },
+    {
+        "id": "gLeUU6GyMb8G4XhPTGKC",
+        "name": "Himalayan Cedar",
+        "species": "Cedrus Deodora",
+        "initialCost": 8,
+        "acquisitionDate": "2023-05-15",
+        "status": "active",
+        "type": "purchased",
+        "notes": "Crespi",
+        "photos": [],
+        "events": [
+            {
+                "id": "1775051753334",
+                "description": "Repot to bonsai pot, remove sacrifice branch",
+                "date": "2026-04-01",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "jyNA3LUvYa2kVyIQatiY",
+        "name": "Japanese Black Pine 1",
+        "species": "Pinus Thunbergii",
+        "initialCost": 5,
+        "acquisitionDate": "2026-01-14",
+        "status": "active",
+        "type": "purchased",
+        "potType": "Tokoname 4.5",
+        "age": 2,
+        "notes": "Kensho - low bend one",
+        "photos": [],
+        "events": [
+            {
+                "id": "1768690899979",
+                "description": "Repot to tokoname, main trunk wiring",
+                "date": "2026-01-17",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "mUgoP1n3Tr33D4t4B4s3",
+        "name": "Mugo Pine",
+        "species": "Pinus mugo",
+        "initialCost": 29,
+        "acquisitionDate": "2023-05-15",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "CIP - very small roots wound around trunk, no roots at all really",
+        "photos": [],
+        "events": [
+            {
+                "id": "mUgoP1n3Tr33D4t4B4s3-1",
+                "description": "Initial acquisition",
+                "date": "2023-05-15",
+                "value": 0,
+                "cost": 29
+            },
+            {
+                "id": "mUgoP1n3Tr33D4t4B4s3-2",
+                "description": "Root clean",
+                "date": "2023-06-10",
+                "value": 26,
+                "cost": 0
+            },
+            {
+                "id": "mUgoP1n3Tr33D4t4B4s3-3",
+                "description": "Repot",
+                "date": "2023-07-15",
+                "value": 35,
+                "cost": 0
+            },
+            {
+                "id": "mUgoP1n3Tr33D4t4B4s3-4",
+                "description": "Dead",
+                "date": "2023-08-15",
+                "value": 31,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "mUgoP1n3Tr33D4t4B4s3B4",
+        "name": "Mugo Pine 2",
+        "species": "Pinus mugo",
+        "initialCost": 9,
+        "acquisitionDate": "2023-07-07",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Two small trees intertwined - hot temps and bad sun positioning",
+        "photos": [],
+        "events": [
+            {
+                "id": "mugo-pine-2-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 9
+            },
+            {
+                "id": "mugo-pine-2-2",
+                "description": "Separate and repot",
+                "date": "2023-07-15",
+                "value": 8,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-2-3",
+                "description": "Dead",
+                "date": "2023-07-15",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "mUgoP1n3Tr33D4t4B4s3C4",
+        "name": "Mugo Pine 3",
+        "species": "Pinus mugo",
+        "initialCost": 9,
+        "acquisitionDate": "2023-07-07",
+        "status": "expired",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Crespi - small seedling - didnt like the root over rock, saplings did not merge at all",
+        "photos": [],
+        "events": [
+            {
+                "id": "mugo-pine-3-1",
+                "description": "Initial acquisition",
+                "date": "2023-07-07",
+                "value": 0,
+                "cost": 9
+            },
+            {
+                "id": "mugo-pine-3-2",
+                "description": "Repot",
+                "date": "2023-07-19",
+                "value": 12,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-3-3",
+                "description": "Root over rock repot",
+                "date": "2023-11-19",
+                "value": 123,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-3-4",
+                "description": "Dead",
+                "date": "2023-11-19",
+                "value": 0,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "mUgoP1n3Tr33D4t4B4s3D4",
+        "name": "Mugo Pine 4",
+        "species": "Pinus mugo",
+        "initialCost": 20,
+        "acquisitionDate": "2023-08-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Training pot",
+        "age": 2,
+        "notes": "Garden Green planet",
+        "photos": [],
+        "events": [
+            {
+                "id": "mugo-pine-4-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-15",
+                "value": 0,
+                "cost": 20
+            },
+            {
+                "id": "mugo-pine-4-2",
+                "description": "Wire trunk",
+                "date": "2023-09-29",
+                "value": 45,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-4-3",
+                "description": "Unwire trunk, cut pot back, remove triplets",
+                "date": "2023-11-11",
+                "value": 43,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-4-4",
+                "description": "Pot in wooden box, add more detailed wiring",
+                "date": "2023-12-26",
+                "value": 45,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-4-5",
+                "description": "Repot into training pot, leave most roots",
+                "date": "2025-04-04",
+                "value": 465,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-4-6",
+                "description": "Pinch tips",
+                "date": "2025-06-29",
+                "value": 86,
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "mUgoP1n3Tr33D4t4B4s3E4",
+        "name": "Mugo Pine 5",
+        "species": "Pinus mugo",
+        "initialCost": 20,
+        "acquisitionDate": "2023-08-15",
+        "status": "active",
+        "type": "purchased",
+        "location": "Outdoors",
+        "potType": "Cylindrical clay pot",
+        "age": 2,
+        "notes": "Garden Green planet - bulgy trunk one",
+        "photos": [],
+        "events": [
+            {
+                "id": "mugo-pine-5-1",
+                "description": "Initial acquisition",
+                "date": "2023-08-15",
+                "value": 0,
+                "cost": 20
+            },
+            {
+                "id": "mugo-pine-5-2",
+                "description": "Wiring trunk, major branches",
+                "date": "2023-09-03",
+                "value": 19,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-5-3",
+                "description": "Unwiring",
+                "date": "2023-10-14",
+                "value": 41,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-5-4",
+                "description": "Rewiring (didn't bend enough)",
+                "date": "2023-10-18",
+                "value": 4,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-5-5",
+                "description": "Repot into the cylindrical clay one",
+                "date": "2025-04-19",
+                "value": 549,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-5-6",
+                "description": "Big wiring",
+                "date": "2025-05-23",
+                "value": 34,
+                "cost": 0
+            },
+            {
+                "id": "mugo-pine-5-7",
+                "description": "Pinch tips",
+                "date": "2025-06-29",
+                "value": 37,
+                "cost": 0
+            },
+            {
+                "id": "1757108018985",
+                "description": "Unwire",
+                "date": "2025-09-05",
+                "cost": 0
+            },
+            {
+                "id": "1764025724041",
+                "description": "New wiring for winter",
+                "date": "2025-11-25",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "ot8WyMl53vdUQ13Hv1cc",
+        "name": "Field Maple (root cutting)",
+        "species": "Acer campestre",
+        "initialCost": 0,
+        "acquisitionDate": "2026-02-18",
+        "status": "active",
+        "type": "collected",
+        "notes": "Root cutting from bigger maple",
+        "photos": [
+            {
+                "id": "1775574185684",
+                "url": "https://lokxxf6j2b3mgcs7.public.blob.vercel-storage.com/bonsai/ot8WyMl53vdUQ13Hv1cc/1775574182955-maple-cutting-zKsBskpJnqvui5traVFeAuC42UlZeY.jpg",
+                "fileName": "maple-cutting.jpg",
+                "fileSize": 485434,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2026-04-07T15:03:05.684Z",
+                "takenAt": "2026-02-18T11:00:00.000Z",
+                "width": 1946,
+                "height": 1488,
+                "source": "vercel-blob",
+                "storagePath": "bonsai/ot8WyMl53vdUQ13Hv1cc/1775574182955-maple-cutting-zKsBskpJnqvui5traVFeAuC42UlZeY.jpg"
+            }
+        ],
+        "events": [
+            {
+                "id": "1773875953603",
+                "description": "First leaf out!",
+                "date": "2026-03-16",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "sING1atdn5uTxPOWVWK0",
+        "name": "Pinus Uncinata",
+        "species": "Pinus Uncinata",
+        "initialCost": 0,
+        "acquisitionDate": "2025-10-23",
+        "status": "expired",
+        "type": "collected",
+        "potType": "Plastic",
+        "age": 0,
+        "notes": "Coll de la Botella, Andorra",
+        "photos": [],
+        "events": [
+            {
+                "id": "1761341136447",
+                "description": "Potted into pumice",
+                "date": "2025-10-24",
+                "cost": 0
+            },
+            {
+                "id": "1777935140845",
+                "description": "Died- used too much inorganic fertilizer",
+                "date": "2026-04-28",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "sbfYNOyAjOn5gRwySoAK",
+        "name": "Pine (unknown)",
+        "species": "Pinus",
+        "initialCost": 0,
+        "acquisitionDate": "2024-03-01",
+        "status": "active",
+        "type": "collected",
+        "location": "San Fermo gardenr",
+        "potType": "Plastic",
+        "age": 1,
+        "notes": "Sprouted from compost- this the one with the very long needles",
+        "photos": [],
+        "events": []
+    },
+    {
+        "id": "vbAiGoYJUwNLalpq46dL",
+        "name": "Blackthorn",
+        "species": "Prunus Spinosa",
+        "initialCost": 0,
+        "acquisitionDate": "2025-05-23",
+        "status": "active",
+        "type": "field",
+        "notes": "Airlayer",
+        "photos": [
+            {
+                "id": "1779896964935",
+                "url": "https://lokxxf6j2b3mgcs7.public.blob.vercel-storage.com/bonsai/vbAiGoYJUwNLalpq46dL/1779896955099-IMG_2303-mrawt5sUe849D8RkOVeVJTZAMmz7MH.jpeg",
+                "fileName": "IMG_2303.jpeg",
+                "fileSize": 3210022,
+                "contentType": "image/jpeg",
+                "uploadedAt": "2026-05-27T15:49:24.935Z",
+                "takenAt": "2026-05-23T12:12:29.000Z",
+                "width": 4032,
+                "height": 3024,
+                "source": "vercel-blob",
+                "storagePath": "bonsai/vbAiGoYJUwNLalpq46dL/1779896955099-IMG_2303-mrawt5sUe849D8RkOVeVJTZAMmz7MH.jpeg"
+            }
+        ],
+        "events": [
+            {
+                "id": "1779896938120",
+                "description": "Cut callous and re-airlayer",
+                "date": "2026-05-27",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "xLc0TOEHXkKLqNzPLkEB",
+        "name": "Japanese Black Pine 2",
+        "species": "Pinus Thunbergii",
+        "initialCost": 5,
+        "acquisitionDate": "2026-01-14",
+        "status": "active",
+        "type": "purchased",
+        "age": 2,
+        "notes": "Kensho - standard bend",
+        "photos": [],
+        "events": [
+            {
+                "id": "1768906588969",
+                "description": "Repot and wire main trunk",
+                "date": "2026-01-18",
+                "cost": 0
+            }
+        ]
+    },
+    {
+        "id": "xxrdsitpIutCZlNp5MSV",
+        "name": "Japanese Maple Katsura",
+        "species": "Acer palmatum katsura",
+        "initialCost": 34,
+        "acquisitionDate": "2026-05-29",
+        "status": "active",
+        "type": "purchased",
+        "potType": "plastic",
+        "notes": "Andorra garden centre",
+        "photos": [],
+        "events": []
+    }
+]

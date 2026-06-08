@@ -27,6 +27,9 @@ dist-ssr
 # Environment variables
 .env
 
+# Prisma generated client
+/generated/prisma
+
 # Test build
 coverage/
 .vercel
